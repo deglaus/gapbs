@@ -9,12 +9,8 @@ echo "Running BFS on Kronecker graph"
 
 #sudo perf record -e L1-dcache-load-misses ./bfs -g 20 -n 1
 
-# Generate graphs
-# ./converter -g 20 -b krongraph.sg
-# ./converter -u 20 -b uniformgraph.el
-
 # Record with high-level instructions; no stack-trace.
-sudo perf record -e L1-dcache-load-misses ./bfs -f krongraph.sg
+sudo perf record -e L1-dcache-load-misses:P ./bfs -f ./benchmark/krongraph.sg
 
 
 echo "Kronecker" >> bfs.txt
