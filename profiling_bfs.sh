@@ -10,7 +10,13 @@ echo "Running BFS on Kronecker graph"
 #sudo perf record -e L1-dcache-load-misses ./bfs -g 20 -n 1
 
 # Record with high-level instructions; no stack-trace.
-sudo perf record -e L1-dcache-load-misses:P ./bfs -f ./benchmark/krongraph.sg
+ sudo perf record -e L1-dcache-load-misses:P ./bfs -f ./benchmark/krongraph.sg
+
+
+
+# Record with instructions with stack-trace.
+# sudo perf record -e L1-dcache-load-misses:P -c 100 -g -- sleep 5 ./bfs -f ./benchmark/krongraph.sg -n 3
+
 
 
 echo "Kronecker" >> bfs.txt
