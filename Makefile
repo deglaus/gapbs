@@ -1,6 +1,7 @@
 # See LICENSE.txt for license details.
 
-CXX_FLAGS += -g -std=c++11 -O3 -Wall
+#CXX_FLAGS += -g -fno-omit-frame-pointer -std=c++11 -O3 -Wall
+CXX_FLAGS += -g3 -std=c++11 -O0 -Wall
 PAR_FLAG = -fopenmp
 
 ifneq (,$(findstring icpc,$(CXX)))
@@ -8,7 +9,7 @@ ifneq (,$(findstring icpc,$(CXX)))
 endif
 
 ifneq (,$(findstring sunCC,$(CXX)))
-	CXX_FLAGS = -std=c++11 -xO3 -m64 -xtarget=native
+	CXX_FLAGS = -g3 -O0 -fno-omit-frame-pointer -std=c++11 -xO3 -m64 -xtarget=native
 	PAR_FLAG = -xopenmp
 endif
 
