@@ -1,9 +1,33 @@
+#!/bin/bash
+
 # Runs the first rounds of tests
 
-# :P -- precision does not work on laptop
-# Works on stationary
+# PEBS; the option :pp -- works provided that the intel-microcode package is installed (debian)
+#if [["$1" == *"help"*]];
+#   then
+#	   echo "Run BFS on a Kronecker graph with the argument 'kron' or a uniform graph with 'uni'"
+#fi
 
-echo "Running BFS on Kronecker graph"
+if [[ $1 == -h  ]]; then
+    echo "Provide the argument 'uni' to run on a uniform graph or 'kron' to run on a Kronecker graph."
+	echo "The latter is run per default"
+else
+    echo ""
+fi
+
+if [[ $1 == uni ]]; then
+	echo "Running BFS on uniform graph"
+	sudo perf record -g -e L1-dcache-load-misses:pp --call-graph dwarf  ./bfs -f ./benchmark/krongraph.sg -n 40
+
+	sudo perf report --sort srcline
+else
+	
+	echo "Running BFS on Kronecker graph"
+	sudo perf record -g -e L1-dcache-load-misses:pp --call-graph dwarf  ./bfs -f ./benchmark/krongraph.sg -n 40
+
+	sudo perf report --sort srcline
+
+fi
 
 #sudo perf record -e L1-dcache-load-misses:pp -c 100 -g -- sleep 5 ./bfs -g 20 -n 1
 
@@ -35,9 +59,6 @@ echo "Running BFS on Kronecker graph"
 # With dwarf + sleep -- seems to exclusively produce stack traces to the Linux kernel.
 #  sudo perf record -g  -e L1-dcache-load-misses:pp -c 100 --call-graph dwarf sleep 5  ./bfs -f ./benchmark/krongraph.sg -n 10
 
-sudo perf record -g  -e L1-dcache-load-misses:pp --call-graph dwarf  ./bfs -f ./benchmark/krongraph.sg -n 40
-
-sudo perf report --sort srcline
 
 
 
@@ -49,7 +70,6 @@ sudo perf report --sort srcline
 # echo "----------------------" >> bfs.txt
 # sudo perf annotate --stdio >> bfs.txt
 
- echo "Running BFS on uniform graph"
 
 # sudo perf record -e L1-dcache-load-misses -c 100 -g -- sleep 5 ./bfs -u 20 -n 1
 # sudo perf record -g  -e L1-dcache-load-misses:P --call-graph dwarf ./bfs -f ./benchmark/uniformgraph.sg
