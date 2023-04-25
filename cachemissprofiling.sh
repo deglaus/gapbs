@@ -36,11 +36,25 @@ if [[ $# == 2  ]]; then
 		sudo perf report --sort srcline --stdio | grep -E 'sssp.cc:110|sssp.cc:72|sssp.cc:71|sssp.cc:79|sssp.cc:73|sssp.cc:75' | sort -k 3  >> $2$1.txt
 		
 
-		elif [[ $1 == bc ]]; then
+	elif [[ $1 == bc ]]; then
 
 		sudo perf report --sort srcline --stdio | grep -E 'bc.cc:70|bc.cc:72|bc.cc:71|bc.cc:127|bc.cc:76|bc.cc:78|bc.cc:70|bc.cc:125|bc.cc:126|bc.cc:131' | sort -k 3  >> $2$1.txt
 
+
+	elif [[ $1 == pr ]]; then
+
+		sudo perf report --sort srcline --stdio | grep -E 'pr.cc:48|pr.cc:49|pr.cc:50|pr.cc:51|pr.cc:52|pr.cc:53' | sort -k 3  >> $2$1.txt
+
+	elif [[ $1 == cc ]]; then
+
+		sudo perf report --sort srcline --stdio | grep -E 'cc.cc:100|cc.cc:107|cc.cc:109|cc.cc:61|cc.cc:147|cc.cc:125|cc.cc:128|cc.cc:48|cc.cc:43|cc.cc:44|cc.cc:51|cc.cc:63' | sort -k 3  >> $2$1.txt
+	elif [[ $1 == tc ]]; then
+
+		sudo perf report --sort srcline --stdio | grep -E 'tc.cc:56|tc.cc:57|tc.cc:59|tc.cc:60|tc.cc:61|tc.cc:63|tc.cc:64|tc.cc:65|tc.cc:66' | sort -k 3  >> $2$1.txt
+
+		
 	else
+		
 #		sudo perf report --sort srcline,dso
 		echo "OTHER ALGORITHM"
 
@@ -54,5 +68,7 @@ fi
 
 
 #grep bfs.cc:107 sorted_kronbfs.txt | sed 's/\|/ /'|awk '{print $1}' | sed 's/.$//'
+#    	sudo perf record -g -e l2_rqsts.code_rd_miss:pp --call-graph dwarf  ./$1 -f ./benchmark/$2graph.$extension -n $repeat
 
 
+# r2424 = l2_rqsts.code_rd_miss
