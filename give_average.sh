@@ -206,53 +206,11 @@ fi
 		done
 fi
 
-# CC --------------------------------------------------------------------
-		if [[ $1 == cc ]]; then
+
+# TC --------------------------------------------------------------------
 		
-		max=0
-		for i in 100 107 109 113 125 128 61 147 43 44 45 48 50 51 63 64; do
-
-			newM=`./sort_by_line.sh $1 $2 $1.cc:$i | wc -l`
-			if [[ $newM -gt $max  ]]; then
-				max=$newM
-			fi			
-		done
-		echo "The number of samples is:"
-		echo $max
-		echo "--------------------------------------------------"
-
-		
-		for i in 100 107 109 113 125 128 61 147 43 44 45 48 50 51 63 64; do
-			length=`./sort_by_line.sh $1 $2 $1.cc:$i | wc -l`
-			if [[ $length -lt max ]]; then
-				echo "xd for"
-				echo $i
-				diff=$(expr $max - $length + 1)
-
-				echo $diff
-				for y in `seq 2 $diff`
-				do
-					echo "adding zeros to 00.00%     0.00%  $1.cc:$i"
-					echo "00.00%     0.00%  $1.cc:$i" >> $2$1.txt
-				done
-			fi
-		
-		done
-
-
-		for i in 100 107 109 113 125 128 61 147 43 44 45 48 50 51 63 64; do
-			echo $1.cc:$i
-			answer=`./sort_by_line.sh $1 $2 $1.cc:$i |  awk '{ sum+=$1 }END { print sum/NR }'`
-			echo $answer
-		done
-
-
-		
-		fi
-
-
 		if [[ $1 == tc ]]; then
-		
+			
 		max=0
 		for i in 56 57 59 60 61 63 64 65 66; do
 
