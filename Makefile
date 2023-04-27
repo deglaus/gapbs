@@ -1,7 +1,7 @@
 # See LICENSE.txt for license details.
 
 #CXX_FLAGS += -g -fno-omit-frame-pointer -std=c++11 -O3 -Wall
-CXX_FLAGS += -g3 -std=c++11 -O0 -Wall
+CXX_FLAGS += -g3 -std=c++11 -O2 -Wall
 PAR_FLAG = -fopenmp
 
 ifneq (,$(findstring icpc,$(CXX)))

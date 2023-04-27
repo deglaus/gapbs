@@ -4,5 +4,8 @@ max=40
 
 for i in `seq 2 $max`
 		 do
-			 ./cachemissprofiling.sh $1 $2
+			 echo "-----------------------"
+			 echo "Repeating number $i"
+			 echo "-----------------------"
+			 ./cachemissprofiling.sh $1 $2 $3
 done
