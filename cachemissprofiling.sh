@@ -8,7 +8,8 @@ if [[ $# == 3  ]]; then
 	if [[ $3 == l1 ]]; then
 		event=L1-dcache-load-misses	
 	elif [[ $3 == llc  ]]; then
-		event=mem_load_uops_misc_retired.llc_miss,offcore_response_all_reads.llc_miss.dram
+		event=mem_load_uops_misc_retired.llc_miss 
+		#event=mem_load_uops_misc_retired.llc_miss,offcore_response_all_reads.llc_miss.dram
 
 	elif [[ $3 == full-llc ]]; then
 		event=mem_load_uops_misc_retired.llc_miss,offcore_response.all_reads.llc_miss.dram,offcore_response.all_code_rd.llc_miss.dram,offcore_response.all_data_rd.llc_miss.dram,offcore_response.all_pf_code_rd.llc_miss.dram,offcore_response.all_pf_data_rd.llc_miss.dram,offcore_response.all_pf_rfo.llc_miss.dram,offcore_response.all_rfo.llc_miss.dram,offcore_response.any_request.llc_miss_local.dram,offcore_response.data_in_socket.llc_miss.local_dram,offcore_response.data_in_socket.llc_miss_local.any_llc_hit,offcore_response.demand_code_rd.llc_miss.dram,offcore_response.demand_data_rd.llc_miss.dram,offcore_response.demand_ifetch.llc_miss_local.dram,offcore_response.demand_rfo.llc_miss.dram,offcore_response.pf_data_rd.llc_miss_local.dram,offcore_response.pf_ifetch.llc_miss_local.dram,offcore_response.pf_l2_code_rd.llc_miss.dram,offcore_response.pf_l2_data_rd.llc_miss.dram,offcore_response.pf_l2_rfo.llc_miss.dram,offcore_response.pf_l_data_rd.llc_miss_local.dram,offcore_response.pf_l_ifetch.llc_miss_local.dram,offcore_response.pf_llc_code_rd.llc_miss.dram,offcore_response.pf_llc_data_rd.llc_miss.dram,offcore_response.pf_llc_rfo.llc_miss.dram,page_walks.llc_miss 
@@ -41,7 +42,7 @@ if [[ $# == 3  ]]; then
 		echo $2
 #'sssp.cc:*'
 
-		sudo perf report --sort srcline --stdio | grep -E "$1.cc:*" | sort -k 3  >> $2$1.txt
+		sudo perf report --sort srcline --stdio | grep -E "$1.cc:*" | sort -k 3  >> $2$1$3.txt
 
 		# if [[ $1 == bfs ]]; then
 		# 	echo "-----------------------------------------" >> bfs.txt
