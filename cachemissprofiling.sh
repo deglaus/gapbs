@@ -8,7 +8,15 @@ if [[ $# == 3  ]]; then
 	if [[ $3 == l1 ]]; then
 		event=L1-dcache-load-misses	
 	elif [[ $3 == llc  ]]; then
-		event=mem_load_uops_misc_retired.llc_miss 
+		event=mem_load_uops_misc_retired.llc_miss
+		# does offcore_response.all_reads.llc_miss.dram and mem_load_uops_misc_retired.llc_miss
+		# run with perf stat
+		# figure out hit-rate for each instruction for PR
+		# try BFS, look if hits and misses are on the same line of code
+		# look if llc misses are on OTHER lines of code than L1
+		# BC - look at l. 37 to see which access causes the most LLC misses.
+		# CC - look at l. 8 to see which assembly instruction causes the high miss-rate
+		
 		#event=mem_load_uops_misc_retired.llc_miss,offcore_response_all_reads.llc_miss.dram
 
 	elif [[ $3 == full-llc ]]; then
