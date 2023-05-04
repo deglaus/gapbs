@@ -1,6 +1,26 @@
 #!/bin/bash
 
 if [[ $# == 3  ]]; then
+
+
+		if [[ $3 == llc-count  ]]; then
+			echo average miss-rate:
+			echo "---------------------------------------------"
+			echo "addss (%rsi, %rdx, 4), %xmm0"
+			cat $1$2_count_$3.txt | grep 'addss (%rsi, %rdx, 4), %xmm0' | grep 'RATE:' | sed -n 's/.*RATE: \([0-9.]*\)/\1/p' | awk '{ sum += $1 } END { if (NR > 0) print sum / NR }'
+			
+			echo "cmp %rax,%r11"
+			cat $1$2_count_$3.txt | grep 'cmp %rax,%r11' | grep 'RATE:' | sed -n 's/.*RATE: \([0-9.]*\)/\1/p' | awk '{ sum += $1 } END { if (NR > 0) print sum / NR }'
+
+			echo "movslq (%rax), %rdx"
+			cat $1$2_count_$3.txt | grep 'movslq (%rax), %rdx' | grep 'RATE:' | sed -n 's/.*RATE: \([0-9.]*\)/\1/p' | awk '{ sum += $1 } END { if (NR > 0) print sum / NR }'
+			
+		fi
+
+
+
+
+	
 #	lines="0 1"
 	if [[ $1 == bfs ]]; then
 		lines="52 53 54 55 57 58 76 77 79 96 107 118"
@@ -54,7 +74,6 @@ if [[ $# == 3  ]]; then
 			answer=`./sort_by_line.sh $1 $2 $3 $1.cc:$i |  awk '{ sum+=$1 }END { print sum/NR }'`
 			echo $answer
 		done
-	
 	
 
 else

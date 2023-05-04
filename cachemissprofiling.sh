@@ -54,8 +54,10 @@ if [[ $# == 3  ]]; then
 
 	elif [[ $3 == full-llc ]]; then
 		event=mem_load_uops_misc_retired.llc_miss,offcore_response.all_reads.llc_miss.dram,offcore_response.all_code_rd.llc_miss.dram,offcore_response.all_data_rd.llc_miss.dram,offcore_response.all_pf_code_rd.llc_miss.dram,offcore_response.all_pf_data_rd.llc_miss.dram,offcore_response.all_pf_rfo.llc_miss.dram,offcore_response.all_rfo.llc_miss.dram,offcore_response.any_request.llc_miss_local.dram,offcore_response.data_in_socket.llc_miss.local_dram,offcore_response.data_in_socket.llc_miss_local.any_llc_hit,offcore_response.demand_code_rd.llc_miss.dram,offcore_response.demand_data_rd.llc_miss.dram,offcore_response.demand_ifetch.llc_miss_local.dram,offcore_response.demand_rfo.llc_miss.dram,offcore_response.pf_data_rd.llc_miss_local.dram,offcore_response.pf_ifetch.llc_miss_local.dram,offcore_response.pf_l2_code_rd.llc_miss.dram,offcore_response.pf_l2_data_rd.llc_miss.dram,offcore_response.pf_l2_rfo.llc_miss.dram,offcore_response.pf_l_data_rd.llc_miss_local.dram,offcore_response.pf_l_ifetch.llc_miss_local.dram,offcore_response.pf_llc_code_rd.llc_miss.dram,offcore_response.pf_llc_data_rd.llc_miss.dram,offcore_response.pf_llc_rfo.llc_miss.dram,page_walks.llc_miss
+		#event=mem_load_uops_misc_retired.llc_miss, offcore_response.all_reads.llc_miss.dram, offcore_response.any_request.llc_miss_local.dram, offcore_response.data_in_socket.llc_miss.local_dram, offcore_response.data_in_socket.llc_miss_local.any_llc_hit, offcore_response.pf_data_rd.llc_miss_local.dram, offcore_response.pf_ifetch.llc_miss_local.dram, offcore_response.pf_l_data_rd.llc_miss_local.dram, offcore_response.pf_l_ifetch.llc_miss_local.dram
 	elif [[ $3 == llc-count  ]]; then
-		event=offcore_response.all_reads.llc_miss.dram,mem_load_uops_misc_retired.llc_miss 
+#		event=offcore_response.all_reads.llc_miss.dram,mem_load_uops_misc_retired.llc_miss
+		event=mem_load_uops_retired.llc_hit,mem_load_uops_misc_retired.llc_miss
 	fi
 
 
