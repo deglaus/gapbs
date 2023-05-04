@@ -113,7 +113,7 @@ if [[ $# == 3  ]]; then
 				#
 				misses=0
 				accesses=0
-				echo "pr.cc:49 - addss (%rsi, %rdx, 4), %xmm0 MISS-COUNT:" >> $1$2_count_$3.txt
+#				echo "pr.cc:49 - addss (%rsi, %rdx, 4), %xmm0 MISS-COUNT:" >> $1$2_count_$3.txt
 #				sudo perf script -F insn,event | awk '/mem_load_uops_misc_retired.llc_miss/ && /f3 0f 58 04 96/ {count++} END {print count}'  >> $1$2_count_$3.txt
 
 
@@ -123,7 +123,7 @@ if [[ $# == 3  ]]; then
 
 				
 				
-				echo "pr.cc:49 - addss (%rsi, %rdx, 4), %xmm0 ACCESS-COUNT:"  >> $1$2_count_$3.txt
+#				echo "pr.cc:49 - addss (%rsi, %rdx, 4), %xmm0 ACCESS-COUNT:"  >> $1$2_count_$3.txt
 #				sudo perf script -F insn,event | awk '/offcore_response.all_reads.llc_miss.dram/ && /f3 0f 58 04 96/ {count++} END {print count}' >> $1$2_count_$3.txt
 
 				accesses=`sudo perf script -F insn,event | awk '/offcore_response.all_reads.llc_miss.dram/ && /f3 0f 58 04 96/ {count++} END {print count}'`
@@ -132,28 +132,61 @@ if [[ $# == 3  ]]; then
 
 
 
+				rate=$(echo "scale=3; $misses / $accesses" | bc)
+				echo "pr.cc:49 - addss (%rsi, %rdx, 4), %xmm0 MISS-COUNT: $misses ACCESS-COUNT: $accesses RATE: $rate" >> $1$2_count_$3.txt
+
+				
 				echo $misses
 				echo $accesses
-				rate=$(echo "scale=3; $misses / $accesses" | bc)
+#				rate=$(echo "scale=3; $misses / $accesses" | bc)
 				echo "Rate is thus:"
 				echo $rate
 
-				echo "Rate: $rate" >> $1$2_count_$3.txt
+#				echo "Rate: $rate" >> $1$2_count_$3.txt
 
 				#------------------------------------------------------------------------
 
 
-				echo "pr.cc:48 - cmp %rax,%r11 MISS-COUNT:" >> $1$2_count_$3.txt
-				sudo perf script -F insn,event | awk '/mem_load_uops_misc_retired.llc_miss/ && /49 39 c3/ {count++} END {print count}'  >> $1$2_count_$3.txt
-				echo "pr.cc:48 - cmp %rax,%r11 ACCESS-COUNT:"  >> $1$2_count_$3.txt
-				sudo perf script -F insn,event | awk '/offcore_response.all_reads.llc_miss.dram/ && /49 39 c3/ {count++} END {print count}' >> $1$2_count_$3.txt
+#				echo "pr.cc:48 - cmp %rax,%r11 MISS-COUNT:" >> $1$2_count_$3.txt
 
+				misses=`sudo perf script -F insn,event | awk '/mem_load_uops_misc_retired.llc_miss/ && /49 39 c3/ {count++} END {print count}'`
 
-				echo "pr.cc:48 - movslq (%rax), %rdx MISS-COUNT:" >> $1$2_count_$3.txt
-				sudo perf script -F insn,event | awk '/mem_load_uops_misc_retired.llc_miss/ && /48 63 10/ {count++} END {print count}'  >> $1$2_count_$3.txt
-				echo "pr.cc:48 - movslq (%rax), %rdx ACCESS-COUNT:"  >> $1$2_count_$3.txt
-				sudo perf script -F insn,event | awk '/offcore_response.all_reads.llc_miss.dram/ && /48 63 10/ {count++} END {print count}' >> $1$2_count_$3.txt
+				
+				#sudo perf script -F insn,event | awk '/mem_load_uops_misc_retired.llc_miss/ && /49 39 c3/ {count++} END {print count}'  >> $1$2_count_$3.txt
+				#echo "pr.cc:48 - cmp %rax,%r11 ACCESS-COUNT:"  >> $1$2_count_$3.txt
+#				sudo perf script -F insn,event | awk '/offcore_response.all_reads.llc_miss.dram/ && /49 39 c3/ {count++} END {print count}' >> $1$2_count_$3.txt
+				accesses=`sudo perf script -F insn,event | awk '/offcore_response.all_reads.llc_miss.dram/ && /49 39 c3/ {count++} END {print count}'`
+
+				rate=$(echo "scale=3; $misses / $accesses" | bc)
+				echo "pr.cc:48 - cmp %rax,%r11 MISS-COUNT: $misses ACCESS-COUNT: $accesses RATE: $rate" >> $1$2_count_$3.txt
+
+				echo $misses
+				echo $accesses
+#				rate=$(echo "scale=3; $misses / $accesses" | bc)
+				echo "Rate is thus:"
+				echo $rate
+
+				#------------------------------------------------------------------------------------------------------
+
+#				echo "pr.cc:48 - movslq (%rax), %rdx MISS-COUNT:" >> $1$2_count_$3.txt
+				misses=`sudo perf script -F insn,event | awk '/mem_load_uops_misc_retired.llc_miss/ && /48 63 10/ {count++} END {print count}'`
+				#sudo perf script -F insn,event | awk '/mem_load_uops_misc_retired.llc_miss/ && /48 63 10/ {count++} END {print count}'  >> $1$2_count_$3.txt
+#				echo "pr.cc:48 - movslq (%rax), %rdx ACCESS-COUNT:"  >> $1$2_count_$3.txt
+#				sudo perf script -F insn,event | awk '/offcore_response.all_reads.llc_miss.dram/ && /48 63 10/ {count++} END {print count}' >> $1$2_count_$3.txt
+				accesses=`sudo perf script -F insn,event | awk '/offcore_response.all_reads.llc_miss.dram/ && /48 63 10/ {count++} END {print count}'`
+
+				
+				rate=$(echo "scale=3; $misses / $accesses" | bc)
+				echo "pr.cc:48 - movslq (%rax), %rdx MISS-COUNT: $misses ACCESS-COUNT: $accesses RATE: $rate" >> $1$2_count_$3.txt
+
+				
 				echo "------------------------------------------------------------------" >> $1$2_count_$3.txt
+
+				echo $misses
+				echo $accesses
+				#				rate=$(echo "scale=3; $misses / $accesses" | bc)
+				echo "Rate is thus:"
+				echo $rate
 
 			fi
 
