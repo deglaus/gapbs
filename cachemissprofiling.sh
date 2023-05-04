@@ -31,7 +31,9 @@ if [[ $# == 3  ]]; then
 
 		## LLC Kron: 97% pr.cc:49
 		### Using perf annotate: 92.32% - addss (%rsi, %rdx, 4), %xmm0
-		# - f3.0f.58.04.96 
+		# - 49ef
+		# - f3.0f.58.04.96
+		# - f3 0f 58 04 96
 		# - single-precision floating-point addition, adds the first argument to the second.
 		# - here, the result of %rsi + (%rdx*4) is the memory address i.e. outgoing_contrib[v], the value stored there is added to %xmm0, which is incoming_total.
 		# - %rsi has the array's base address.
@@ -40,6 +42,8 @@ if [[ $# == 3  ]]; then
 		# - is false sharing possible with addss? multiple threading - multiple updates to elements in pvector, if two or more threads access elements sharing cache line, false sharing can occur.
 
 		# though some times cmp %rax,%r11
+		# - 49f4
+		# - 49 39 c3
 		# presumably, it looks at if we are the end of incoming neighbours pvector. since we jne afterwards to updating the index. jne to movslq!
 
 		
@@ -69,12 +73,19 @@ if [[ $# == 3  ]]; then
 
 		if [[ $3 == llc-count ]]; then
 			echo "Counting llc on $2 graph running $1..."
-			#sudo perf stat -e $event -x, -o perf_output ./$1 -f ./benchmark/$2graph.$extension -n $repeat | grep llc_miss
-	#		sudo perf stat -e mem_load_uops_misc_retired.llc_miss:pp -e insn:0x48,0x63,0x10 -e insn:0xf3,0x0f,0x58,0x04,0x96  ./$1 -f ./benchmark/$2graph.$extension -n $repeat
-			sudo perf stat -d -d -d -e offcore_response.all_reads.llc_miss.dram,mem_load_uops_misc_retired.llc_miss:P ./$1 -f ./benchmark/$2graph.$extension -n $repeat 2>&1 | tee missStat.txt
-			grep 'offcore_response.all_reads.llc_miss.dram' missStat.txt  | awk '{print $1}' >> numberofmisses$1$2.txt
-			grep 'mem_load_uops_misc_retired.llc_miss' missStat.txt  | awk '{print $1}' >> numberofaccesses$1$2.txt
-			sudo perf annotate --stdio | grep -e 49ef -e 49f4 -e 49e8 | grep -v 49f7 | awk '{print $1}' >> percentageinstructions$1$2.txt
+		#	sudo perf record -e offcore_response.all_reads.llc_miss.dram,mem_load_uops_misc_retired.llc_miss:P   ./$1 -f ./benchmark/$2graph.$extension -n $repeat
+			sudo perf record -g -e $event --call-graph dwarf  ./$1 -f ./benchmark/$2graph.$extension -n $repeat
+			#sudo perf script -F comm,pid,tid,time,event,ip,dso,sym >> script$1$2_output.txt
+			sudo perf script -F insn,event >> script$1$2_output.txt
+
+			sudo perf script -F insn,event | awk '/mem_load_uops_misc_retired.llc_miss/ && /f3 0f 58 04 96/ {count++} END {print count}'
+
+
+
+			# sudo perf stat -d -d -d -e offcore_response.all_reads.llc_miss.dram,mem_load_uops_misc_retired.llc_miss:P ./$1 -f ./benchmark/$2graph.$extension -n $repeat 2>&1 | tee missStat.txt
+			# grep 'offcore_response.all_reads.llc_miss.dram' missStat.txt  | awk '{print $1}' >> numberofmisses$1$2.txt
+			# grep 'mem_load_uops_misc_retired.llc_miss' missStat.txt  | awk '{print $1}' >> numberofaccesses$1$2.txt
+			# sudo perf annotate --stdio | grep -e 49ef -e 49f4 -e 49e8 | grep -v 49f7 | awk '{print $1}' >> percentageinstructions$1$2.txt
 			# 10.77 :   49e8:   movslq (%rax),%rdx
 			# 88.65 :   49ef:   addss  (%rsi,%rdx,4),%xmm0
 			# 0.08 :   49f4:   cmp    %rax,%r11
@@ -84,6 +95,69 @@ if [[ $# == 3  ]]; then
 #			sudo perf stat -d -d -d -e offcore_response.all_reads.llc_miss:P ./$1 -f ./benchmark/$2graph.$extension -n $repeat | grep llc_miss >> accessStat.txt
 
 #			sudo perf script -F ip,event -i perf_output | grep "0xADDRESS f3_0f_58_04_96"
+
+
+			if [[ $1 == pr ]];then
+				# how to find instruction address:
+				# 1. use perf annotate --stdio to examine which instruction causes the misses
+				#
+				# for instance,    89.53 :   49f4:   cmp    %rax,%r11 - here 49f4 is the address.
+				#
+				# 2. use objdump -d e.g. - objdump -d ./pr -  to find its binary address.
+				#
+				# for instance objdump -d ./pr | grep 49f4 gives us    49f4: 49 39 c3 cmp    %rax,%r11
+				# here, 49 39 c3 is what we were looking for!
+				#
+				# 3. add into the for-loop list so that it will be looked for.
+				#
+				#
+				misses=0
+				accesses=0
+				echo "pr.cc:49 - addss (%rsi, %rdx, 4), %xmm0 MISS-COUNT:" >> $1$2_count_$3.txt
+#				sudo perf script -F insn,event | awk '/mem_load_uops_misc_retired.llc_miss/ && /f3 0f 58 04 96/ {count++} END {print count}'  >> $1$2_count_$3.txt
+
+
+				misses=`sudo perf script -F insn,event | awk '/mem_load_uops_misc_retired.llc_miss/ && /f3 0f 58 04 96/ {count++} END {print count}'`
+
+				echo $misses >> $1$2_count_$3.txt
+
+				
+				
+				echo "pr.cc:49 - addss (%rsi, %rdx, 4), %xmm0 ACCESS-COUNT:"  >> $1$2_count_$3.txt
+#				sudo perf script -F insn,event | awk '/offcore_response.all_reads.llc_miss.dram/ && /f3 0f 58 04 96/ {count++} END {print count}' >> $1$2_count_$3.txt
+
+				accesses=`sudo perf script -F insn,event | awk '/offcore_response.all_reads.llc_miss.dram/ && /f3 0f 58 04 96/ {count++} END {print count}'`
+
+				echo $accesses >> $1$2_count_$3.txt
+
+
+
+				echo $misses
+				echo $accesses
+				rate=$(echo "scale=3; $misses / $accesses" | bc)
+				echo "Rate is thus:"
+				echo $rate
+
+				echo "Rate: $rate" >> $1$2_count_$3.txt
+
+				#------------------------------------------------------------------------
+
+
+				echo "pr.cc:48 - cmp %rax,%r11 MISS-COUNT:" >> $1$2_count_$3.txt
+				sudo perf script -F insn,event | awk '/mem_load_uops_misc_retired.llc_miss/ && /49 39 c3/ {count++} END {print count}'  >> $1$2_count_$3.txt
+				echo "pr.cc:48 - cmp %rax,%r11 ACCESS-COUNT:"  >> $1$2_count_$3.txt
+				sudo perf script -F insn,event | awk '/offcore_response.all_reads.llc_miss.dram/ && /49 39 c3/ {count++} END {print count}' >> $1$2_count_$3.txt
+
+
+				echo "pr.cc:48 - movslq (%rax), %rdx MISS-COUNT:" >> $1$2_count_$3.txt
+				sudo perf script -F insn,event | awk '/mem_load_uops_misc_retired.llc_miss/ && /48 63 10/ {count++} END {print count}'  >> $1$2_count_$3.txt
+				echo "pr.cc:48 - movslq (%rax), %rdx ACCESS-COUNT:"  >> $1$2_count_$3.txt
+				sudo perf script -F insn,event | awk '/offcore_response.all_reads.llc_miss.dram/ && /48 63 10/ {count++} END {print count}' >> $1$2_count_$3.txt
+				echo "------------------------------------------------------------------" >> $1$2_count_$3.txt
+
+			fi
+
+			
 			exit 1
 		else
 			
