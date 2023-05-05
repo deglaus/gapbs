@@ -1,9 +1,11 @@
 #!/bin/bash
 
 if [[ $# == 3  ]]; then
+	
 
-
-		if [[ $3 == llc-count  ]]; then
+	if [[ $3 == llc-count  ]]; then
+		if [[ $1 == pr ]]; then
+			echo "$1 on $2 graph"
 			echo average miss-rate:
 			echo "---------------------------------------------"
 			echo "addss (%rsi, %rdx, 4), %xmm0"
@@ -14,8 +16,22 @@ if [[ $# == 3  ]]; then
 
 			echo "movslq (%rax), %rdx"
 			cat $1$2_count_$3.txt | grep 'movslq (%rax), %rdx' | grep 'RATE:' | sed -n 's/.*RATE: \([0-9.]*\)/\1/p' | awk '{ sum += $1 } END { if (NR > 0) print sum / NR }'
-			
+			echo "---------------------------------------------"
+
+		elif [[ $1 == bfs ]]; then
+			insts=("48 8b 04 f8" "48 63 30" "49 8b 34 f7")
+			for inst in "${insts[@]}"; do
+				echo $inst
+				echo cat $1$2_count_$3.txt | grep "$inst" | grep 'RATE:'
+				sum=` cat $1$2_count_$3.txt | grep "$inst" | grep -o 'RATE: [0-9.]*' | awk '{sum+=$2} END {if(NR>0) print sum/NR}'`
+				echo $sum
+#				echo cat $1$2_count_$3.txt | grep '$inst' | grep 'RATE:' | sed -n 's/.*RATE: \([0-9.]*\)/\1/p' | awk '{ sum += $1 } END { if (NR > 0) print sum / NR }'
+
+			done
 		fi
+				
+		exit 1
+			fi
 
 
 

@@ -25,6 +25,7 @@ if [[ $# == 3  ]]; then
 		## LLC Kron: pr.cc:48 - 2% -
 		## - movsql (move sign long quad) moves a value from 32-bit location to a 64-bit register and also sign-extends the value.
 		## - movslq (%rax), %rdx - result is stored in rdx
+		## - 
 		## - 48.63.10
 		## - takes the index v of the for-loop and extends it so that it can be used to access incoming neighbours.
 		## - rdx thus holds the incoming neighbour we accessed.
@@ -48,181 +49,203 @@ if [[ $# == 3  ]]; then
 
 		
 		# try BFS, look if hits and misses are on the same line of code
+
+		# bfs.cc:53
+		# 2.33%
+		# mov (%rax,%rdi,8),%rax   
+		# Fetches starting INDEX of the vertex' edges
+
+		
+		# bfs.cc:53 l. 3.5 or 5.
+		# 90%
+		# - movslq (%rax),%rsi 
+		# -
+		# - at the for-loop in BU, it fetches the value of a neighbour vertex.
+		# - movslq indicates the data is asigned integer; a key attribute to the fact that a neighbour is accessed.
+
+		# bfs.cc:54 l 3.6 or 6.
+		# 4.65%
+		# mov (%r15,%rsi,8),%rsi
+		# -
+		# - returns bitmap value which checks if it is in to_visit or not.
+		
 		# BC - look at l. 37 to see which access causes the most LLC misses.
 		# CC - look at l. 8 to see which assembly instruction causes the high miss-rate
+
+
 		
 
 	elif [[ $3 == full-llc ]]; then
 		event=mem_load_uops_misc_retired.llc_miss,offcore_response.all_reads.llc_miss.dram,offcore_response.all_code_rd.llc_miss.dram,offcore_response.all_data_rd.llc_miss.dram,offcore_response.all_pf_code_rd.llc_miss.dram,offcore_response.all_pf_data_rd.llc_miss.dram,offcore_response.all_pf_rfo.llc_miss.dram,offcore_response.all_rfo.llc_miss.dram,offcore_response.any_request.llc_miss_local.dram,offcore_response.data_in_socket.llc_miss.local_dram,offcore_response.data_in_socket.llc_miss_local.any_llc_hit,offcore_response.demand_code_rd.llc_miss.dram,offcore_response.demand_data_rd.llc_miss.dram,offcore_response.demand_ifetch.llc_miss_local.dram,offcore_response.demand_rfo.llc_miss.dram,offcore_response.pf_data_rd.llc_miss_local.dram,offcore_response.pf_ifetch.llc_miss_local.dram,offcore_response.pf_l2_code_rd.llc_miss.dram,offcore_response.pf_l2_data_rd.llc_miss.dram,offcore_response.pf_l2_rfo.llc_miss.dram,offcore_response.pf_l_data_rd.llc_miss_local.dram,offcore_response.pf_l_ifetch.llc_miss_local.dram,offcore_response.pf_llc_code_rd.llc_miss.dram,offcore_response.pf_llc_data_rd.llc_miss.dram,offcore_response.pf_llc_rfo.llc_miss.dram,page_walks.llc_miss
 		#event=mem_load_uops_misc_retired.llc_miss, offcore_response.all_reads.llc_miss.dram, offcore_response.any_request.llc_miss_local.dram, offcore_response.data_in_socket.llc_miss.local_dram, offcore_response.data_in_socket.llc_miss_local.any_llc_hit, offcore_response.pf_data_rd.llc_miss_local.dram, offcore_response.pf_ifetch.llc_miss_local.dram, offcore_response.pf_l_data_rd.llc_miss_local.dram, offcore_response.pf_l_ifetch.llc_miss_local.dram
 	elif [[ $3 == llc-count  ]]; then
-#		event=offcore_response.all_reads.llc_miss.dram,mem_load_uops_misc_retired.llc_miss
-		event=mem_load_uops_retired.llc_hit,mem_load_uops_misc_retired.llc_miss
+		#		event=offcore_response.all_reads.llc_miss.dram,mem_load_uops_misc_retired.llc_miss
+		event=mem_load_uops_retired.llc_hit:pp,mem_load_uops_misc_retired.llc_miss
 	fi
 
 
 
-		echo "Running $1 on $2 graph."
-		echo "Monitoring $3 misses using the $command command, monitoring the $event."
+	echo "Running $1 on $2 graph."
+	echo "Monitoring $3 misses using the $command command, monitoring the $event."
 
-		extension=sg
-		repeat=40
+	extension=sg
+	repeat=40
 	
-		if [[ $1 == sssp ]]; then
-			extension=wsg
-			repeat=1
-		fi
+	if [[ $1 == sssp ]]; then
+		extension=wsg
+		repeat=1
+	fi
 
-		if [[ $3 == llc-count ]]; then
-			echo "Counting llc on $2 graph running $1..."
+	if [[ $3 == llc-count ]]; then
+		echo "Counting llc on $2 graph running $1..."
 		#	sudo perf record -e offcore_response.all_reads.llc_miss.dram,mem_load_uops_misc_retired.llc_miss:P   ./$1 -f ./benchmark/$2graph.$extension -n $repeat
-			sudo perf record -g -e $event --call-graph dwarf  ./$1 -f ./benchmark/$2graph.$extension -n $repeat
-			#sudo perf script -F comm,pid,tid,time,event,ip,dso,sym >> script$1$2_output.txt
-			sudo perf script -F insn,event >> script$1$2_output.txt
+		sudo perf record -g -e $event:pp --call-graph dwarf  ./$1 -f ./benchmark/$2graph.$extension -n $repeat
+		#sudo perf script -F comm,pid,tid,time,event,ip,dso,sym >> script$1$2_output.txt
+		sudo perf script -F insn,event >> script$1$2_output.txt
+
+		if [[ $1 == pr ]]; then
 
 			sudo perf script -F insn,event | awk '/mem_load_uops_misc_retired.llc_miss/ && /f3 0f 58 04 96/ {count++} END {print count}'
 
 
+			# how to find instruction address:
+			# 1. use perf annotate --stdio to examine which instruction causes the misses
+			#
+			# for instance,    89.53 :   49f4:   cmp    %rax,%r11 - here 49f4 is the address.
+			#
+			# 2. use objdump -d e.g. - objdump -d ./pr -  to find its binary address.
+			#
+			# for instance objdump -d ./pr | grep 49f4 gives us    49f4: 49 39 c3 cmp    %rax,%r11
+			# here, 49 39 c3 is what we were looking for!
+			#
+			#
+			# 1. user perf annotate --asm-raw which gives you binary address directly; e.g. 49 39 c3 is there!
+			#
+			# 3. add into the for-loop list so that it will be looked for.
+			#
+			#
+			misses=0
+			hits=0
 
-			# sudo perf stat -d -d -d -e offcore_response.all_reads.llc_miss.dram,mem_load_uops_misc_retired.llc_miss:P ./$1 -f ./benchmark/$2graph.$extension -n $repeat 2>&1 | tee missStat.txt
-			# grep 'offcore_response.all_reads.llc_miss.dram' missStat.txt  | awk '{print $1}' >> numberofmisses$1$2.txt
-			# grep 'mem_load_uops_misc_retired.llc_miss' missStat.txt  | awk '{print $1}' >> numberofaccesses$1$2.txt
-			# sudo perf annotate --stdio | grep -e 49ef -e 49f4 -e 49e8 | grep -v 49f7 | awk '{print $1}' >> percentageinstructions$1$2.txt
-			# 10.77 :   49e8:   movslq (%rax),%rdx
-			# 88.65 :   49ef:   addss  (%rsi,%rdx,4),%xmm0
-			# 0.08 :   49f4:   cmp    %rax,%r11
+			misses=`sudo perf script -F insn,event | awk '/mem_load_uops_misc_retired.llc_miss/ && /f3 0f 58 04 96/ {count++} END {print count}'`
 
-
-
-#			sudo perf stat -d -d -d -e offcore_response.all_reads.llc_miss:P ./$1 -f ./benchmark/$2graph.$extension -n $repeat | grep llc_miss >> accessStat.txt
-
-#			sudo perf script -F ip,event -i perf_output | grep "0xADDRESS f3_0f_58_04_96"
-
-
-			if [[ $1 == pr ]];then
-				# how to find instruction address:
-				# 1. use perf annotate --stdio to examine which instruction causes the misses
-				#
-				# for instance,    89.53 :   49f4:   cmp    %rax,%r11 - here 49f4 is the address.
-				#
-				# 2. use objdump -d e.g. - objdump -d ./pr -  to find its binary address.
-				#
-				# for instance objdump -d ./pr | grep 49f4 gives us    49f4: 49 39 c3 cmp    %rax,%r11
-				# here, 49 39 c3 is what we were looking for!
-				#
-				# 3. add into the for-loop list so that it will be looked for.
-				#
-				#
-				misses=0
-				hits=0
-#				echo "pr.cc:49 - addss (%rsi, %rdx, 4), %xmm0 MISS-COUNT:" >> $1$2_count_$3.txt
-#				sudo perf script -F insn,event | awk '/mem_load_uops_misc_retired.llc_miss/ && /f3 0f 58 04 96/ {count++} END {print count}'  >> $1$2_count_$3.txt
-
-
-				misses=`sudo perf script -F insn,event | awk '/mem_load_uops_misc_retired.llc_miss/ && /f3 0f 58 04 96/ {count++} END {print count}'`
-
-				echo $misses >> $1$2_count_$3.txt
-
-				
-				
-#				echo "pr.cc:49 - addss (%rsi, %rdx, 4), %xmm0 HIT-COUNT:"  >> $1$2_count_$3.txt
-#				sudo perf script -F insn,event | awk '/offcore_response.all_reads.llc_miss.dram/ && /f3 0f 58 04 96/ {count++} END {print count}' >> $1$2_count_$3.txt
-
-				hits=`sudo perf script -F insn,event | awk '/mem_load_uops_retired.llc_hit/ && /f3 0f 58 04 96/ {count++} END {print count}'`
-
-				echo $hits >> $1$2_count_$3.txt
-
-
-				accesses=$(expr $hits + $misses)
-				rate=$(echo "scale=3; $misses / $accesses" | bc)
-				echo "pr.cc:49 - addss (%rsi, %rdx, 4), %xmm0 MISS-COUNT: $misses HIT-COUNT: $hits RATE: $rate" >> $1$2_count_$3.txt
-
-				echo "MISSES:"
-				echo $misses
-				echo "HTTS:"
-				echo $hits
-				echo "ACCESSES:"
-				echo $accesses
-#				rate=$(echo "scale=3; $misses / $hits" | bc)
-				echo "Rate is thus:"
-				echo $rate
-
-#				echo "Rate: $rate" >> $1$2_count_$3.txt
-
-				#------------------------------------------------------------------------
-
-
-#				echo "pr.cc:48 - cmp %rax,%r11 MISS-COUNT:" >> $1$2_count_$3.txt
-
-				misses=`sudo perf script -F insn,event | awk '/mem_load_uops_misc_retired.llc_miss/ && /49 39 c3/ {count++} END {print count}'`
-
-				
-				#sudo perf script -F insn,event | awk '/mem_load_uops_misc_retired.llc_miss/ && /49 39 c3/ {count++} END {print count}'  >> $1$2_count_$3.txt
-				#echo "pr.cc:48 - cmp %rax,%r11 HIT-COUNT:"  >> $1$2_count_$3.txt
-#				sudo perf script -F insn,event | awk '/offcore_response.all_reads.llc_miss.dram/ && /49 39 c3/ {count++} END {print count}' >> $1$2_count_$3.txt
-				hits=`sudo perf script -F insn,event | awk '/mem_load_uops_retired.llc_hit/ && /49 39 c3/ {count++} END {print count}'`
-
-				accesses=$(expr $hits + $misses)
-				rate=$(echo "scale=3; $misses / $accesses" | bc)
-				echo "pr.cc:48 - cmp %rax,%r11 MISS-COUNT: $misses HIT-COUNT: $hits RATE: $rate" >> $1$2_count_$3.txt
-				
-				echo "MISSES:"
-				echo $misses
-				echo "HTTS:"
-				echo $hits
-				echo "ACCESSES:"
-				echo $accesses
-
-				echo "Rate is thus:"
-				echo $rate
-
-				#------------------------------------------------------------------------------------------------------
-
-#				echo "pr.cc:48 - movslq (%rax), %rdx MISS-COUNT:" >> $1$2_count_$3.txt
-				misses=`sudo perf script -F insn,event | awk '/mem_load_uops_misc_retired.llc_miss/ && /48 63 10/ {count++} END {print count}'`
-				#sudo perf script -F insn,event | awk '/mem_load_uops_misc_retired.llc_miss/ && /48 63 10/ {count++} END {print count}'  >> $1$2_count_$3.txt
-#				echo "pr.cc:48 - movslq (%rax), %rdx HIT-COUNT:"  >> $1$2_count_$3.txt
-#				sudo perf script -F insn,event | awk '/offcore_response.all_reads.llc_miss.dram/ && /48 63 10/ {count++} END {print count}' >> $1$2_count_$3.txt
-				hits=`sudo perf script -F insn,event | awk '/mem_load_uops_retired.llc_hit/ && /48 63 10/ {count++} END {print count}'`
-
-				accesses=$(expr $hits + $misses)				
-				rate=$(echo "scale=3; $misses / $accesses" | bc)
-				echo "pr.cc:48 - movslq (%rax), %rdx MISS-COUNT: $misses HIT-COUNT: $hits RATE: $rate" >> $1$2_count_$3.txt
-
-				
-				echo "------------------------------------------------------------------" >> $1$2_count_$3.txt
-
-				echo "MISSES:"
-				echo $misses
-				echo "HTTS:"
-				echo $hits
-				echo "ACCESSES:"
-				echo $accesses
-
-				echo "Rate is thus:"
-				echo $rate
-
-			fi
+			echo $misses >> $1$2_count_$3.txt
 
 			
-			exit 1
-		else
+			hits=`sudo perf script -F insn,event | awk '/mem_load_uops_retired.llc_hit/ && /f3 0f 58 04 96/ {count++} END {print count}'`
+
+			echo $hits >> $1$2_count_$3.txt
+
+
+			accesses=$(expr $hits + $misses)
+			rate=$(echo "scale=3; $misses / $accesses" | bc)
+			echo "pr.cc:49 - addss (%rsi, %rdx, 4), %xmm0 MISS-COUNT: $misses HIT-COUNT: $hits RATE: $rate" >> $1$2_count_$3.txt
+
+			echo "MISSES:"
+			echo $misses
+			echo "HTTS:"
+			echo $hits
+			echo "ACCESSES:"
+			echo $accesses
+			echo "Rate is thus:"
+			echo $rate
+
+			#------------------------------------------------------------------------
+
+			misses=`sudo perf script -F insn,event | awk '/mem_load_uops_misc_retired.llc_miss/ && /49 39 c3/ {count++} END {print count}'`
 			
-			echo "Percentage of $3 misses..."
+			hits=`sudo perf script -F insn,event | awk '/mem_load_uops_retired.llc_hit/ && /49 39 c3/ {count++} END {print count}'`
+
+			accesses=$(expr $hits + $misses)
+			rate=$(echo "scale=3; $misses / $accesses" | bc)
+			echo "pr.cc:48 - cmp %rax,%r11 MISS-COUNT: $misses HIT-COUNT: $hits RATE: $rate" >> $1$2_count_$3.txt
+			
+			echo "MISSES:"
+			echo $misses
+			echo "HTTS:"
+			echo $hits
+			echo "ACCESSES:"
+			echo $accesses
+
+			echo "Rate is thus:"
+			echo $rate
+
+			#------------------------------------------------------------------------------------------------------
+
+			misses=`sudo perf script -F insn,event | awk '/mem_load_uops_misc_retired.llc_miss/ && /48 63 10/ {count++} END {print count}'`
+			hits=`sudo perf script -F insn,event | awk '/mem_load_uops_retired.llc_hit/ && /48 63 10/ {count++} END {print count}'`
+
+			accesses=$(expr $hits + $misses)				
+			rate=$(echo "scale=3; $misses / $accesses" | bc)
+			echo "pr.cc:48 - movslq (%rax), %rdx MISS-COUNT: $misses HIT-COUNT: $hits RATE: $rate" >> $1$2_count_$3.txt
+
+			
+			echo "------------------------------------------------------------------" >> $1$2_count_$3.txt
+
+			echo "MISSES:"
+			echo $misses
+			echo "HTTS:"
+			echo $hits
+			echo "ACCESSES:"
+			echo $accesses
+
+			echo "Rate is thus:"
+			echo $rate
+
+		elif [[ $1 == bfs ]]; then
+			inst="48 8b 04 f8"
+			inst2="48 63 30"
+			inst3="49 8b 34 f7"
+			insts=("48 8b 04 f8" "48 63 30" "49 8b 34 f7")
+
+			misses=0
+			hits=0
+			for inst in "${insts[@]}"; do
+				echo $inst
+				echo "sudo perf script -F insn,event | awk '/mem_load_uops_retired.llc_hit/ && /$inst/ {count++} END {print count}'"
+				echo "done"
+				
+				misses=`sudo perf script -F insn,event | grep 'mem_load_uops_misc_retired.llc_miss:pp:' | grep -c "$inst"`
+				
+#				hits=`sudo perf script -F insn,event | awk '/mem_load_uops_retired.llc_hit/ && /$inst/ {count++} END {print count}'`
+				hits=`sudo perf script -F insn,event | grep 'mem_load_uops_retired.llc_hit:pp:' | grep -c "$inst"`
+
+				echo $misses
+				echo $hits
+				
+				accesses=$(expr $hits + $misses)
+				
+				rate=$(echo "scale=3; $misses / $accesses" | bc)
+
+				echo "$1.cc - $inst - MISS-COUNT: $misses HIT-COUNT: $hits RATE: $rate" >> $1$2_count_$3.txt
+				echo "$1.cc - $inst - MISS-COUNT: $misses HIT-COUNT: $hits RATE: $rate"
+
+				
+			done
+			echo "------------------------------------------------------------------" >> $1$2_count_$3.txt
+
 		fi
-
-
-		sudo perf record -g -e $event:pp --call-graph dwarf  ./$1 -f ./benchmark/$2graph.$extension -n $repeat
-
-
-		echo $extension
-		echo $1
-		echo $2
-
-		sudo perf report --sort srcline --stdio | grep -E "$1.cc:*" | sort -k 3  >> $2$1$3.txt
+		exit 1
+	
 
 	
-	
+	else
+		
+		echo "Percentage of $3 misses..."
+	fi
+
+
+sudo perf record -g -e $event:pp --call-graph dwarf  ./$1 -f ./benchmark/$2graph.$extension -n $repeat
+
+
+echo $extension
+echo $1
+echo $2
+
+sudo perf report --sort srcline --stdio | grep -E "$1.cc:*" | sort -k 3  >> $2$1$3.txt
+
+
+
 else
     echo "First argument specifies graph algoritm..."
 	echo "Second argument specifies graph type; 'kron' or 'uniform'."
