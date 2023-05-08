@@ -4,24 +4,22 @@ if [[ $# == 3  ]]; then
 	
 
 	if [[ $3 == llc-count  ]]; then
-		if [[ $1 == pr ]]; then
-			echo "$1 on $2 graph"
-			echo average miss-rate:
-			echo "---------------------------------------------"
-			echo "addss (%rsi, %rdx, 4), %xmm0"
-			cat $1$2_count_$3.txt | grep 'addss (%rsi, %rdx, 4), %xmm0' | grep 'RATE:' | sed -n 's/.*RATE: \([0-9.]*\)/\1/p' | awk '{ sum += $1 } END { if (NR > 0) print sum / NR }'
+		echo "$1 on $2 graph"
+		echo average miss-rate:
+		echo "---------------------------------------------"
 			
-			echo "cmp %rax,%r11"
-			cat $1$2_count_$3.txt | grep 'cmp %rax,%r11' | grep 'RATE:' | sed -n 's/.*RATE: \([0-9.]*\)/\1/p' | awk '{ sum += $1 } END { if (NR > 0) print sum / NR }'
-
-			echo "movslq (%rax), %rdx"
-			cat $1$2_count_$3.txt | grep 'movslq (%rax), %rdx' | grep 'RATE:' | sed -n 's/.*RATE: \([0-9.]*\)/\1/p' | awk '{ sum += $1 } END { if (NR > 0) print sum / NR }'
-			echo "---------------------------------------------"
-			exit 1
+		if [[ $1 == pr ]]; then
+			insts=("f3 0f 58 04 96" "49 39 c3" "48 63 10")
 
 		elif [[ $1 == bfs ]]; then
 			insts=("48 8b 04 f8" "48 63 30" "49 8b 34 f7")
+		
+		elif [[ $1 == bc ]]; then
+			insts=("48 63 02" "49 8b 0a" "f3 41 0f 10 14 80" "f2 42 0f 10 04 09" "f2 0f 5e 04 c1" "f3 0f 58 d3" "f3 0f 5a d2" "f2 0f 59 c2" "f2 0f 58 c8" "f2 0f 5a c9")
+			
 		fi
+
+		
 		for inst in "${insts[@]}"; do
 			echo $inst
 			echo cat $1$2_count_$3.txt | grep "$inst" | grep 'RATE:'

@@ -70,9 +70,30 @@ if [[ $# == 3  ]]; then
 		# - returns bitmap value which checks if it is in to_visit or not.
 		
 		# BC - look at l. 37 to see which access causes the most LLC misses.
+
+		# bc.cc:127 is the line! -             delta_u += (path_counts[u] / path_counts[v]) * (1 + deltas[v]);
+
+ #       :          delta_u += (path_counts[u] / path_counts[v]) * (1 + deltas[v]); 
+ # bc.cc:127    9.24 :   4cd3:   48 63 02                movslq (%rdx),%rax
+ #         :          pvector<double>::operator[](unsigned long):
+ #    0.00 :   4cd6:   49 8b 0a                mov    (%r10),%rcx
+ #         :          Brandes(CSRGraph<int, int, true> const&, SourcePicker<CSRGraph<int, int, true> >&, int) [clone ._omp_fn.0]:
+ #    0.00 :   4cd9:   f3 0f 5a c9             cvtss2sd %xmm1,%xmm1
+ #   28.29 :   4cdd:   f3 41 0f 10 14 80       movss  (%r8,%rax,4),%xmm2
+ # bc.cc:127    0.77 :   4ce3:   f2 42 0f 10 04 09       movsd  (%rcx,%r9,1),%xmm0
+ # bc.cc:127   38.30 :   4ce9:   f2 0f 5e 04 c1          divsd  (%rcx,%rax,8),%xmm0
+ #    0.00 :   4cee:   f3 0f 58 d3             addss  %xmm3,%xmm2
+ #    0.00 :   4cf2:   f3 0f 5a d2             cvtss2sd %xmm2,%xmm2
+ #    0.00 :   4cf6:   f2 0f 59 c2             mulsd  %xmm2,%xmm0
+ #    0.00 :   4cfa:   f2 0f 58 c8             addsd  %xmm0,%xmm1
+ #    0.00 :   4cfe:   f2 0f 5a c9             cvtsd2ss %xmm1,%xmm1 
+
+		
 		
 		# CC - look at l. 8 to see which assembly instruction causes the high miss-rate
 
+
+		
 
 		
 
@@ -105,9 +126,6 @@ if [[ $# == 3  ]]; then
 		sudo perf script -F insn,event >> script$1$2_output.txt
 
 		if [[ $1 == pr ]]; then
-
-			sudo perf script -F insn,event | awk '/mem_load_uops_misc_retired.llc_miss/ && /f3 0f 58 04 96/ {count++} END {print count}'
-
 			# how to find instruction address:
 			# 1. use perf annotate --stdio to examine which instruction causes the misses
 			#
@@ -124,85 +142,12 @@ if [[ $# == 3  ]]; then
 			# 3. add into the for-loop list so that it will be looked for.
 			#
 			#
-
-
-
-			
-			misses=0
-			hits=0
-
-			misses=`sudo perf script -F insn,event | awk '/mem_load_uops_misc_retired.llc_miss/ && /f3 0f 58 04 96/ {count++} END {print count}'`
-
-			echo $misses >> $1$2_count_$3.txt
-
-			
-			hits=`sudo perf script -F insn,event | awk '/mem_load_uops_retired.llc_hit/ && /f3 0f 58 04 96/ {count++} END {print count}'`
-
-			echo $hits >> $1$2_count_$3.txt
-
-
-			accesses=$(expr $hits + $misses)
-			rate=$(echo "scale=3; $misses / $accesses" | bc)
-			echo "pr.cc:49 - addss (%rsi, %rdx, 4), %xmm0 MISS-COUNT: $misses HIT-COUNT: $hits RATE: $rate" >> $1$2_count_$3.txt
-
-			echo "MISSES:"
-			echo $misses
-			echo "HTTS:"
-			echo $hits
-			echo "ACCESSES:"
-			echo $accesses
-			echo "Rate is thus:"
-			echo $rate
-
-			#------------------------------------------------------------------------
-
-			misses=`sudo perf script -F insn,event | awk '/mem_load_uops_misc_retired.llc_miss/ && /49 39 c3/ {count++} END {print count}'`
-			
-			hits=`sudo perf script -F insn,event | awk '/mem_load_uops_retired.llc_hit/ && /49 39 c3/ {count++} END {print count}'`
-
-			accesses=$(expr $hits + $misses)
-			rate=$(echo "scale=3; $misses / $accesses" | bc)
-			echo "pr.cc:48 - cmp %rax,%r11 MISS-COUNT: $misses HIT-COUNT: $hits RATE: $rate" >> $1$2_count_$3.txt
-			
-			echo "MISSES:"
-			echo $misses
-			echo "HTTS:"
-			echo $hits
-			echo "ACCESSES:"
-			echo $accesses
-
-			echo "Rate is thus:"
-			echo $rate
-
-			#------------------------------------------------------------------------------------------------------
-
-			misses=`sudo perf script -F insn,event | awk '/mem_load_uops_misc_retired.llc_miss/ && /48 63 10/ {count++} END {print count}'`
-			hits=`sudo perf script -F insn,event | awk '/mem_load_uops_retired.llc_hit/ && /48 63 10/ {count++} END {print count}'`
-
-			accesses=$(expr $hits + $misses)				
-			rate=$(echo "scale=3; $misses / $accesses" | bc)
-			echo "pr.cc:48 - movslq (%rax), %rdx MISS-COUNT: $misses HIT-COUNT: $hits RATE: $rate" >> $1$2_count_$3.txt
-
-			
-			echo "------------------------------------------------------------------" >> $1$2_count_$3.txt
-
-			echo "MISSES:"
-			echo $misses
-			echo "HTTS:"
-			echo $hits
-			echo "ACCESSES:"
-			echo $accesses
-
-			echo "Rate is thus:"
-			echo $rate
-
 			insts=("f3 0f 58 04 96" "49 39 c3" "48 63 10")
 
 		elif [[ $1 == bfs ]]; then
-			inst="48 8b 04 f8"
-			inst2="48 63 30"
-			inst3="49 8b 34 f7"
 			insts=("48 8b 04 f8" "48 63 30" "49 8b 34 f7")
+		elif [[ $1 == bc ]]; then
+			insts=("48 63 02" "49 8b 0a" "f3 0f 5a c9" "f3 41 0f 10 14 80" "f2 42 0f 10 04 09" "f2 0f 5e 04 c1" "f3 0f 58 d3" "f3 0f 5a d2" "f2 0f 59 c2" "f2 0f 58 c8" "f2 0f 5a c9")
 
 
 		fi
@@ -222,12 +167,16 @@ if [[ $# == 3  ]]; then
 			echo $hits
 			
 			accesses=$(expr $hits + $misses)
-			
-			rate=$(echo "scale=3; $misses / $accesses" | bc)
 
-			echo "$1.cc - $inst - MISS-COUNT: $misses HIT-COUNT: $hits RATE: $rate" >> $1$2_count_$3.txt
-			echo "$1.cc - $inst - MISS-COUNT: $misses HIT-COUNT: $hits RATE: $rate"
+			if [[ $accesses == 0 ]]; then
+				rate=0
+			else
+				rate=$(echo "scale=3; $misses / $accesses" | bc)
+				echo "$1.cc - $inst - MISS-COUNT: $misses HIT-COUNT: $hits RATE: $rate" >> $1$2_count_$3.txt
+				echo "$1.cc - $inst - MISS-COUNT: $misses HIT-COUNT: $hits RATE: $rate"
+			fi
 			
+
 			
 		done
 		echo "------------------------------------------------------------------" >> $1$2_count_$3.txt
