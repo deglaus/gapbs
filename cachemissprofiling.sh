@@ -53,7 +53,7 @@ if [[ $# == 3  ]]; then
 		# bfs.cc:53
 		# 2.33%
 		# mov (%rax,%rdi,8),%rax   
-		# Fetches starting INDEX of the vertex' edges
+		# Fetches starting INDEX of the vertex' edges. The memory address of the neighbour is computed.
 
 		
 		# bfs.cc:53 l. 3.5 or 5.
@@ -70,6 +70,7 @@ if [[ $# == 3  ]]; then
 		# - returns bitmap value which checks if it is in to_visit or not.
 		
 		# BC - look at l. 37 to see which access causes the most LLC misses.
+		
 		# CC - look at l. 8 to see which assembly instruction causes the high miss-rate
 
 
@@ -107,7 +108,6 @@ if [[ $# == 3  ]]; then
 
 			sudo perf script -F insn,event | awk '/mem_load_uops_misc_retired.llc_miss/ && /f3 0f 58 04 96/ {count++} END {print count}'
 
-
 			# how to find instruction address:
 			# 1. use perf annotate --stdio to examine which instruction causes the misses
 			#
@@ -124,6 +124,10 @@ if [[ $# == 3  ]]; then
 			# 3. add into the for-loop list so that it will be looked for.
 			#
 			#
+
+
+
+			
 			misses=0
 			hits=0
 
@@ -192,41 +196,44 @@ if [[ $# == 3  ]]; then
 			echo "Rate is thus:"
 			echo $rate
 
+			insts=("f3 0f 58 04 96" "49 39 c3" "48 63 10")
+
 		elif [[ $1 == bfs ]]; then
 			inst="48 8b 04 f8"
 			inst2="48 63 30"
 			inst3="49 8b 34 f7"
 			insts=("48 8b 04 f8" "48 63 30" "49 8b 34 f7")
 
-			misses=0
-			hits=0
-			for inst in "${insts[@]}"; do
-				echo $inst
-				echo "sudo perf script -F insn,event | awk '/mem_load_uops_retired.llc_hit/ && /$inst/ {count++} END {print count}'"
-				echo "done"
-				
-				misses=`sudo perf script -F insn,event | grep 'mem_load_uops_misc_retired.llc_miss:pp:' | grep -c "$inst"`
-				
-#				hits=`sudo perf script -F insn,event | awk '/mem_load_uops_retired.llc_hit/ && /$inst/ {count++} END {print count}'`
-				hits=`sudo perf script -F insn,event | grep 'mem_load_uops_retired.llc_hit:pp:' | grep -c "$inst"`
-
-				echo $misses
-				echo $hits
-				
-				accesses=$(expr $hits + $misses)
-				
-				rate=$(echo "scale=3; $misses / $accesses" | bc)
-
-				echo "$1.cc - $inst - MISS-COUNT: $misses HIT-COUNT: $hits RATE: $rate" >> $1$2_count_$3.txt
-				echo "$1.cc - $inst - MISS-COUNT: $misses HIT-COUNT: $hits RATE: $rate"
-
-				
-			done
-			echo "------------------------------------------------------------------" >> $1$2_count_$3.txt
 
 		fi
+		misses=0
+		hits=0
+		for inst in "${insts[@]}"; do
+			echo $inst
+			echo "sudo perf script -F insn,event | awk '/mem_load_uops_retired.llc_hit/ && /$inst/ {count++} END {print count}'"
+			echo "done"
+			
+			misses=`sudo perf script -F insn,event | grep 'mem_load_uops_misc_retired.llc_miss:pp:' | grep -c "$inst"`
+			
+			#				hits=`sudo perf script -F insn,event | awk '/mem_load_uops_retired.llc_hit/ && /$inst/ {count++} END {print count}'`
+			hits=`sudo perf script -F insn,event | grep 'mem_load_uops_retired.llc_hit:pp:' | grep -c "$inst"`
+
+			echo $misses
+			echo $hits
+			
+			accesses=$(expr $hits + $misses)
+			
+			rate=$(echo "scale=3; $misses / $accesses" | bc)
+
+			echo "$1.cc - $inst - MISS-COUNT: $misses HIT-COUNT: $hits RATE: $rate" >> $1$2_count_$3.txt
+			echo "$1.cc - $inst - MISS-COUNT: $misses HIT-COUNT: $hits RATE: $rate"
+			
+			
+		done
+		echo "------------------------------------------------------------------" >> $1$2_count_$3.txt
+
 		exit 1
-	
+		
 
 	
 	else

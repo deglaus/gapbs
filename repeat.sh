@@ -1,6 +1,6 @@
 #!/bin/bash
 
-max=400
+max=300
 
 for i in `seq 2 $max`
 		 do
