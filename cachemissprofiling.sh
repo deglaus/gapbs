@@ -96,9 +96,11 @@ if [[ $# == 3  ]]; then
 #          :          Link(u, v, comp);
 #     0.00 :   4de3:   49 8b 54 24 08          mov    0x8(%r12),%rdx
 #!    99.21 :   4de8:   8b 30                   mov    (%rax),%esi
+		
 				#          // since rax was used to compute neighbour v vertex' address,
 		#                  // it is not used again to store in esi, it is still in rax
 
+		
 #!     0.00 :   4dea:   44 89 ef                mov    %r13d,%edi
 		#  // 
 #     0.00 :   4ded:   e8 ee fe ff ff          callq  4ce0 <Link(int, int, pvector<int>&)>
