@@ -1,0 +1,730 @@
+cc.cc - 8b 30 - MISS-COUNT: 105 HIT-COUNT: 0 RATE: 1.000
+cc.cc - 42 8b 0c 87 - MISS-COUNT: 0 HIT-COUNT: 1 RATE: 0
+cc.cc - 8b 04 b7 - MISS-COUNT: 52 HIT-COUNT: 242 RATE: .176
+cc.cc - 48 63 01 - MISS-COUNT: 6 HIT-COUNT: 32 RATE: .157
+------------------------------------------------------------------
+cc.cc - 8b 30 - MISS-COUNT: 117 HIT-COUNT: 0 RATE: 1.000
+cc.cc - 42 8b 0c 87 - MISS-COUNT: 1 HIT-COUNT: 0 RATE: 1.000
+cc.cc - 8b 04 b7 - MISS-COUNT: 42 HIT-COUNT: 245 RATE: .146
+cc.cc - 48 63 01 - MISS-COUNT: 5 HIT-COUNT: 25 RATE: .166
+------------------------------------------------------------------
+cc.cc - 8b 30 - MISS-COUNT: 72 HIT-COUNT: 0 RATE: 1.000
+cc.cc - 42 8b 0c 87 - MISS-COUNT: 1 HIT-COUNT: 0 RATE: 1.000
+cc.cc - 8b 04 b7 - MISS-COUNT: 39 HIT-COUNT: 190 RATE: .170
+cc.cc - 48 63 01 - MISS-COUNT: 3 HIT-COUNT: 30 RATE: .090
+------------------------------------------------------------------
+cc.cc - 8b 30 - MISS-COUNT: 80 HIT-COUNT: 0 RATE: 1.000
+cc.cc - 8b 04 b7 - MISS-COUNT: 50 HIT-COUNT: 190 RATE: .208
+cc.cc - 48 63 01 - MISS-COUNT: 1 HIT-COUNT: 37 RATE: .026
+------------------------------------------------------------------
+cc.cc - 8b 30 - MISS-COUNT: 102 HIT-COUNT: 0 RATE: 1.000
+cc.cc - 8b 04 b7 - MISS-COUNT: 45 HIT-COUNT: 204 RATE: .180
+cc.cc - 48 63 01 - MISS-COUNT: 2 HIT-COUNT: 34 RATE: .055
+------------------------------------------------------------------
+cc.cc - 8b 30 - MISS-COUNT: 87 HIT-COUNT: 1 RATE: .988
+cc.cc - 8b 04 b7 - MISS-COUNT: 57 HIT-COUNT: 205 RATE: .217
+cc.cc - 48 63 01 - MISS-COUNT: 4 HIT-COUNT: 24 RATE: .142
+------------------------------------------------------------------
+cc.cc - 8b 30 - MISS-COUNT: 100 HIT-COUNT: 0 RATE: 1.000
+cc.cc - 42 8b 0c 87 - MISS-COUNT: 1 HIT-COUNT: 0 RATE: 1.000
+cc.cc - 8b 04 b7 - MISS-COUNT: 42 HIT-COUNT: 225 RATE: .157
+cc.cc - 48 63 01 - MISS-COUNT: 7 HIT-COUNT: 27 RATE: .205
+------------------------------------------------------------------
+cc.cc - 8b 30 - MISS-COUNT: 96 HIT-COUNT: 0 RATE: 1.000
+cc.cc - 42 8b 0c 87 - MISS-COUNT: 1 HIT-COUNT: 1 RATE: .500
+cc.cc - 8b 04 b7 - MISS-COUNT: 50 HIT-COUNT: 201 RATE: .199
+cc.cc - 48 63 01 - MISS-COUNT: 6 HIT-COUNT: 25 RATE: .193
+------------------------------------------------------------------
+cc.cc - 8b 30 - MISS-COUNT: 102 HIT-COUNT: 0 RATE: 1.000
+cc.cc - 8b 04 b7 - MISS-COUNT: 43 HIT-COUNT: 224 RATE: .161
+cc.cc - 48 63 01 - MISS-COUNT: 6 HIT-COUNT: 30 RATE: .166
+------------------------------------------------------------------
+cc.cc - 8b 30 - MISS-COUNT: 115 HIT-COUNT: 0 RATE: 1.000
+cc.cc - 8b 04 b7 - MISS-COUNT: 35 HIT-COUNT: 214 RATE: .140
+cc.cc - 48 63 01 - MISS-COUNT: 9 HIT-COUNT: 27 RATE: .250
+------------------------------------------------------------------
+cc.cc - 8b 30 - MISS-COUNT: 100 HIT-COUNT: 0 RATE: 1.000
+cc.cc - 42 8b 0c 87 - MISS-COUNT: 1 HIT-COUNT: 1 RATE: .500
+cc.cc - 8b 04 b7 - MISS-COUNT: 39 HIT-COUNT: 208 RATE: .157
+cc.cc - 48 63 01 - MISS-COUNT: 4 HIT-COUNT: 30 RATE: .117
+------------------------------------------------------------------
+cc.cc - 8b 30 - MISS-COUNT: 91 HIT-COUNT: 0 RATE: 1.000
+cc.cc - 8b 04 b7 - MISS-COUNT: 58 HIT-COUNT: 212 RATE: .214
+cc.cc - 48 63 01 - MISS-COUNT: 2 HIT-COUNT: 36 RATE: .052
+------------------------------------------------------------------
+cc.cc - 8b 30 - MISS-COUNT: 98 HIT-COUNT: 1 RATE: .989
+cc.cc - 42 8b 0c 87 - MISS-COUNT: 1 HIT-COUNT: 0 RATE: 1.000
+cc.cc - 8b 04 b7 - MISS-COUNT: 45 HIT-COUNT: 233 RATE: .161
+cc.cc - 48 63 01 - MISS-COUNT: 2 HIT-COUNT: 29 RATE: .064
+------------------------------------------------------------------
+cc.cc - 8b 30 - MISS-COUNT: 93 HIT-COUNT: 0 RATE: 1.000
+cc.cc - 8b 04 b7 - MISS-COUNT: 50 HIT-COUNT: 219 RATE: .185
+cc.cc - 48 63 01 - MISS-COUNT: 5 HIT-COUNT: 28 RATE: .151
+------------------------------------------------------------------
+cc.cc - 8b 30 - MISS-COUNT: 114 HIT-COUNT: 0 RATE: 1.000
+cc.cc - 42 8b 0c 87 - MISS-COUNT: 0 HIT-COUNT: 2 RATE: 0
+cc.cc - 8b 04 b7 - MISS-COUNT: 41 HIT-COUNT: 213 RATE: .161
+cc.cc - 48 63 01 - MISS-COUNT: 4 HIT-COUNT: 30 RATE: .117
+------------------------------------------------------------------
+cc.cc - 8b 30 - MISS-COUNT: 106 HIT-COUNT: 0 RATE: 1.000
+cc.cc - 42 8b 0c 87 - MISS-COUNT: 1 HIT-COUNT: 0 RATE: 1.000
+cc.cc - 8b 04 b7 - MISS-COUNT: 47 HIT-COUNT: 228 RATE: .170
+cc.cc - 48 63 01 - MISS-COUNT: 5 HIT-COUNT: 23 RATE: .178
+------------------------------------------------------------------
+cc.cc - 8b 30 - MISS-COUNT: 102 HIT-COUNT: 0 RATE: 1.000
+cc.cc - 8b 04 b7 - MISS-COUNT: 36 HIT-COUNT: 209 RATE: .146
+cc.cc - 48 63 01 - MISS-COUNT: 6 HIT-COUNT: 24 RATE: .200
+------------------------------------------------------------------
+cc.cc - 8b 30 - MISS-COUNT: 92 HIT-COUNT: 0 RATE: 1.000
+cc.cc - 8b 04 b7 - MISS-COUNT: 52 HIT-COUNT: 207 RATE: .200
+cc.cc - 48 63 01 - MISS-COUNT: 5 HIT-COUNT: 28 RATE: .151
+------------------------------------------------------------------
+cc.cc - 8b 30 - MISS-COUNT: 115 HIT-COUNT: 0 RATE: 1.000
+cc.cc - 8b 04 b7 - MISS-COUNT: 41 HIT-COUNT: 215 RATE: .160
+cc.cc - 48 63 01 - MISS-COUNT: 3 HIT-COUNT: 36 RATE: .076
+------------------------------------------------------------------
+cc.cc - 8b 30 - MISS-COUNT: 109 HIT-COUNT: 0 RATE: 1.000
+cc.cc - 8b 04 b7 - MISS-COUNT: 40 HIT-COUNT: 222 RATE: .152
+cc.cc - 48 63 01 - MISS-COUNT: 4 HIT-COUNT: 22 RATE: .153
+------------------------------------------------------------------
+cc.cc - 8b 30 - MISS-COUNT: 120 HIT-COUNT: 0 RATE: 1.000
+cc.cc - 42 8b 0c 87 - MISS-COUNT: 1 HIT-COUNT: 0 RATE: 1.000
+cc.cc - 8b 04 b7 - MISS-COUNT: 43 HIT-COUNT: 241 RATE: .151
+cc.cc - 48 63 01 - MISS-COUNT: 3 HIT-COUNT: 23 RATE: .115
+------------------------------------------------------------------
+cc.cc - 8b 30 - MISS-COUNT: 135 HIT-COUNT: 0 RATE: 1.000
+cc.cc - 8b 04 b7 - MISS-COUNT: 39 HIT-COUNT: 223 RATE: .148
+cc.cc - 48 63 01 - MISS-COUNT: 5 HIT-COUNT: 22 RATE: .185
+------------------------------------------------------------------
+cc.cc - 8b 30 - MISS-COUNT: 115 HIT-COUNT: 0 RATE: 1.000
+cc.cc - 42 8b 0c 87 - MISS-COUNT: 1 HIT-COUNT: 1 RATE: .500
+cc.cc - 8b 04 b7 - MISS-COUNT: 46 HIT-COUNT: 210 RATE: .179
+cc.cc - 48 63 01 - MISS-COUNT: 2 HIT-COUNT: 41 RATE: .046
+------------------------------------------------------------------
+cc.cc - 8b 30 - MISS-COUNT: 136 HIT-COUNT: 0 RATE: 1.000
+cc.cc - 8b 04 b7 - MISS-COUNT: 34 HIT-COUNT: 239 RATE: .124
+cc.cc - 48 63 01 - MISS-COUNT: 4 HIT-COUNT: 39 RATE: .093
+------------------------------------------------------------------
+cc.cc - 8b 30 - MISS-COUNT: 127 HIT-COUNT: 0 RATE: 1.000
+cc.cc - 8b 04 b7 - MISS-COUNT: 41 HIT-COUNT: 232 RATE: .150
+cc.cc - 48 63 01 - MISS-COUNT: 2 HIT-COUNT: 30 RATE: .062
+------------------------------------------------------------------
+cc.cc - 8b 30 - MISS-COUNT: 92 HIT-COUNT: 0 RATE: 1.000
+cc.cc - 8b 04 b7 - MISS-COUNT: 49 HIT-COUNT: 222 RATE: .180
+cc.cc - 48 63 01 - MISS-COUNT: 4 HIT-COUNT: 32 RATE: .111
+------------------------------------------------------------------
+cc.cc - 8b 30 - MISS-COUNT: 101 HIT-COUNT: 0 RATE: 1.000
+cc.cc - 8b 04 b7 - MISS-COUNT: 46 HIT-COUNT: 233 RATE: .164
+cc.cc - 48 63 01 - MISS-COUNT: 7 HIT-COUNT: 19 RATE: .269
+------------------------------------------------------------------
+cc.cc - 8b 30 - MISS-COUNT: 99 HIT-COUNT: 1 RATE: .990
+cc.cc - 42 8b 0c 87 - MISS-COUNT: 2 HIT-COUNT: 1 RATE: .666
+cc.cc - 8b 04 b7 - MISS-COUNT: 42 HIT-COUNT: 230 RATE: .154
+cc.cc - 48 63 01 - MISS-COUNT: 5 HIT-COUNT: 27 RATE: .156
+------------------------------------------------------------------
+cc.cc - 8b 30 - MISS-COUNT: 116 HIT-COUNT: 1 RATE: .991
+cc.cc - 42 8b 0c 87 - MISS-COUNT: 0 HIT-COUNT: 1 RATE: 0
+cc.cc - 8b 04 b7 - MISS-COUNT: 49 HIT-COUNT: 225 RATE: .178
+cc.cc - 48 63 01 - MISS-COUNT: 5 HIT-COUNT: 23 RATE: .178
+------------------------------------------------------------------
+cc.cc - 8b 30 - MISS-COUNT: 119 HIT-COUNT: 0 RATE: 1.000
+cc.cc - 8b 04 b7 - MISS-COUNT: 49 HIT-COUNT: 249 RATE: .164
+cc.cc - 48 63 01 - MISS-COUNT: 5 HIT-COUNT: 29 RATE: .147
+------------------------------------------------------------------
+cc.cc - 8b 30 - MISS-COUNT: 106 HIT-COUNT: 0 RATE: 1.000
+cc.cc - 8b 04 b7 - MISS-COUNT: 42 HIT-COUNT: 228 RATE: .155
+cc.cc - 48 63 01 - MISS-COUNT: 5 HIT-COUNT: 25 RATE: .166
+------------------------------------------------------------------
+cc.cc - 8b 30 - MISS-COUNT: 91 HIT-COUNT: 0 RATE: 1.000
+cc.cc - 8b 04 b7 - MISS-COUNT: 43 HIT-COUNT: 215 RATE: .166
+cc.cc - 48 63 01 - MISS-COUNT: 4 HIT-COUNT: 21 RATE: .160
+------------------------------------------------------------------
+cc.cc - 8b 30 - MISS-COUNT: 111 HIT-COUNT: 0 RATE: 1.000
+cc.cc - 42 8b 0c 87 - MISS-COUNT: 1 HIT-COUNT: 0 RATE: 1.000
+cc.cc - 8b 04 b7 - MISS-COUNT: 40 HIT-COUNT: 225 RATE: .150
+cc.cc - 48 63 01 - MISS-COUNT: 4 HIT-COUNT: 28 RATE: .125
+------------------------------------------------------------------
+cc.cc - 8b 30 - MISS-COUNT: 123 HIT-COUNT: 0 RATE: 1.000
+cc.cc - 44 89 ef - MISS-COUNT: 1 HIT-COUNT: 0 RATE: 1.000
+cc.cc - 8b 04 b7 - MISS-COUNT: 42 HIT-COUNT: 223 RATE: .158
+cc.cc - 48 63 01 - MISS-COUNT: 5 HIT-COUNT: 40 RATE: .111
+------------------------------------------------------------------
+cc.cc - 8b 30 - MISS-COUNT: 102 HIT-COUNT: 0 RATE: 1.000
+cc.cc - 42 8b 0c 87 - MISS-COUNT: 0 HIT-COUNT: 2 RATE: 0
+cc.cc - 8b 04 b7 - MISS-COUNT: 50 HIT-COUNT: 214 RATE: .189
+cc.cc - 48 63 01 - MISS-COUNT: 4 HIT-COUNT: 28 RATE: .125
+------------------------------------------------------------------
+cc.cc - 8b 30 - MISS-COUNT: 109 HIT-COUNT: 0 RATE: 1.000
+cc.cc - 8b 04 b7 - MISS-COUNT: 43 HIT-COUNT: 218 RATE: .164
+cc.cc - 48 63 01 - MISS-COUNT: 1 HIT-COUNT: 27 RATE: .035
+------------------------------------------------------------------
+cc.cc - 8b 30 - MISS-COUNT: 115 HIT-COUNT: 1 RATE: .991
+cc.cc - 42 8b 0c 87 - MISS-COUNT: 0 HIT-COUNT: 1 RATE: 0
+cc.cc - 8b 04 b7 - MISS-COUNT: 41 HIT-COUNT: 226 RATE: .153
+cc.cc - 48 63 01 - MISS-COUNT: 1 HIT-COUNT: 25 RATE: .038
+------------------------------------------------------------------
+cc.cc - 8b 30 - MISS-COUNT: 118 HIT-COUNT: 1 RATE: .991
+cc.cc - 8b 04 b7 - MISS-COUNT: 48 HIT-COUNT: 232 RATE: .171
+cc.cc - 48 63 01 - MISS-COUNT: 2 HIT-COUNT: 34 RATE: .055
+------------------------------------------------------------------
+cc.cc - 8b 30 - MISS-COUNT: 103 HIT-COUNT: 0 RATE: 1.000
+cc.cc - 42 8b 0c 87 - MISS-COUNT: 1 HIT-COUNT: 1 RATE: .500
+cc.cc - 8b 04 b7 - MISS-COUNT: 43 HIT-COUNT: 214 RATE: .167
+cc.cc - 48 63 01 - MISS-COUNT: 7 HIT-COUNT: 19 RATE: .269
+------------------------------------------------------------------
+cc.cc - 8b 30 - MISS-COUNT: 110 HIT-COUNT: 0 RATE: 1.000
+cc.cc - 8b 04 b7 - MISS-COUNT: 52 HIT-COUNT: 230 RATE: .184
+cc.cc - 48 63 01 - MISS-COUNT: 6 HIT-COUNT: 34 RATE: .150
+------------------------------------------------------------------
+cc.cc - 8b 30 - MISS-COUNT: 123 HIT-COUNT: 0 RATE: 1.000
+cc.cc - 8b 04 b7 - MISS-COUNT: 40 HIT-COUNT: 211 RATE: .159
+cc.cc - 48 63 01 - MISS-COUNT: 5 HIT-COUNT: 26 RATE: .161
+------------------------------------------------------------------
+cc.cc - 8b 30 - MISS-COUNT: 104 HIT-COUNT: 0 RATE: 1.000
+cc.cc - 8b 04 b7 - MISS-COUNT: 37 HIT-COUNT: 221 RATE: .143
+cc.cc - 48 63 01 - MISS-COUNT: 3 HIT-COUNT: 34 RATE: .081
+------------------------------------------------------------------
+cc.cc - 8b 30 - MISS-COUNT: 108 HIT-COUNT: 0 RATE: 1.000
+cc.cc - 44 89 ef - MISS-COUNT: 1 HIT-COUNT: 0 RATE: 1.000
+cc.cc - 42 8b 0c 87 - MISS-COUNT: 1 HIT-COUNT: 1 RATE: .500
+cc.cc - 8b 04 b7 - MISS-COUNT: 48 HIT-COUNT: 202 RATE: .192
+cc.cc - 48 63 01 - MISS-COUNT: 5 HIT-COUNT: 27 RATE: .156
+------------------------------------------------------------------
+cc.cc - 8b 30 - MISS-COUNT: 108 HIT-COUNT: 1 RATE: .990
+cc.cc - 42 8b 0c 87 - MISS-COUNT: 1 HIT-COUNT: 0 RATE: 1.000
+cc.cc - 8b 04 b7 - MISS-COUNT: 42 HIT-COUNT: 207 RATE: .168
+cc.cc - 48 63 01 - MISS-COUNT: 0 HIT-COUNT: 39 RATE: 0
+------------------------------------------------------------------
+cc.cc - 8b 30 - MISS-COUNT: 116 HIT-COUNT: 0 RATE: 1.000
+cc.cc - 42 8b 0c 87 - MISS-COUNT: 0 HIT-COUNT: 1 RATE: 0
+cc.cc - 8b 04 b7 - MISS-COUNT: 49 HIT-COUNT: 232 RATE: .174
+cc.cc - 48 63 01 - MISS-COUNT: 6 HIT-COUNT: 26 RATE: .187
+------------------------------------------------------------------
+cc.cc - 8b 30 - MISS-COUNT: 126 HIT-COUNT: 0 RATE: 1.000
+cc.cc - 42 8b 0c 87 - MISS-COUNT: 1 HIT-COUNT: 0 RATE: 1.000
+cc.cc - 8b 04 b7 - MISS-COUNT: 41 HIT-COUNT: 244 RATE: .143
+cc.cc - 48 63 01 - MISS-COUNT: 7 HIT-COUNT: 29 RATE: .194
+------------------------------------------------------------------
+cc.cc - 8b 30 - MISS-COUNT: 116 HIT-COUNT: 0 RATE: 1.000
+cc.cc - 42 8b 0c 87 - MISS-COUNT: 1 HIT-COUNT: 1 RATE: .500
+cc.cc - 8b 04 b7 - MISS-COUNT: 41 HIT-COUNT: 220 RATE: .157
+cc.cc - 48 63 01 - MISS-COUNT: 3 HIT-COUNT: 23 RATE: .115
+------------------------------------------------------------------
+cc.cc - 8b 30 - MISS-COUNT: 88 HIT-COUNT: 0 RATE: 1.000
+cc.cc - 42 8b 0c 87 - MISS-COUNT: 0 HIT-COUNT: 1 RATE: 0
+cc.cc - 8b 04 b7 - MISS-COUNT: 58 HIT-COUNT: 222 RATE: .207
+cc.cc - 48 63 01 - MISS-COUNT: 8 HIT-COUNT: 28 RATE: .222
+------------------------------------------------------------------
+cc.cc - 8b 30 - MISS-COUNT: 112 HIT-COUNT: 0 RATE: 1.000
+cc.cc - 8b 04 b7 - MISS-COUNT: 54 HIT-COUNT: 226 RATE: .192
+cc.cc - 48 63 01 - MISS-COUNT: 7 HIT-COUNT: 41 RATE: .145
+------------------------------------------------------------------
+cc.cc - 8b 30 - MISS-COUNT: 114 HIT-COUNT: 0 RATE: 1.000
+cc.cc - 42 8b 0c 87 - MISS-COUNT: 3 HIT-COUNT: 0 RATE: 1.000
+cc.cc - 8b 04 b7 - MISS-COUNT: 41 HIT-COUNT: 224 RATE: .154
+cc.cc - 48 63 01 - MISS-COUNT: 5 HIT-COUNT: 30 RATE: .142
+------------------------------------------------------------------
+cc.cc - 8b 30 - MISS-COUNT: 90 HIT-COUNT: 0 RATE: 1.000
+cc.cc - 8b 04 b7 - MISS-COUNT: 52 HIT-COUNT: 222 RATE: .189
+cc.cc - 48 63 01 - MISS-COUNT: 4 HIT-COUNT: 26 RATE: .133
+------------------------------------------------------------------
+cc.cc - 8b 30 - MISS-COUNT: 111 HIT-COUNT: 0 RATE: 1.000
+cc.cc - 8b 04 b7 - MISS-COUNT: 49 HIT-COUNT: 217 RATE: .184
+cc.cc - 48 63 01 - MISS-COUNT: 2 HIT-COUNT: 29 RATE: .064
+------------------------------------------------------------------
+cc.cc - 8b 30 - MISS-COUNT: 85 HIT-COUNT: 1 RATE: .988
+cc.cc - 44 89 ef - MISS-COUNT: 0 HIT-COUNT: 1 RATE: 0
+cc.cc - 42 8b 0c 87 - MISS-COUNT: 1 HIT-COUNT: 0 RATE: 1.000
+cc.cc - 8b 04 b7 - MISS-COUNT: 54 HIT-COUNT: 202 RATE: .210
+cc.cc - 48 63 01 - MISS-COUNT: 6 HIT-COUNT: 25 RATE: .193
+------------------------------------------------------------------
+cc.cc - 8b 30 - MISS-COUNT: 123 HIT-COUNT: 0 RATE: 1.000
+cc.cc - 42 8b 0c 87 - MISS-COUNT: 1 HIT-COUNT: 1 RATE: .500
+cc.cc - 8b 04 b7 - MISS-COUNT: 42 HIT-COUNT: 226 RATE: .156
+cc.cc - 48 63 01 - MISS-COUNT: 2 HIT-COUNT: 32 RATE: .058
+------------------------------------------------------------------
+cc.cc - 8b 30 - MISS-COUNT: 116 HIT-COUNT: 0 RATE: 1.000
+cc.cc - 8b 04 b7 - MISS-COUNT: 48 HIT-COUNT: 232 RATE: .171
+cc.cc - 48 63 01 - MISS-COUNT: 5 HIT-COUNT: 33 RATE: .131
+------------------------------------------------------------------
+cc.cc - 8b 30 - MISS-COUNT: 95 HIT-COUNT: 0 RATE: 1.000
+cc.cc - 42 8b 0c 87 - MISS-COUNT: 1 HIT-COUNT: 2 RATE: .333
+cc.cc - 8b 04 b7 - MISS-COUNT: 56 HIT-COUNT: 220 RATE: .202
+cc.cc - 48 63 01 - MISS-COUNT: 4 HIT-COUNT: 22 RATE: .153
+------------------------------------------------------------------
+cc.cc - 8b 30 - MISS-COUNT: 123 HIT-COUNT: 0 RATE: 1.000
+cc.cc - 8b 04 b7 - MISS-COUNT: 44 HIT-COUNT: 234 RATE: .158
+cc.cc - 48 63 01 - MISS-COUNT: 4 HIT-COUNT: 24 RATE: .142
+------------------------------------------------------------------
+cc.cc - 8b 30 - MISS-COUNT: 124 HIT-COUNT: 1 RATE: .992
+cc.cc - 8b 04 b7 - MISS-COUNT: 32 HIT-COUNT: 221 RATE: .126
+cc.cc - 48 63 01 - MISS-COUNT: 2 HIT-COUNT: 32 RATE: .058
+------------------------------------------------------------------
+cc.cc - 8b 30 - MISS-COUNT: 127 HIT-COUNT: 0 RATE: 1.000
+cc.cc - 8b 04 b7 - MISS-COUNT: 42 HIT-COUNT: 241 RATE: .148
+cc.cc - 48 63 01 - MISS-COUNT: 6 HIT-COUNT: 24 RATE: .200
+------------------------------------------------------------------
+cc.cc - 8b 30 - MISS-COUNT: 136 HIT-COUNT: 0 RATE: 1.000
+cc.cc - 42 8b 0c 87 - MISS-COUNT: 1 HIT-COUNT: 0 RATE: 1.000
+cc.cc - 8b 04 b7 - MISS-COUNT: 40 HIT-COUNT: 248 RATE: .138
+cc.cc - 48 63 01 - MISS-COUNT: 3 HIT-COUNT: 24 RATE: .111
+------------------------------------------------------------------
+cc.cc - 8b 30 - MISS-COUNT: 112 HIT-COUNT: 0 RATE: 1.000
+cc.cc - 8b 04 b7 - MISS-COUNT: 53 HIT-COUNT: 221 RATE: .193
+cc.cc - 48 63 01 - MISS-COUNT: 4 HIT-COUNT: 27 RATE: .129
+------------------------------------------------------------------
+cc.cc - 8b 30 - MISS-COUNT: 113 HIT-COUNT: 0 RATE: 1.000
+cc.cc - 42 8b 0c 87 - MISS-COUNT: 2 HIT-COUNT: 1 RATE: .666
+cc.cc - 8b 04 b7 - MISS-COUNT: 45 HIT-COUNT: 214 RATE: .173
+cc.cc - 48 63 01 - MISS-COUNT: 6 HIT-COUNT: 35 RATE: .146
+------------------------------------------------------------------
+cc.cc - 8b 30 - MISS-COUNT: 129 HIT-COUNT: 0 RATE: 1.000
+cc.cc - 42 8b 0c 87 - MISS-COUNT: 1 HIT-COUNT: 1 RATE: .500
+cc.cc - 8b 04 b7 - MISS-COUNT: 41 HIT-COUNT: 237 RATE: .147
+cc.cc - 48 63 01 - MISS-COUNT: 3 HIT-COUNT: 25 RATE: .107
+------------------------------------------------------------------
+cc.cc - 8b 30 - MISS-COUNT: 108 HIT-COUNT: 0 RATE: 1.000
+cc.cc - 42 8b 0c 87 - MISS-COUNT: 0 HIT-COUNT: 1 RATE: 0
+cc.cc - 8b 04 b7 - MISS-COUNT: 51 HIT-COUNT: 200 RATE: .203
+cc.cc - 48 63 01 - MISS-COUNT: 3 HIT-COUNT: 37 RATE: .075
+------------------------------------------------------------------
+cc.cc - 8b 30 - MISS-COUNT: 117 HIT-COUNT: 0 RATE: 1.000
+cc.cc - 8b 04 b7 - MISS-COUNT: 47 HIT-COUNT: 214 RATE: .180
+cc.cc - 48 63 01 - MISS-COUNT: 2 HIT-COUNT: 22 RATE: .083
+------------------------------------------------------------------
+cc.cc - 8b 30 - MISS-COUNT: 97 HIT-COUNT: 1 RATE: .989
+cc.cc - 42 8b 0c 87 - MISS-COUNT: 2 HIT-COUNT: 0 RATE: 1.000
+cc.cc - 8b 04 b7 - MISS-COUNT: 41 HIT-COUNT: 229 RATE: .151
+cc.cc - 48 63 01 - MISS-COUNT: 6 HIT-COUNT: 24 RATE: .200
+------------------------------------------------------------------
+cc.cc - 8b 30 - MISS-COUNT: 120 HIT-COUNT: 0 RATE: 1.000
+cc.cc - 44 89 ef - MISS-COUNT: 0 HIT-COUNT: 1 RATE: 0
+cc.cc - 42 8b 0c 87 - MISS-COUNT: 1 HIT-COUNT: 0 RATE: 1.000
+cc.cc - 8b 04 b7 - MISS-COUNT: 46 HIT-COUNT: 229 RATE: .167
+cc.cc - 48 63 01 - MISS-COUNT: 2 HIT-COUNT: 33 RATE: .057
+------------------------------------------------------------------
+cc.cc - 8b 30 - MISS-COUNT: 90 HIT-COUNT: 0 RATE: 1.000
+cc.cc - 8b 04 b7 - MISS-COUNT: 49 HIT-COUNT: 214 RATE: .186
+cc.cc - 48 63 01 - MISS-COUNT: 5 HIT-COUNT: 36 RATE: .121
+------------------------------------------------------------------
+cc.cc - 8b 30 - MISS-COUNT: 96 HIT-COUNT: 0 RATE: 1.000
+cc.cc - 44 89 ef - MISS-COUNT: 0 HIT-COUNT: 1 RATE: 0
+cc.cc - 42 8b 0c 87 - MISS-COUNT: 0 HIT-COUNT: 1 RATE: 0
+cc.cc - 8b 04 b7 - MISS-COUNT: 54 HIT-COUNT: 210 RATE: .204
+cc.cc - 48 63 01 - MISS-COUNT: 2 HIT-COUNT: 33 RATE: .057
+------------------------------------------------------------------
+cc.cc - 8b 30 - MISS-COUNT: 104 HIT-COUNT: 0 RATE: 1.000
+cc.cc - 8b 04 b7 - MISS-COUNT: 52 HIT-COUNT: 208 RATE: .200
+cc.cc - 48 63 01 - MISS-COUNT: 6 HIT-COUNT: 28 RATE: .176
+------------------------------------------------------------------
+cc.cc - 8b 30 - MISS-COUNT: 125 HIT-COUNT: 0 RATE: 1.000
+cc.cc - 42 8b 0c 87 - MISS-COUNT: 1 HIT-COUNT: 0 RATE: 1.000
+cc.cc - 8b 04 b7 - MISS-COUNT: 37 HIT-COUNT: 206 RATE: .152
+cc.cc - 48 63 01 - MISS-COUNT: 6 HIT-COUNT: 38 RATE: .136
+------------------------------------------------------------------
+cc.cc - 8b 30 - MISS-COUNT: 93 HIT-COUNT: 0 RATE: 1.000
+cc.cc - 8b 04 b7 - MISS-COUNT: 50 HIT-COUNT: 202 RATE: .198
+cc.cc - 48 63 01 - MISS-COUNT: 5 HIT-COUNT: 39 RATE: .113
+------------------------------------------------------------------
+cc.cc - 8b 30 - MISS-COUNT: 116 HIT-COUNT: 0 RATE: 1.000
+cc.cc - 8b 04 b7 - MISS-COUNT: 49 HIT-COUNT: 239 RATE: .170
+cc.cc - 48 63 01 - MISS-COUNT: 2 HIT-COUNT: 22 RATE: .083
+------------------------------------------------------------------
+cc.cc - 8b 30 - MISS-COUNT: 112 HIT-COUNT: 0 RATE: 1.000
+cc.cc - 42 8b 0c 87 - MISS-COUNT: 0 HIT-COUNT: 1 RATE: 0
+cc.cc - 8b 04 b7 - MISS-COUNT: 44 HIT-COUNT: 227 RATE: .162
+cc.cc - 48 63 01 - MISS-COUNT: 2 HIT-COUNT: 42 RATE: .045
+------------------------------------------------------------------
+cc.cc - 8b 30 - MISS-COUNT: 102 HIT-COUNT: 0 RATE: 1.000
+cc.cc - 8b 04 b7 - MISS-COUNT: 46 HIT-COUNT: 211 RATE: .178
+cc.cc - 48 63 01 - MISS-COUNT: 4 HIT-COUNT: 31 RATE: .114
+------------------------------------------------------------------
+cc.cc - 8b 30 - MISS-COUNT: 128 HIT-COUNT: 0 RATE: 1.000
+cc.cc - 42 8b 0c 87 - MISS-COUNT: 2 HIT-COUNT: 0 RATE: 1.000
+cc.cc - 8b 04 b7 - MISS-COUNT: 45 HIT-COUNT: 232 RATE: .162
+cc.cc - 48 63 01 - MISS-COUNT: 3 HIT-COUNT: 32 RATE: .085
+------------------------------------------------------------------
+cc.cc - 8b 30 - MISS-COUNT: 124 HIT-COUNT: 0 RATE: 1.000
+cc.cc - 8b 04 b7 - MISS-COUNT: 48 HIT-COUNT: 229 RATE: .173
+cc.cc - 48 63 01 - MISS-COUNT: 3 HIT-COUNT: 26 RATE: .103
+------------------------------------------------------------------
+cc.cc - 8b 30 - MISS-COUNT: 117 HIT-COUNT: 0 RATE: 1.000
+cc.cc - 42 8b 0c 87 - MISS-COUNT: 0 HIT-COUNT: 1 RATE: 0
+cc.cc - 8b 04 b7 - MISS-COUNT: 37 HIT-COUNT: 199 RATE: .156
+cc.cc - 48 63 01 - MISS-COUNT: 3 HIT-COUNT: 19 RATE: .136
+------------------------------------------------------------------
+cc.cc - 8b 30 - MISS-COUNT: 114 HIT-COUNT: 0 RATE: 1.000
+cc.cc - 42 8b 0c 87 - MISS-COUNT: 1 HIT-COUNT: 0 RATE: 1.000
+cc.cc - 8b 04 b7 - MISS-COUNT: 46 HIT-COUNT: 222 RATE: .171
+cc.cc - 48 63 01 - MISS-COUNT: 3 HIT-COUNT: 31 RATE: .088
+------------------------------------------------------------------
+cc.cc - 8b 30 - MISS-COUNT: 109 HIT-COUNT: 0 RATE: 1.000
+cc.cc - 8b 04 b7 - MISS-COUNT: 47 HIT-COUNT: 223 RATE: .174
+cc.cc - 48 63 01 - MISS-COUNT: 1 HIT-COUNT: 30 RATE: .032
+------------------------------------------------------------------
+cc.cc - 8b 30 - MISS-COUNT: 104 HIT-COUNT: 0 RATE: 1.000
+cc.cc - 8b 04 b7 - MISS-COUNT: 45 HIT-COUNT: 223 RATE: .167
+cc.cc - 48 63 01 - MISS-COUNT: 4 HIT-COUNT: 33 RATE: .108
+------------------------------------------------------------------
+cc.cc - 8b 30 - MISS-COUNT: 118 HIT-COUNT: 0 RATE: 1.000
+cc.cc - 42 8b 0c 87 - MISS-COUNT: 1 HIT-COUNT: 1 RATE: .500
+cc.cc - 8b 04 b7 - MISS-COUNT: 39 HIT-COUNT: 212 RATE: .155
+cc.cc - 8d 14 08 - MISS-COUNT: 1 HIT-COUNT: 0 RATE: 1.000
+cc.cc - 48 63 01 - MISS-COUNT: 1 HIT-COUNT: 31 RATE: .031
+------------------------------------------------------------------
+cc.cc - 8b 30 - MISS-COUNT: 118 HIT-COUNT: 0 RATE: 1.000
+cc.cc - 42 8b 0c 87 - MISS-COUNT: 0 HIT-COUNT: 1 RATE: 0
+cc.cc - 8b 04 b7 - MISS-COUNT: 44 HIT-COUNT: 208 RATE: .174
+cc.cc - 48 63 01 - MISS-COUNT: 6 HIT-COUNT: 29 RATE: .171
+------------------------------------------------------------------
+cc.cc - 8b 30 - MISS-COUNT: 126 HIT-COUNT: 1 RATE: .992
+cc.cc - 42 8b 0c 87 - MISS-COUNT: 1 HIT-COUNT: 0 RATE: 1.000
+cc.cc - 8b 04 b7 - MISS-COUNT: 43 HIT-COUNT: 223 RATE: .161
+cc.cc - 48 63 01 - MISS-COUNT: 4 HIT-COUNT: 26 RATE: .133
+------------------------------------------------------------------
+cc.cc - 8b 30 - MISS-COUNT: 99 HIT-COUNT: 1 RATE: .990
+cc.cc - 42 8b 0c 87 - MISS-COUNT: 1 HIT-COUNT: 1 RATE: .500
+cc.cc - 8b 04 b7 - MISS-COUNT: 42 HIT-COUNT: 206 RATE: .169
+cc.cc - 48 63 01 - MISS-COUNT: 7 HIT-COUNT: 31 RATE: .184
+------------------------------------------------------------------
+cc.cc - 8b 30 - MISS-COUNT: 120 HIT-COUNT: 0 RATE: 1.000
+cc.cc - 42 8b 0c 87 - MISS-COUNT: 0 HIT-COUNT: 1 RATE: 0
+cc.cc - 8b 04 b7 - MISS-COUNT: 47 HIT-COUNT: 218 RATE: .177
+cc.cc - 48 63 01 - MISS-COUNT: 3 HIT-COUNT: 28 RATE: .096
+------------------------------------------------------------------
+cc.cc - 8b 30 - MISS-COUNT: 99 HIT-COUNT: 0 RATE: 1.000
+cc.cc - 42 8b 0c 87 - MISS-COUNT: 2 HIT-COUNT: 0 RATE: 1.000
+cc.cc - 8b 04 b7 - MISS-COUNT: 48 HIT-COUNT: 214 RATE: .183
+cc.cc - 48 63 01 - MISS-COUNT: 3 HIT-COUNT: 27 RATE: .100
+------------------------------------------------------------------
+cc.cc - 8b 30 - MISS-COUNT: 93 HIT-COUNT: 0 RATE: 1.000
+cc.cc - 42 8b 0c 87 - MISS-COUNT: 2 HIT-COUNT: 0 RATE: 1.000
+cc.cc - 8b 04 b7 - MISS-COUNT: 44 HIT-COUNT: 192 RATE: .186
+cc.cc - 48 63 01 - MISS-COUNT: 3 HIT-COUNT: 29 RATE: .093
+------------------------------------------------------------------
+cc.cc - 8b 30 - MISS-COUNT: 108 HIT-COUNT: 0 RATE: 1.000
+cc.cc - 42 8b 0c 87 - MISS-COUNT: 2 HIT-COUNT: 1 RATE: .666
+cc.cc - 8b 04 b7 - MISS-COUNT: 46 HIT-COUNT: 210 RATE: .179
+cc.cc - 48 63 01 - MISS-COUNT: 3 HIT-COUNT: 36 RATE: .076
+------------------------------------------------------------------
+cc.cc - 8b 30 - MISS-COUNT: 113 HIT-COUNT: 1 RATE: .991
+cc.cc - 8b 04 b7 - MISS-COUNT: 51 HIT-COUNT: 253 RATE: .167
+cc.cc - 48 63 01 - MISS-COUNT: 6 HIT-COUNT: 31 RATE: .162
+------------------------------------------------------------------
+cc.cc - 8b 30 - MISS-COUNT: 94 HIT-COUNT: 0 RATE: 1.000
+cc.cc - 8b 04 b7 - MISS-COUNT: 48 HIT-COUNT: 198 RATE: .195
+cc.cc - 48 63 01 - MISS-COUNT: 5 HIT-COUNT: 31 RATE: .138
+------------------------------------------------------------------
+cc.cc - 8b 30 - MISS-COUNT: 119 HIT-COUNT: 0 RATE: 1.000
+cc.cc - 8b 04 b7 - MISS-COUNT: 49 HIT-COUNT: 227 RATE: .177
+cc.cc - 48 63 01 - MISS-COUNT: 2 HIT-COUNT: 34 RATE: .055
+------------------------------------------------------------------
+cc.cc - 8b 30 - MISS-COUNT: 115 HIT-COUNT: 0 RATE: 1.000
+cc.cc - 8b 04 b7 - MISS-COUNT: 44 HIT-COUNT: 233 RATE: .158
+cc.cc - 48 63 01 - MISS-COUNT: 2 HIT-COUNT: 23 RATE: .080
+------------------------------------------------------------------
+cc.cc - 8b 30 - MISS-COUNT: 102 HIT-COUNT: 0 RATE: 1.000
+cc.cc - 8b 04 b7 - MISS-COUNT: 52 HIT-COUNT: 229 RATE: .185
+cc.cc - 48 63 01 - MISS-COUNT: 2 HIT-COUNT: 23 RATE: .080
+------------------------------------------------------------------
+cc.cc - 8b 30 - MISS-COUNT: 96 HIT-COUNT: 0 RATE: 1.000
+cc.cc - 42 8b 0c 87 - MISS-COUNT: 1 HIT-COUNT: 2 RATE: .333
+cc.cc - 8b 04 b7 - MISS-COUNT: 48 HIT-COUNT: 204 RATE: .190
+cc.cc - 48 63 01 - MISS-COUNT: 2 HIT-COUNT: 23 RATE: .080
+------------------------------------------------------------------
+cc.cc - 8b 30 - MISS-COUNT: 96 HIT-COUNT: 0 RATE: 1.000
+cc.cc - 42 8b 0c 87 - MISS-COUNT: 0 HIT-COUNT: 1 RATE: 0
+cc.cc - 8b 04 b7 - MISS-COUNT: 59 HIT-COUNT: 220 RATE: .211
+cc.cc - 48 63 01 - MISS-COUNT: 2 HIT-COUNT: 30 RATE: .062
+------------------------------------------------------------------
+cc.cc - 8b 30 - MISS-COUNT: 89 HIT-COUNT: 0 RATE: 1.000
+cc.cc - 8b 04 b7 - MISS-COUNT: 54 HIT-COUNT: 204 RATE: .209
+cc.cc - 48 63 01 - MISS-COUNT: 3 HIT-COUNT: 27 RATE: .100
+------------------------------------------------------------------
+cc.cc - 8b 30 - MISS-COUNT: 95 HIT-COUNT: 0 RATE: 1.000
+cc.cc - 8b 04 b7 - MISS-COUNT: 48 HIT-COUNT: 212 RATE: .184
+cc.cc - 48 63 01 - MISS-COUNT: 4 HIT-COUNT: 32 RATE: .111
+------------------------------------------------------------------
+cc.cc - 8b 30 - MISS-COUNT: 101 HIT-COUNT: 0 RATE: 1.000
+cc.cc - 8b 04 b7 - MISS-COUNT: 56 HIT-COUNT: 244 RATE: .186
+cc.cc - 48 63 01 - MISS-COUNT: 4 HIT-COUNT: 26 RATE: .133
+------------------------------------------------------------------
+cc.cc - 8b 30 - MISS-COUNT: 107 HIT-COUNT: 0 RATE: 1.000
+cc.cc - 42 8b 0c 87 - MISS-COUNT: 1 HIT-COUNT: 0 RATE: 1.000
+cc.cc - 8b 04 b7 - MISS-COUNT: 45 HIT-COUNT: 221 RATE: .169
+cc.cc - 48 63 01 - MISS-COUNT: 4 HIT-COUNT: 29 RATE: .121
+------------------------------------------------------------------
+cc.cc - 8b 30 - MISS-COUNT: 114 HIT-COUNT: 0 RATE: 1.000
+cc.cc - 42 8b 0c 87 - MISS-COUNT: 1 HIT-COUNT: 0 RATE: 1.000
+cc.cc - 8b 04 b7 - MISS-COUNT: 44 HIT-COUNT: 225 RATE: .163
+cc.cc - 48 63 01 - MISS-COUNT: 3 HIT-COUNT: 36 RATE: .076
+------------------------------------------------------------------
+cc.cc - 8b 30 - MISS-COUNT: 101 HIT-COUNT: 1 RATE: .990
+cc.cc - 8b 04 b7 - MISS-COUNT: 58 HIT-COUNT: 244 RATE: .192
+cc.cc - 48 63 01 - MISS-COUNT: 7 HIT-COUNT: 38 RATE: .155
+------------------------------------------------------------------
+cc.cc - 8b 30 - MISS-COUNT: 114 HIT-COUNT: 0 RATE: 1.000
+cc.cc - 42 8b 0c 87 - MISS-COUNT: 0 HIT-COUNT: 1 RATE: 0
+cc.cc - 8b 04 b7 - MISS-COUNT: 38 HIT-COUNT: 227 RATE: .143
+cc.cc - 48 63 01 - MISS-COUNT: 8 HIT-COUNT: 35 RATE: .186
+------------------------------------------------------------------
+cc.cc - 8b 30 - MISS-COUNT: 109 HIT-COUNT: 0 RATE: 1.000
+cc.cc - 8b 04 b7 - MISS-COUNT: 50 HIT-COUNT: 229 RATE: .179
+cc.cc - 48 63 01 - MISS-COUNT: 6 HIT-COUNT: 30 RATE: .166
+------------------------------------------------------------------
+cc.cc - 8b 30 - MISS-COUNT: 114 HIT-COUNT: 0 RATE: 1.000
+cc.cc - 42 8b 0c 87 - MISS-COUNT: 1 HIT-COUNT: 0 RATE: 1.000
+cc.cc - 8b 04 b7 - MISS-COUNT: 42 HIT-COUNT: 226 RATE: .156
+cc.cc - 48 63 01 - MISS-COUNT: 5 HIT-COUNT: 23 RATE: .178
+------------------------------------------------------------------
+cc.cc - 8b 30 - MISS-COUNT: 103 HIT-COUNT: 1 RATE: .990
+cc.cc - 42 8b 0c 87 - MISS-COUNT: 0 HIT-COUNT: 1 RATE: 0
+cc.cc - 8b 04 b7 - MISS-COUNT: 49 HIT-COUNT: 215 RATE: .185
+cc.cc - 48 63 01 - MISS-COUNT: 5 HIT-COUNT: 29 RATE: .147
+------------------------------------------------------------------
+cc.cc - 8b 30 - MISS-COUNT: 104 HIT-COUNT: 0 RATE: 1.000
+cc.cc - 8b 04 b7 - MISS-COUNT: 53 HIT-COUNT: 227 RATE: .189
+cc.cc - 48 63 01 - MISS-COUNT: 7 HIT-COUNT: 30 RATE: .189
+------------------------------------------------------------------
+cc.cc - 8b 30 - MISS-COUNT: 99 HIT-COUNT: 0 RATE: 1.000
+cc.cc - 42 8b 0c 87 - MISS-COUNT: 1 HIT-COUNT: 0 RATE: 1.000
+cc.cc - 8b 04 b7 - MISS-COUNT: 53 HIT-COUNT: 218 RATE: .195
+cc.cc - 48 63 01 - MISS-COUNT: 4 HIT-COUNT: 23 RATE: .148
+------------------------------------------------------------------
+cc.cc - 8b 30 - MISS-COUNT: 112 HIT-COUNT: 0 RATE: 1.000
+cc.cc - 42 8b 0c 87 - MISS-COUNT: 0 HIT-COUNT: 1 RATE: 0
+cc.cc - 8b 04 b7 - MISS-COUNT: 48 HIT-COUNT: 241 RATE: .166
+cc.cc - 48 63 01 - MISS-COUNT: 7 HIT-COUNT: 36 RATE: .162
+------------------------------------------------------------------
+cc.cc - 8b 30 - MISS-COUNT: 106 HIT-COUNT: 0 RATE: 1.000
+cc.cc - 8b 04 b7 - MISS-COUNT: 50 HIT-COUNT: 226 RATE: .181
+cc.cc - 48 63 01 - MISS-COUNT: 6 HIT-COUNT: 35 RATE: .146
+------------------------------------------------------------------
+cc.cc - 8b 30 - MISS-COUNT: 113 HIT-COUNT: 0 RATE: 1.000
+cc.cc - 8b 04 b7 - MISS-COUNT: 48 HIT-COUNT: 233 RATE: .170
+cc.cc - 48 63 01 - MISS-COUNT: 3 HIT-COUNT: 31 RATE: .088
+------------------------------------------------------------------
+cc.cc - 8b 30 - MISS-COUNT: 108 HIT-COUNT: 1 RATE: .990
+cc.cc - 42 8b 0c 87 - MISS-COUNT: 2 HIT-COUNT: 0 RATE: 1.000
+cc.cc - 8b 04 b7 - MISS-COUNT: 47 HIT-COUNT: 225 RATE: .172
+cc.cc - 48 63 01 - MISS-COUNT: 2 HIT-COUNT: 26 RATE: .071
+------------------------------------------------------------------
+cc.cc - 8b 30 - MISS-COUNT: 117 HIT-COUNT: 0 RATE: 1.000
+cc.cc - 8b 04 b7 - MISS-COUNT: 46 HIT-COUNT: 233 RATE: .164
+cc.cc - 48 63 01 - MISS-COUNT: 3 HIT-COUNT: 43 RATE: .065
+------------------------------------------------------------------
+cc.cc - 8b 30 - MISS-COUNT: 114 HIT-COUNT: 0 RATE: 1.000
+cc.cc - 8b 04 b7 - MISS-COUNT: 46 HIT-COUNT: 229 RATE: .167
+cc.cc - 48 63 01 - MISS-COUNT: 3 HIT-COUNT: 32 RATE: .085
+------------------------------------------------------------------
+cc.cc - 8b 30 - MISS-COUNT: 110 HIT-COUNT: 0 RATE: 1.000
+cc.cc - 8b 04 b7 - MISS-COUNT: 46 HIT-COUNT: 218 RATE: .174
+cc.cc - 48 63 01 - MISS-COUNT: 2 HIT-COUNT: 30 RATE: .062
+------------------------------------------------------------------
+cc.cc - 8b 30 - MISS-COUNT: 118 HIT-COUNT: 0 RATE: 1.000
+cc.cc - 42 8b 0c 87 - MISS-COUNT: 2 HIT-COUNT: 0 RATE: 1.000
+cc.cc - 8b 04 b7 - MISS-COUNT: 45 HIT-COUNT: 231 RATE: .163
+cc.cc - 48 63 01 - MISS-COUNT: 3 HIT-COUNT: 35 RATE: .078
+------------------------------------------------------------------
+cc.cc - 8b 30 - MISS-COUNT: 108 HIT-COUNT: 0 RATE: 1.000
+cc.cc - 8b 04 b7 - MISS-COUNT: 54 HIT-COUNT: 236 RATE: .186
+cc.cc - 48 63 01 - MISS-COUNT: 6 HIT-COUNT: 41 RATE: .127
+------------------------------------------------------------------
+cc.cc - 8b 30 - MISS-COUNT: 104 HIT-COUNT: 0 RATE: 1.000
+cc.cc - 8b 04 b7 - MISS-COUNT: 49 HIT-COUNT: 235 RATE: .172
+cc.cc - 48 63 01 - MISS-COUNT: 8 HIT-COUNT: 36 RATE: .181
+------------------------------------------------------------------
+cc.cc - 8b 30 - MISS-COUNT: 110 HIT-COUNT: 0 RATE: 1.000
+cc.cc - 8b 04 b7 - MISS-COUNT: 43 HIT-COUNT: 215 RATE: .166
+cc.cc - 48 63 01 - MISS-COUNT: 3 HIT-COUNT: 34 RATE: .081
+------------------------------------------------------------------
+cc.cc - 8b 30 - MISS-COUNT: 109 HIT-COUNT: 0 RATE: 1.000
+cc.cc - 8b 04 b7 - MISS-COUNT: 55 HIT-COUNT: 214 RATE: .204
+cc.cc - 48 63 01 - MISS-COUNT: 3 HIT-COUNT: 22 RATE: .120
+------------------------------------------------------------------
+cc.cc - 8b 30 - MISS-COUNT: 108 HIT-COUNT: 0 RATE: 1.000
+cc.cc - 42 8b 0c 87 - MISS-COUNT: 0 HIT-COUNT: 2 RATE: 0
+cc.cc - 8b 04 b7 - MISS-COUNT: 51 HIT-COUNT: 220 RATE: .188
+cc.cc - 48 63 01 - MISS-COUNT: 3 HIT-COUNT: 24 RATE: .111
+------------------------------------------------------------------
+cc.cc - 8b 30 - MISS-COUNT: 116 HIT-COUNT: 0 RATE: 1.000
+cc.cc - 42 8b 0c 87 - MISS-COUNT: 1 HIT-COUNT: 0 RATE: 1.000
+cc.cc - 8b 04 b7 - MISS-COUNT: 45 HIT-COUNT: 239 RATE: .158
+cc.cc - 48 63 01 - MISS-COUNT: 2 HIT-COUNT: 27 RATE: .068
+------------------------------------------------------------------
+cc.cc - 8b 30 - MISS-COUNT: 125 HIT-COUNT: 0 RATE: 1.000
+cc.cc - 8b 04 b7 - MISS-COUNT: 38 HIT-COUNT: 216 RATE: .149
+cc.cc - 48 63 01 - MISS-COUNT: 3 HIT-COUNT: 29 RATE: .093
+------------------------------------------------------------------
+cc.cc - 8b 30 - MISS-COUNT: 113 HIT-COUNT: 1 RATE: .991
+cc.cc - 42 8b 0c 87 - MISS-COUNT: 1 HIT-COUNT: 0 RATE: 1.000
+cc.cc - 8b 04 b7 - MISS-COUNT: 42 HIT-COUNT: 211 RATE: .166
+cc.cc - 48 63 01 - MISS-COUNT: 4 HIT-COUNT: 30 RATE: .117
+------------------------------------------------------------------
+cc.cc - 8b 30 - MISS-COUNT: 116 HIT-COUNT: 0 RATE: 1.000
+cc.cc - 42 8b 0c 87 - MISS-COUNT: 0 HIT-COUNT: 1 RATE: 0
+cc.cc - 8b 04 b7 - MISS-COUNT: 40 HIT-COUNT: 225 RATE: .150
+cc.cc - 48 63 01 - MISS-COUNT: 5 HIT-COUNT: 35 RATE: .125
+------------------------------------------------------------------
+cc.cc - 8b 30 - MISS-COUNT: 106 HIT-COUNT: 0 RATE: 1.000
+cc.cc - 42 8b 0c 87 - MISS-COUNT: 2 HIT-COUNT: 0 RATE: 1.000
+cc.cc - 8b 04 b7 - MISS-COUNT: 50 HIT-COUNT: 233 RATE: .176
+cc.cc - 48 63 01 - MISS-COUNT: 5 HIT-COUNT: 30 RATE: .142
+------------------------------------------------------------------
+cc.cc - 8b 30 - MISS-COUNT: 114 HIT-COUNT: 0 RATE: 1.000
+cc.cc - 42 8b 0c 87 - MISS-COUNT: 1 HIT-COUNT: 0 RATE: 1.000
+cc.cc - 8b 04 b7 - MISS-COUNT: 38 HIT-COUNT: 220 RATE: .147
+cc.cc - 48 63 01 - MISS-COUNT: 3 HIT-COUNT: 32 RATE: .085
+------------------------------------------------------------------
+cc.cc - 8b 30 - MISS-COUNT: 108 HIT-COUNT: 0 RATE: 1.000
+cc.cc - 44 89 ef - MISS-COUNT: 0 HIT-COUNT: 1 RATE: 0
+cc.cc - 42 8b 0c 87 - MISS-COUNT: 0 HIT-COUNT: 2 RATE: 0
+cc.cc - 8b 04 b7 - MISS-COUNT: 45 HIT-COUNT: 221 RATE: .169
+cc.cc - 48 63 01 - MISS-COUNT: 1 HIT-COUNT: 28 RATE: .034
+------------------------------------------------------------------
+cc.cc - 8b 30 - MISS-COUNT: 104 HIT-COUNT: 0 RATE: 1.000
+cc.cc - 8b 04 b7 - MISS-COUNT: 45 HIT-COUNT: 230 RATE: .163
+cc.cc - 48 63 01 - MISS-COUNT: 6 HIT-COUNT: 30 RATE: .166
+------------------------------------------------------------------
+cc.cc - 8b 30 - MISS-COUNT: 113 HIT-COUNT: 0 RATE: 1.000
+cc.cc - 42 8b 0c 87 - MISS-COUNT: 0 HIT-COUNT: 1 RATE: 0
+cc.cc - 8b 04 b7 - MISS-COUNT: 43 HIT-COUNT: 242 RATE: .150
+cc.cc - 48 63 01 - MISS-COUNT: 5 HIT-COUNT: 32 RATE: .135
+------------------------------------------------------------------
+cc.cc - 8b 30 - MISS-COUNT: 102 HIT-COUNT: 0 RATE: 1.000
+cc.cc - 8b 04 b7 - MISS-COUNT: 49 HIT-COUNT: 214 RATE: .186
+cc.cc - 48 63 01 - MISS-COUNT: 5 HIT-COUNT: 40 RATE: .111
+------------------------------------------------------------------
+cc.cc - 8b 30 - MISS-COUNT: 116 HIT-COUNT: 0 RATE: 1.000
+cc.cc - 42 8b 0c 87 - MISS-COUNT: 1 HIT-COUNT: 0 RATE: 1.000
+cc.cc - 8b 04 b7 - MISS-COUNT: 35 HIT-COUNT: 214 RATE: .140
+cc.cc - 48 63 01 - MISS-COUNT: 3 HIT-COUNT: 24 RATE: .111
+------------------------------------------------------------------
+cc.cc - 8b 30 - MISS-COUNT: 106 HIT-COUNT: 0 RATE: 1.000
+cc.cc - 42 8b 0c 87 - MISS-COUNT: 1 HIT-COUNT: 0 RATE: 1.000
+cc.cc - 8b 04 b7 - MISS-COUNT: 47 HIT-COUNT: 220 RATE: .176
+cc.cc - 48 63 01 - MISS-COUNT: 5 HIT-COUNT: 34 RATE: .128
+------------------------------------------------------------------
+cc.cc - 8b 30 - MISS-COUNT: 116 HIT-COUNT: 0 RATE: 1.000
+cc.cc - 8b 04 b7 - MISS-COUNT: 39 HIT-COUNT: 236 RATE: .141
+cc.cc - 48 63 01 - MISS-COUNT: 4 HIT-COUNT: 24 RATE: .142
+------------------------------------------------------------------
+cc.cc - 8b 30 - MISS-COUNT: 106 HIT-COUNT: 0 RATE: 1.000
+cc.cc - 42 8b 0c 87 - MISS-COUNT: 1 HIT-COUNT: 1 RATE: .500
+cc.cc - 8b 04 b7 - MISS-COUNT: 47 HIT-COUNT: 231 RATE: .169
+cc.cc - 48 63 01 - MISS-COUNT: 3 HIT-COUNT: 28 RATE: .096
+------------------------------------------------------------------
+cc.cc - 8b 30 - MISS-COUNT: 117 HIT-COUNT: 0 RATE: 1.000
+cc.cc - 8b 04 b7 - MISS-COUNT: 51 HIT-COUNT: 250 RATE: .169
+cc.cc - 48 63 01 - MISS-COUNT: 8 HIT-COUNT: 23 RATE: .258
+------------------------------------------------------------------
+cc.cc - 8b 30 - MISS-COUNT: 117 HIT-COUNT: 0 RATE: 1.000
+cc.cc - 42 8b 0c 87 - MISS-COUNT: 1 HIT-COUNT: 0 RATE: 1.000
+cc.cc - 8b 04 b7 - MISS-COUNT: 43 HIT-COUNT: 228 RATE: .158
+cc.cc - 48 63 01 - MISS-COUNT: 7 HIT-COUNT: 37 RATE: .159
+------------------------------------------------------------------
+cc.cc - 8b 30 - MISS-COUNT: 124 HIT-COUNT: 0 RATE: 1.000
+cc.cc - 8b 04 b7 - MISS-COUNT: 48 HIT-COUNT: 241 RATE: .166
+cc.cc - 48 63 01 - MISS-COUNT: 1 HIT-COUNT: 24 RATE: .040
+------------------------------------------------------------------
+cc.cc - 8b 30 - MISS-COUNT: 125 HIT-COUNT: 0 RATE: 1.000
+cc.cc - 42 8b 0c 87 - MISS-COUNT: 0 HIT-COUNT: 1 RATE: 0
+cc.cc - 8b 04 b7 - MISS-COUNT: 48 HIT-COUNT: 247 RATE: .162
+cc.cc - 48 63 01 - MISS-COUNT: 2 HIT-COUNT: 27 RATE: .068
+------------------------------------------------------------------
+cc.cc - 8b 30 - MISS-COUNT: 109 HIT-COUNT: 0 RATE: 1.000
+cc.cc - 42 8b 0c 87 - MISS-COUNT: 1 HIT-COUNT: 1 RATE: .500
+cc.cc - 8b 04 b7 - MISS-COUNT: 55 HIT-COUNT: 210 RATE: .207
+cc.cc - 48 63 01 - MISS-COUNT: 3 HIT-COUNT: 29 RATE: .093
+------------------------------------------------------------------
+cc.cc - 8b 30 - MISS-COUNT: 124 HIT-COUNT: 0 RATE: 1.000
+cc.cc - 42 8b 0c 87 - MISS-COUNT: 1 HIT-COUNT: 0 RATE: 1.000
+cc.cc - 8b 04 b7 - MISS-COUNT: 43 HIT-COUNT: 230 RATE: .157
+cc.cc - 39 c1 - MISS-COUNT: 1 HIT-COUNT: 0 RATE: 1.000
+cc.cc - 48 63 01 - MISS-COUNT: 7 HIT-COUNT: 26 RATE: .212
+------------------------------------------------------------------
+cc.cc - 8b 30 - MISS-COUNT: 124 HIT-COUNT: 0 RATE: 1.000
+cc.cc - 42 8b 0c 87 - MISS-COUNT: 1 HIT-COUNT: 0 RATE: 1.000
+cc.cc - 8b 04 b7 - MISS-COUNT: 46 HIT-COUNT: 233 RATE: .164
+cc.cc - 48 63 01 - MISS-COUNT: 4 HIT-COUNT: 38 RATE: .095
+------------------------------------------------------------------
+cc.cc - 8b 30 - MISS-COUNT: 120 HIT-COUNT: 0 RATE: 1.000
+cc.cc - 42 8b 0c 87 - MISS-COUNT: 0 HIT-COUNT: 1 RATE: 0
+cc.cc - 8b 04 b7 - MISS-COUNT: 48 HIT-COUNT: 225 RATE: .175
+cc.cc - 48 63 01 - MISS-COUNT: 3 HIT-COUNT: 40 RATE: .069
+------------------------------------------------------------------
+cc.cc - 8b 30 - MISS-COUNT: 117 HIT-COUNT: 0 RATE: 1.000
+cc.cc - 8b 04 b7 - MISS-COUNT: 44 HIT-COUNT: 233 RATE: .158
+cc.cc - 48 63 01 - MISS-COUNT: 6 HIT-COUNT: 23 RATE: .206
+------------------------------------------------------------------
+cc.cc - 8b 30 - MISS-COUNT: 128 HIT-COUNT: 0 RATE: 1.000
+cc.cc - 8b 04 b7 - MISS-COUNT: 39 HIT-COUNT: 226 RATE: .147
+cc.cc - 48 63 01 - MISS-COUNT: 3 HIT-COUNT: 30 RATE: .090
+------------------------------------------------------------------
+cc.cc - 8b 30 - MISS-COUNT: 117 HIT-COUNT: 0 RATE: 1.000
+cc.cc - 42 8b 0c 87 - MISS-COUNT: 0 HIT-COUNT: 1 RATE: 0
+cc.cc - 8b 04 b7 - MISS-COUNT: 56 HIT-COUNT: 237 RATE: .191
+cc.cc - 48 63 01 - MISS-COUNT: 2 HIT-COUNT: 28 RATE: .066
+------------------------------------------------------------------
+cc.cc - 8b 30 - MISS-COUNT: 122 HIT-COUNT: 0 RATE: 1.000
+cc.cc - 48 8b 3a - MISS-COUNT: 1 HIT-COUNT: 0 RATE: 1.000
+cc.cc - 8b 04 b7 - MISS-COUNT: 42 HIT-COUNT: 236 RATE: .151
+cc.cc - 48 63 01 - MISS-COUNT: 3 HIT-COUNT: 37 RATE: .075
+------------------------------------------------------------------
+cc.cc - 8b 30 - MISS-COUNT: 112 HIT-COUNT: 0 RATE: 1.000
+cc.cc - 8b 04 b7 - MISS-COUNT: 46 HIT-COUNT: 229 RATE: .167
+cc.cc - 48 63 01 - MISS-COUNT: 6 HIT-COUNT: 25 RATE: .193
+------------------------------------------------------------------
+cc.cc - 8b 30 - MISS-COUNT: 122 HIT-COUNT: 0 RATE: 1.000
+cc.cc - 8b 04 b7 - MISS-COUNT: 50 HIT-COUNT: 229 RATE: .179
+cc.cc - 48 63 01 - MISS-COUNT: 4 HIT-COUNT: 31 RATE: .114
+------------------------------------------------------------------
+cc.cc - 8b 30 - MISS-COUNT: 120 HIT-COUNT: 0 RATE: 1.000
+cc.cc - 42 8b 0c 87 - MISS-COUNT: 1 HIT-COUNT: 0 RATE: 1.000
+cc.cc - 8b 04 b7 - MISS-COUNT: 36 HIT-COUNT: 234 RATE: .133
+cc.cc - 48 63 01 - MISS-COUNT: 7 HIT-COUNT: 32 RATE: .179
+------------------------------------------------------------------
+cc.cc - 8b 30 - MISS-COUNT: 117 HIT-COUNT: 0 RATE: 1.000
+cc.cc - 42 8b 0c 87 - MISS-COUNT: 2 HIT-COUNT: 1 RATE: .666
+cc.cc - 8b 04 b7 - MISS-COUNT: 43 HIT-COUNT: 220 RATE: .163
+cc.cc - 48 63 01 - MISS-COUNT: 7 HIT-COUNT: 25 RATE: .218
+------------------------------------------------------------------
+cc.cc - 8b 30 - MISS-COUNT: 113 HIT-COUNT: 0 RATE: 1.000
+cc.cc - 8b 04 b7 - MISS-COUNT: 51 HIT-COUNT: 240 RATE: .175
+cc.cc - 48 63 01 - MISS-COUNT: 5 HIT-COUNT: 36 RATE: .121
+------------------------------------------------------------------
+cc.cc - 8b 30 - MISS-COUNT: 116 HIT-COUNT: 0 RATE: 1.000
+cc.cc - 8b 04 b7 - MISS-COUNT: 33 HIT-COUNT: 209 RATE: .136
+cc.cc - 48 63 01 - MISS-COUNT: 3 HIT-COUNT: 17 RATE: .150
+------------------------------------------------------------------
+cc.cc - 8b 30 - MISS-COUNT: 105 HIT-COUNT: 0 RATE: 1.000
+cc.cc - 8b 04 b7 - MISS-COUNT: 51 HIT-COUNT: 217 RATE: .190
+cc.cc - 48 63 01 - MISS-COUNT: 5 HIT-COUNT: 32 RATE: .135
+------------------------------------------------------------------
+cc.cc - 8b 30 - MISS-COUNT: 107 HIT-COUNT: 0 RATE: 1.000
+cc.cc - 8b 04 b7 - MISS-COUNT: 44 HIT-COUNT: 224 RATE: .164
+cc.cc - 48 63 01 - MISS-COUNT: 4 HIT-COUNT: 38 RATE: .095
+------------------------------------------------------------------
+cc.cc - 8b 30 - MISS-COUNT: 104 HIT-COUNT: 1 RATE: .990
+cc.cc - 8b 04 b7 - MISS-COUNT: 47 HIT-COUNT: 215 RATE: .179
+cc.cc - 48 63 01 - MISS-COUNT: 5 HIT-COUNT: 36 RATE: .121
+------------------------------------------------------------------
+cc.cc - 8b 30 - MISS-COUNT: 88 HIT-COUNT: 0 RATE: 1.000
+cc.cc - 8b 04 b7 - MISS-COUNT: 55 HIT-COUNT: 214 RATE: .204
+cc.cc - 48 63 01 - MISS-COUNT: 7 HIT-COUNT: 33 RATE: .175
+------------------------------------------------------------------
+cc.cc - 8b 30 - MISS-COUNT: 108 HIT-COUNT: 0 RATE: 1.000
+cc.cc - 42 8b 0c 87 - MISS-COUNT: 2 HIT-COUNT: 0 RATE: 1.000
+cc.cc - 8b 04 b7 - MISS-COUNT: 43 HIT-COUNT: 207 RATE: .172
+cc.cc - 48 63 01 - MISS-COUNT: 4 HIT-COUNT: 20 RATE: .166
+------------------------------------------------------------------
+cc.cc - 8b 30 - MISS-COUNT: 113 HIT-COUNT: 0 RATE: 1.000
+cc.cc - 42 8b 0c 87 - MISS-COUNT: 1 HIT-COUNT: 0 RATE: 1.000
+cc.cc - 8b 04 b7 - MISS-COUNT: 43 HIT-COUNT: 214 RATE: .167
+cc.cc - 48 63 01 - MISS-COUNT: 2 HIT-COUNT: 24 RATE: .076
+------------------------------------------------------------------
+cc.cc - 8b 30 - MISS-COUNT: 92 HIT-COUNT: 0 RATE: 1.000
+cc.cc - 42 8b 0c 87 - MISS-COUNT: 1 HIT-COUNT: 0 RATE: 1.000
+cc.cc - 8b 04 b7 - MISS-COUNT: 54 HIT-COUNT: 212 RATE: .203
+cc.cc - 48 63 01 - MISS-COUNT: 4 HIT-COUNT: 27 RATE: .129
+------------------------------------------------------------------

@@ -92,6 +92,75 @@ if [[ $# == 3  ]]; then
 		
 		# CC - look at l. 8 to see which assembly instruction causes the high miss-rate
 
+# 		       :          // Link at most one time if neighbor available at offset r
+#          :          Link(u, v, comp);
+#     0.00 :   4de3:   49 8b 54 24 08          mov    0x8(%r12),%rdx
+#    99.21 :   4de8:   8b 30                   mov    (%rax),%esi
+				#          // since rax was used to compute neighbour vertex' address,
+		#                  // it is not used again to store in esi
+
+#     0.00 :   4dea:   44 89 ef                mov    %r13d,%edi
+#     0.00 :   4ded:   e8 ee fe ff ff          callq  4ce0 <Link(int, int, pvector<int>&)>
+#          :          break;
+#     0.00 :   4df2:   41 83 c5 01             add    $0x1,%r13d
+#     0.00 :   4df6:   49 83 c2 08             add    $0x8,%r10
+#     0.00 :   4dfa:   45 39 eb                cmp    %r13d,%r11d
+#     0.00 :   4dfd:   7f b9                   jg     4db8 <Afforest(CSRGraph<int, int, true> const&, int) [clone ._omp_fn.1]+0x78>
+#     0.00 :   4dff:   eb 8f                   jmp    4d90 <Afforest(CSRGraph<int, int, true> const&, int) [clone ._omp_fn.1]+0x50>
+#  Percent |	Source code & Disassembly of cc for mem_load_uops_misc_retired.llc_miss:pp (45 samples, percent: local period)
+# ------------------------------------------------------------------------------------------------------------------------------
+#          :
+#          :
+#          :
+#          :          Disassembly of section .text:
+#          :
+#          :          0000000000004ce0 <Link(int, int, pvector<int>&)>:
+#          :          Link(int, int, pvector<int>&):
+#          :
+#          :          using namespace std;
+#          :
+#          :
+#          :          // Place nodes u and v in same component of lower component ID
+#          :          void Link(NodeID u, NodeID v, pvector<NodeID>& comp) {
+#     0.00 :   4ce0:   4c 63 c7                movslq %edi,%r8
+#          :          pvector<int>::operator[](unsigned long):
+#          :          reserve(num_elements);
+#          :          end_size_ = start_ + num_elements;
+#          :          }
+#          :
+#          :          T_& operator[](size_t n) {
+#          :          return start_[n];
+#     0.00 :   4ce3:   48 8b 3a                mov    (%rdx),%rdi
+#          :          Link(int, int, pvector<int>&):
+#          :          NodeID p1 = comp[u];
+#          :          NodeID p2 = comp[v];
+#     0.00 :   4ce6:   48 63 f6                movslq %esi,%rsi
+#          :          void Link(NodeID u, NodeID v, pvector<NodeID>& comp) {
+#     0.00 :   4ce9:   49 89 d1                mov    %rdx,%r9
+#          :          NodeID p1 = comp[u];
+#     0.00 :   4cec:   42 8b 0c 87             mov    (%rdi,%r8,4),%ecx
+#          :          NodeID p2 = comp[v];
+#    91.11 :   4cf0:   8b 04 b7                mov    (%rdi,%rsi,4),%eax
+#          :          while (p1 != p2) {
+#     0.00 :   4cf3:   39 c1                   cmp    %eax,%ecx
+#     0.00 :   4cf5:   74 2b                   je     4d22 <Link(int, int, pvector<int>&)+0x42>
+#          :          NodeID high = p1 > p2 ? p1 : p2;
+#     0.00 :   4cf7:   39 c8                   cmp    %ecx,%eax
+#     0.00 :   4cf9:   89 ce                   mov    %ecx,%esi
+#     0.00 :   4cfb:   0f 4d f0                cmovge %eax,%esi
+#          :          NodeID low = p1 + (p2 - high);
+#     0.00 :   4cfe:   29 f0                   sub    %esi,%eax
+#          :          NodeID p_high = comp[high];
+#     0.00 :   4d00:   4c 63 c6                movslq %esi,%r8
+#          :          NodeID low = p1 + (p2 - high);
+#     0.00 :   4d03:   8d 14 08                lea    (%rax,%rcx,1),%edx
+#          :          pvector<int>::operator[](unsigned long):
+#     0.00 :   4d06:   4a 8d 0c 87             lea    (%rdi,%r8,4),%rcx
+#          :          Link(int, int, pvector<int>&):
+#          :          NodeID p_high = comp[high];
+#     8.89 :   4d0a:   48 63 01                movslq (%rcx),%rax
+#          :          // Was already 'low' or succeeded in writing 'low'
+#          :          if ((p_high == low) ||
 
 		
 
@@ -148,8 +217,9 @@ if [[ $# == 3  ]]; then
 			insts=("48 8b 04 f8" "48 63 30" "49 8b 34 f7")
 		elif [[ $1 == bc ]]; then
 			insts=("48 63 02" "49 8b 0a" "f3 0f 5a c9" "f3 41 0f 10 14 80" "f2 42 0f 10 04 09" "f2 0f 5e 04 c1" "f3 0f 58 d3" "f3 0f 5a d2" "f2 0f 59 c2" "f2 0f 58 c8" "f2 0f 5a c9")
-
-
+			
+		elif [[ $1 == cc ]]; then
+			insts=("49 8b 54 24 08" "8b 30" "44 89 ef" "e8 ee fe ff ff" "4c 63 c7" "48 8b 3a" "48 63 f6" "49 89 d1" "42 8b 0c 87" "8b 04 b7" "39 c1" "74 2b" "39 c8" "89 ce" "0f 4d f0" "29 f0" "4c 63 c6" "8d 14 08" "4a 8d 0c 87" "48 63 01" "39 c2")
 		fi
 		misses=0
 		hits=0

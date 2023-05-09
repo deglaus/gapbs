@@ -1,0 +1,963 @@
+ Percent |	Source code & Disassembly of cc for mem_load_uops_misc_retired.llc_miss:pp (127 samples, percent: local period)
+-------------------------------------------------------------------------------------------------------------------------------
+         :
+         :
+         :
+         :          Disassembly of section .text:
+         :
+         :          0000000000004d40 <Afforest(CSRGraph<int, int, true> const&, int) [clone ._omp_fn.1]>:
+         :          Afforest(CSRGraph<int, int, true> const&, int) [clone ._omp_fn.1]:
+         :          comp[n] = n;
+         :
+         :          // Process a sparse sampled subgraph first for approximating components.
+         :          // Sample by processing a fixed number of neighbors for each node (see paper)
+         :          for (int r = 0; r < neighbor_rounds; ++r) {
+         :          #pragma omp parallel for schedule(dynamic,16384)
+    0.00 :   4d40:   push   %r14
+    0.00 :   4d42:   mov    $0x4000,%ecx
+    0.00 :   4d47:   mov    $0x1,%edx
+    0.00 :   4d4c:   push   %r13
+    0.00 :   4d4e:   push   %r12
+    0.00 :   4d50:   mov    %rdi,%r12
+    0.00 :   4d53:   push   %rbp
+    0.00 :   4d54:   push   %rbx
+    0.00 :   4d55:   sub    $0x10,%rsp
+         :          CSRGraph<int, int, true>::num_nodes() const:
+         :          bool directed() const {
+         :          return directed_;
+         :          }
+         :
+         :          int64_t num_nodes() const {
+         :          return num_nodes_;
+    0.00 :   4d59:   mov    (%rdi),%rax
+         :          Afforest(CSRGraph<int, int, true> const&, int) [clone ._omp_fn.1]:
+    0.00 :   4d5c:   movslq 0x10(%rdi),%r14
+         :          CSRGraph<int, int, true>::num_nodes() const:
+         :          int64_t num_nodes() const {
+    0.00 :   4d60:   xor    %edi,%edi
+    0.00 :   4d62:   lea    0x8(%rsp),%rbx
+    0.00 :   4d67:   mov    %rsp,%rbp
+    0.00 :   4d6a:   movslq 0x8(%rax),%rsi
+    0.00 :   4d6e:   mov    %rbx,%r9
+    0.00 :   4d71:   mov    %rbp,%r8
+    0.00 :   4d74:   callq  3420 <GOMP_loop_nonmonotonic_dynamic_start@plt>
+    0.00 :   4d79:   test   %al,%al
+    0.00 :   4d7b:   jne    4d9f <Afforest(CSRGraph<int, int, true> const&, int) [clone ._omp_fn.1]+0x5f>
+    0.00 :   4d7d:   callq  3140 <GOMP_loop_end_nowait@plt>
+         :          Afforest(CSRGraph<int, int, true> const&, int) [clone ._omp_fn.1]:
+    0.00 :   4d82:   add    $0x10,%rsp
+    0.00 :   4d86:   pop    %rbx
+    0.00 :   4d87:   pop    %rbp
+    0.00 :   4d88:   pop    %r12
+    0.00 :   4d8a:   pop    %r13
+    0.00 :   4d8c:   pop    %r14
+    0.00 :   4d8e:   retq
+    0.00 :   4d8f:   nop
+    0.00 :   4d90:   mov    %rbx,%rsi
+    0.00 :   4d93:   mov    %rbp,%rdi
+    0.00 :   4d96:   callq  32d0 <GOMP_loop_nonmonotonic_dynamic_next@plt>
+    0.00 :   4d9b:   test   %al,%al
+    0.00 :   4d9d:   je     4d7d <Afforest(CSRGraph<int, int, true> const&, int) [clone ._omp_fn.1]+0x3d>
+    0.00 :   4d9f:   mov    (%rsp),%rax
+    0.00 :   4da3:   mov    0x8(%rsp),%r11d
+    0.00 :   4da8:   mov    %eax,%r13d
+    0.00 :   4dab:   cltq
+    0.00 :   4dad:   lea    0x8(,%rax,8),%r10
+    0.00 :   4db5:   nopl   (%rax)
+         :          CSRGraph<int, int, true>::out_neigh(int, unsigned long) const:
+         :          static_assert(MakeInverse, "Graph inversion disabled but reading inverse");
+         :          return in_index_[v+1] - in_index_[v];
+         :          }
+         :
+         :          Neighborhood out_neigh(NodeID_ n, OffsetT start_offset = 0) const {
+         :          return Neighborhood(n, out_index_, start_offset);
+    0.00 :   4db8:   mov    (%r12),%rax
+    0.00 :   4dbc:   mov    0x18(%rax),%rax
+         :          CSRGraph<int, int, true>::Neighborhood::end():
+         :          iterator end()   { return g_index_[n_+1]; }
+    0.79 :   4dc0:   mov    (%rax,%r10,1),%rdx
+         :          CSRGraph<int, int, true>::Neighborhood::begin():
+         :          iterator begin() { return g_index_[n_] + start_offset_; }
+    0.00 :   4dc4:   mov    -0x8(%rax,%r10,1),%rcx
+         :          CSRGraph<int, int, true>::Neighborhood::Neighborhood(int, int**, unsigned long):
+         :          OffsetT max_offset = end() - begin();
+    0.00 :   4dc9:   mov    %rdx,%rax
+    0.00 :   4dcc:   sub    %rcx,%rax
+    0.00 :   4dcf:   sar    $0x2,%rax
+         :          CSRGraph<int, int, true>::Neighborhood::begin():
+         :          iterator begin() { return g_index_[n_] + start_offset_; }
+    0.00 :   4dd3:   cmp    %r14,%rax
+    0.00 :   4dd6:   cmova  %r14,%rax
+    0.00 :   4dda:   lea    (%rcx,%rax,4),%rax
+         :          Afforest(CSRGraph<int, int, true> const&, int) [clone ._omp_fn.1]:
+         :          for (NodeID u = 0; u < g.num_nodes(); u++) {
+         :          for (NodeID v : g.out_neigh(u, r)) {
+    0.00 :   4dde:   cmp    %rdx,%rax
+    0.00 :   4de1:   je     4df2 <Afforest(CSRGraph<int, int, true> const&, int) [clone ._omp_fn.1]+0xb2>
+         :          // Link at most one time if neighbor available at offset r
+         :          Link(u, v, comp);
+    0.00 :   4de3:   mov    0x8(%r12),%rdx
+   99.21 :   4de8:   mov    (%rax),%esi
+    0.00 :   4dea:   mov    %r13d,%edi
+    0.00 :   4ded:   callq  4ce0 <Link(int, int, pvector<int>&)>
+         :          break;
+    0.00 :   4df2:   add    $0x1,%r13d
+    0.00 :   4df6:   add    $0x8,%r10
+    0.00 :   4dfa:   cmp    %r13d,%r11d
+    0.00 :   4dfd:   jg     4db8 <Afforest(CSRGraph<int, int, true> const&, int) [clone ._omp_fn.1]+0x78>
+    0.00 :   4dff:   jmp    4d90 <Afforest(CSRGraph<int, int, true> const&, int) [clone ._omp_fn.1]+0x50>
+ Percent |	Source code & Disassembly of cc for mem_load_uops_misc_retired.llc_miss:pp (45 samples, percent: local period)
+------------------------------------------------------------------------------------------------------------------------------
+         :
+         :
+         :
+         :          Disassembly of section .text:
+         :
+         :          0000000000004ce0 <Link(int, int, pvector<int>&)>:
+         :          Link(int, int, pvector<int>&):
+         :
+         :          using namespace std;
+         :
+         :
+         :          // Place nodes u and v in same component of lower component ID
+         :          void Link(NodeID u, NodeID v, pvector<NodeID>& comp) {
+    0.00 :   4ce0:   movslq %edi,%r8
+         :          pvector<int>::operator[](unsigned long):
+         :          reserve(num_elements);
+         :          end_size_ = start_ + num_elements;
+         :          }
+         :
+         :          T_& operator[](size_t n) {
+         :          return start_[n];
+    0.00 :   4ce3:   mov    (%rdx),%rdi
+         :          Link(int, int, pvector<int>&):
+         :          NodeID p1 = comp[u];
+         :          NodeID p2 = comp[v];
+    0.00 :   4ce6:   movslq %esi,%rsi
+         :          void Link(NodeID u, NodeID v, pvector<NodeID>& comp) {
+    0.00 :   4ce9:   mov    %rdx,%r9
+         :          NodeID p1 = comp[u];
+    0.00 :   4cec:   mov    (%rdi,%r8,4),%ecx
+         :          NodeID p2 = comp[v];
+   91.11 :   4cf0:   mov    (%rdi,%rsi,4),%eax
+         :          while (p1 != p2) {
+    0.00 :   4cf3:   cmp    %eax,%ecx
+    0.00 :   4cf5:   je     4d22 <Link(int, int, pvector<int>&)+0x42>
+         :          NodeID high = p1 > p2 ? p1 : p2;
+    0.00 :   4cf7:   cmp    %ecx,%eax
+    0.00 :   4cf9:   mov    %ecx,%esi
+    0.00 :   4cfb:   cmovge %eax,%esi
+         :          NodeID low = p1 + (p2 - high);
+    0.00 :   4cfe:   sub    %esi,%eax
+         :          NodeID p_high = comp[high];
+    0.00 :   4d00:   movslq %esi,%r8
+         :          NodeID low = p1 + (p2 - high);
+    0.00 :   4d03:   lea    (%rax,%rcx,1),%edx
+         :          pvector<int>::operator[](unsigned long):
+    0.00 :   4d06:   lea    (%rdi,%r8,4),%rcx
+         :          Link(int, int, pvector<int>&):
+         :          NodeID p_high = comp[high];
+    8.89 :   4d0a:   movslq (%rcx),%rax
+         :          // Was already 'low' or succeeded in writing 'low'
+         :          if ((p_high == low) ||
+    0.00 :   4d0d:   cmp    %eax,%edx
+    0.00 :   4d0f:   je     4d22 <Link(int, int, pvector<int>&)+0x42>
+    0.00 :   4d11:   cmp    %eax,%esi
+    0.00 :   4d13:   je     4d28 <Link(int, int, pvector<int>&)+0x48>
+         :          (p_high == high && compare_and_swap(comp[high], high, low)))
+         :          break;
+         :          p1 = comp[comp[high]];
+         :          p2 = comp[low];
+    0.00 :   4d15:   movslq %edx,%rdx
+         :          p1 = comp[comp[high]];
+    0.00 :   4d18:   mov    (%rdi,%rax,4),%ecx
+         :          p2 = comp[low];
+    0.00 :   4d1b:   mov    (%rdi,%rdx,4),%eax
+         :          while (p1 != p2) {
+    0.00 :   4d1e:   cmp    %eax,%ecx
+    0.00 :   4d20:   jne    4cf7 <Link(int, int, pvector<int>&)+0x17>
+         :          }
+         :          }
+    0.00 :   4d22:   retq
+    0.00 :   4d23:   nopl   0x0(%rax,%rax,1)
+         :          bool compare_and_swap<int>(int&, int const&, int const&):
+         :          return __sync_fetch_and_add(&x, inc);
+         :          }
+         :
+         :          template<typename T>
+         :          bool compare_and_swap(T &x, const T &old_val, const T &new_val) {
+         :          return __sync_bool_compare_and_swap(&x, old_val, new_val);
+    0.00 :   4d28:   lock cmpxchg %edx,(%rcx)
+         :          Link(int, int, pvector<int>&):
+         :          (p_high == high && compare_and_swap(comp[high], high, low)))
+    0.00 :   4d2c:   je     4d22 <Link(int, int, pvector<int>&)+0x42>
+         :          pvector<int>::operator[](unsigned long):
+    0.00 :   4d2e:   mov    (%r9),%rdi
+         :          Link(int, int, pvector<int>&):
+         :          p1 = comp[comp[high]];
+    0.00 :   4d31:   movslq (%rdi,%r8,4),%rax
+    0.00 :   4d35:   jmp    4d15 <Link(int, int, pvector<int>&)+0x35>
+ Percent |	Source code & Disassembly of cc for mem_load_uops_misc_retired.llc_miss:pp (2 samples, percent: local period)
+-----------------------------------------------------------------------------------------------------------------------------
+         :
+         :
+         :
+         :          Disassembly of section .text:
+         :
+         :          0000000000004e10 <Afforest(CSRGraph<int, int, true> const&, int) [clone ._omp_fn.2]>:
+         :          Afforest(CSRGraph<int, int, true> const&, int) [clone ._omp_fn.2]:
+         :          // compression, this value represents the largest intermediate component
+         :          NodeID c = SampleFrequentElement(comp);
+         :
+         :          // Final 'link' phase over remaining edges (excluding largest component)
+         :          if (!g.directed()) {
+         :          #pragma omp parallel for schedule(dynamic, 16384)
+    0.00 :   4e10:   push   %r15
+    0.00 :   4e12:   mov    $0x4000,%ecx
+    0.00 :   4e17:   mov    $0x1,%edx
+    0.00 :   4e1c:   push   %r14
+    0.00 :   4e1e:   push   %r13
+    0.00 :   4e20:   push   %r12
+    0.00 :   4e22:   push   %rbp
+    0.00 :   4e23:   push   %rbx
+    0.00 :   4e24:   mov    %rdi,%rbx
+    0.00 :   4e27:   sub    $0x28,%rsp
+         :          CSRGraph<int, int, true>::num_nodes() const:
+         :          bool directed() const {
+         :          return directed_;
+         :          }
+         :
+         :          int64_t num_nodes() const {
+         :          return num_nodes_;
+    0.00 :   4e2b:   mov    (%rdi),%rax
+         :          Afforest(CSRGraph<int, int, true> const&, int) [clone ._omp_fn.2]:
+    0.00 :   4e2e:   mov    0x14(%rdi),%ebp
+    0.00 :   4e31:   movslq 0x10(%rdi),%r12
+         :          CSRGraph<int, int, true>::num_nodes() const:
+         :          int64_t num_nodes() const {
+    0.00 :   4e35:   lea    0x18(%rsp),%r9
+    0.00 :   4e3a:   lea    0x10(%rsp),%r8
+    0.00 :   4e3f:   xor    %edi,%edi
+    0.00 :   4e41:   movslq 0x8(%rax),%rsi
+    0.00 :   4e45:   mov    %r9,0x8(%rsp)
+    0.00 :   4e4a:   mov    %r8,(%rsp)
+    0.00 :   4e4e:   callq  3420 <GOMP_loop_nonmonotonic_dynamic_start@plt>
+    0.00 :   4e53:   test   %al,%al
+    0.00 :   4e55:   jne    4e82 <Afforest(CSRGraph<int, int, true> const&, int) [clone ._omp_fn.2]+0x72>
+    0.00 :   4e57:   callq  3140 <GOMP_loop_end_nowait@plt>
+         :          Afforest(CSRGraph<int, int, true> const&, int) [clone ._omp_fn.2]:
+    0.00 :   4e5c:   add    $0x28,%rsp
+    0.00 :   4e60:   pop    %rbx
+    0.00 :   4e61:   pop    %rbp
+    0.00 :   4e62:   pop    %r12
+    0.00 :   4e64:   pop    %r13
+    0.00 :   4e66:   pop    %r14
+    0.00 :   4e68:   pop    %r15
+    0.00 :   4e6a:   retq
+    0.00 :   4e6b:   nopl   0x0(%rax,%rax,1)
+    0.00 :   4e70:   mov    0x8(%rsp),%rsi
+    0.00 :   4e75:   mov    (%rsp),%rdi
+    0.00 :   4e79:   callq  32d0 <GOMP_loop_nonmonotonic_dynamic_next@plt>
+    0.00 :   4e7e:   test   %al,%al
+    0.00 :   4e80:   je     4e57 <Afforest(CSRGraph<int, int, true> const&, int) [clone ._omp_fn.2]+0x47>
+    0.00 :   4e82:   mov    0x10(%rsp),%r11
+    0.00 :   4e87:   mov    0x18(%rsp),%r15d
+    0.00 :   4e8c:   mov    %r11d,%r13d
+    0.00 :   4e8f:   movslq %r11d,%r11
+    0.00 :   4e92:   shl    $0x2,%r11
+    0.00 :   4e96:   jmp    4ead <Afforest(CSRGraph<int, int, true> const&, int) [clone ._omp_fn.2]+0x9d>
+    0.00 :   4e98:   nopl   0x0(%rax,%rax,1)
+    0.00 :   4ea0:   add    $0x1,%r13d
+    0.00 :   4ea4:   add    $0x4,%r11
+    0.00 :   4ea8:   cmp    %r13d,%r15d
+    0.00 :   4eab:   jle    4e70 <Afforest(CSRGraph<int, int, true> const&, int) [clone ._omp_fn.2]+0x60>
+         :          for (NodeID u = 0; u < g.num_nodes(); u++) {
+         :          // Skip processing nodes in the largest component
+         :          if (comp[u] == c)
+    0.00 :   4ead:   mov    0x8(%rbx),%rdx
+    0.00 :   4eb1:   mov    (%rdx),%rax
+   50.00 :   4eb4:   cmp    (%rax,%r11,1),%ebp
+    0.00 :   4eb8:   je     4ea0 <Afforest(CSRGraph<int, int, true> const&, int) [clone ._omp_fn.2]+0x90>
+         :          CSRGraph<int, int, true>::out_neigh(int, unsigned long) const:
+         :          static_assert(MakeInverse, "Graph inversion disabled but reading inverse");
+         :          return in_index_[v+1] - in_index_[v];
+         :          }
+         :
+         :          Neighborhood out_neigh(NodeID_ n, OffsetT start_offset = 0) const {
+         :          return Neighborhood(n, out_index_, start_offset);
+    0.00 :   4eba:   mov    (%rbx),%rax
+    0.00 :   4ebd:   mov    0x18(%rax),%rax
+         :          CSRGraph<int, int, true>::Neighborhood::end():
+         :          iterator end()   { return g_index_[n_+1]; }
+   50.00 :   4ec1:   mov    0x8(%rax,%r11,2),%r10
+         :          CSRGraph<int, int, true>::Neighborhood::begin():
+         :          iterator begin() { return g_index_[n_] + start_offset_; }
+    0.00 :   4ec6:   mov    (%rax,%r11,2),%rsi
+         :          CSRGraph<int, int, true>::Neighborhood::Neighborhood(int, int**, unsigned long):
+         :          OffsetT max_offset = end() - begin();
+    0.00 :   4eca:   mov    %r10,%rax
+    0.00 :   4ecd:   sub    %rsi,%rax
+    0.00 :   4ed0:   sar    $0x2,%rax
+         :          CSRGraph<int, int, true>::Neighborhood::begin():
+         :          iterator begin() { return g_index_[n_] + start_offset_; }
+    0.00 :   4ed4:   cmp    %r12,%rax
+    0.00 :   4ed7:   cmova  %r12,%rax
+    0.00 :   4edb:   lea    (%rsi,%rax,4),%rax
+         :          Afforest(CSRGraph<int, int, true> const&, int) [clone ._omp_fn.2]:
+         :          continue;
+         :          // Skip over part of neighborhood (determined by neighbor_rounds)
+         :          for (NodeID v : g.out_neigh(u, neighbor_rounds)) {
+    0.00 :   4edf:   cmp    %r10,%rax
+    0.00 :   4ee2:   je     4ea0 <Afforest(CSRGraph<int, int, true> const&, int) [clone ._omp_fn.2]+0x90>
+    0.00 :   4ee4:   mov    %rax,%r14
+    0.00 :   4ee7:   jmp    4ef4 <Afforest(CSRGraph<int, int, true> const&, int) [clone ._omp_fn.2]+0xe4>
+    0.00 :   4ee9:   nopl   0x0(%rax)
+         :          Link(u, v, comp);
+    0.00 :   4ef0:   mov    0x8(%rbx),%rdx
+    0.00 :   4ef4:   mov    (%r14),%esi
+    0.00 :   4ef7:   mov    %r13d,%edi
+         :          for (NodeID v : g.out_neigh(u, neighbor_rounds)) {
+    0.00 :   4efa:   add    $0x4,%r14
+         :          Link(u, v, comp);
+    0.00 :   4efe:   callq  4ce0 <Link(int, int, pvector<int>&)>
+         :          for (NodeID v : g.out_neigh(u, neighbor_rounds)) {
+    0.00 :   4f03:   cmp    %r14,%r10
+    0.00 :   4f06:   jne    4ef0 <Afforest(CSRGraph<int, int, true> const&, int) [clone ._omp_fn.2]+0xe0>
+    0.00 :   4f08:   jmp    4ea0 <Afforest(CSRGraph<int, int, true> const&, int) [clone ._omp_fn.2]+0x90>
+ Percent |	Source code & Disassembly of kcore for mem_load_uops_misc_retired.llc_miss:pp (1 samples, percent: local period)
+--------------------------------------------------------------------------------------------------------------------------------
+         :
+         :
+         :
+         :                      Disassembly of section load0:
+         :
+         :                      ffffffff88e7cf20 <load0>:
+    0.00 :   ffffffff88e7cf20:       push   %r15
+    0.00 :   ffffffff88e7cf22:       push   %r14
+    0.00 :   ffffffff88e7cf24:       mov    %rdi,%r14
+    0.00 :   ffffffff88e7cf27:       push   %r13
+    0.00 :   ffffffff88e7cf29:       mov    %rdx,%r13
+    0.00 :   ffffffff88e7cf2c:       push   %r12
+    0.00 :   ffffffff88e7cf2e:       mov    %rsi,%r12
+    0.00 :   ffffffff88e7cf31:       push   %rbp
+    0.00 :   ffffffff88e7cf32:       mov    %ecx,%ebp
+    0.00 :   ffffffff88e7cf34:       push   %rbx
+    0.00 :   ffffffff88e7cf35:       mov    %gs:0x1fbc0,%rax
+    0.00 :   ffffffff88e7cf3e:       sub    $0x20,%rsp
+    0.00 :   ffffffff88e7cf42:       mov    0xbe0(%rax),%r15
+    0.00 :   ffffffff88e7cf49:       mov    %r8d,0x18(%rsp)
+    0.00 :   ffffffff88e7cf4e:       mov    %r9d,0x1c(%rsp)
+    0.00 :   ffffffff88e7cf53:       test   %r15,%r15
+    0.00 :   ffffffff88e7cf56:       jne    0xffffffff88e7d32e
+    0.00 :   ffffffff88e7cf5c:       cmpl   $0x4,0x18(%rsp)
+    0.00 :   ffffffff88e7cf61:       je     0xffffffff88e7cf79
+    0.00 :   ffffffff88e7cf63:       mov    $0x1,%edx
+    0.00 :   ffffffff88e7cf68:       mov    %ebp,%ecx
+    0.00 :   ffffffff88e7cf6a:       xor    %esi,%esi
+    0.00 :   ffffffff88e7cf6c:       mov    %r13,%rdi
+    0.00 :   ffffffff88e7cf6f:       shl    %cl,%edx
+    0.00 :   ffffffff88e7cf71:       movslq %edx,%rdx
+    0.00 :   ffffffff88e7cf74:       callq  0xffffffff88e44b20
+    0.00 :   ffffffff88e7cf79:       mov    $0x9,%r9d
+    0.00 :   ffffffff88e7cf7f:       mov    %r15,%r8
+    0.00 :   ffffffff88e7cf82:       mov    %r9d,%eax
+    0.00 :   ffffffff88e7cf85:       mov    %rbx,%r9
+    0.00 :   ffffffff88e7cf88:       mov    %eax,%ebx
+    0.00 :   ffffffff88e7cf8a:       cmp    %ebx,%ebp
+    0.00 :   ffffffff88e7cf8c:       jb     0xffffffff88e7d0d5
+    0.00 :   ffffffff88e7cf92:       cmp    $0x9,%ebp
+    0.00 :   ffffffff88e7cf95:       jne    0xffffffff88e7d0e8
+    0.00 :   ffffffff88e7cf9b:       cmpq   $0x0,0x90(%r13)
+    0.00 :   ffffffff88e7cfa3:       mov    $0x200,%r15d
+    0.00 :   ffffffff88e7cfa9:       mov    $0x9,%r10d
+    0.00 :   ffffffff88e7cfaf:       mov    $0xa,%ebx
+    0.00 :   ffffffff88e7cfb4:       jne    0xffffffff88e7d1be
+    0.00 :   ffffffff88e7cfba:       test   %r8,%r8
+    0.00 :   ffffffff88e7cfbd:       je     0xffffffff88e7d000
+    0.00 :   ffffffff88e7cfbf:       mov    (%r8),%rax
+    0.00 :   ffffffff88e7cfc2:       cmp    %r10d,0x60(%rax)
+    0.00 :   ffffffff88e7cfc6:       jne    0xffffffff88e7d000
+    0.00 :   ffffffff88e7cfc8:       mov    0x18(%rsp),%eax
+    0.00 :   ffffffff88e7cfcc:       cmp    $0x4,%eax
+    0.00 :   ffffffff88e7cfcf:       je     0xffffffff88e7d000
+    0.00 :   ffffffff88e7cfd1:       cmp    $0x8,%r10d
+    0.00 :   ffffffff88e7cfd5:       jg     0xffffffff88e7cfdc
+    0.00 :   ffffffff88e7cfd7:       cmp    $0x1,%eax
+    0.00 :   ffffffff88e7cfda:       je     0xffffffff88e7d000
+    0.00 :   ffffffff88e7cfdc:       mov    %r14,0x8(%r8)
+    0.00 :   ffffffff88e7cfe0:       mov    %r15d,%ecx
+    0.00 :   ffffffff88e7cfe3:       add    $0x20,%rsp
+    0.00 :   ffffffff88e7cfe7:       mov    %r13,%rdi
+    0.00 :   ffffffff88e7cfea:       neg    %ecx
+    0.00 :   ffffffff88e7cfec:       pop    %rbx
+    0.00 :   ffffffff88e7cfed:       xor    %esi,%esi
+    0.00 :   ffffffff88e7cfef:       pop    %rbp
+    0.00 :   ffffffff88e7cff0:       movslq %ecx,%rdx
+    0.00 :   ffffffff88e7cff3:       pop    %r12
+    0.00 :   ffffffff88e7cff5:       pop    %r13
+    0.00 :   ffffffff88e7cff7:       pop    %r14
+    0.00 :   ffffffff88e7cff9:       pop    %r15
+    0.00 :   ffffffff88e7cffb:       jmpq   0xffffffff88e44b20
+    0.00 :   ffffffff88e7d000:       movslq %r15d,%r9
+    0.00 :   ffffffff88e7d003:       xor    %r12,%r9
+    0.00 :   ffffffff88e7d006:       mov    %r9,%rax
+    0.00 :   ffffffff88e7d009:       sub    %r12,%rax
+    0.00 :   ffffffff88e7d00c:       shl    $0x6,%rax
+    0.00 :   ffffffff88e7d010:       lea    (%r14,%rax,1),%r15
+    0.00 :   ffffffff88e7d014:       mov    0x30(%r15),%eax
+    0.00 :   ffffffff88e7d018:       and    $0xf0000080,%eax
+    0.00 :   ffffffff88e7d01d:       cmp    $0xf0000000,%eax
+    0.00 :   ffffffff88e7d022:       jne    0xffffffff88e7d0e8
+    0.00 :   ffffffff88e7d028:       cmp    0x28(%r15),%ebp
+    0.00 :   ffffffff88e7d02c:       jne    0xffffffff88e7d0e8
+    0.00 :   ffffffff88e7d032:       mov    (%r14),%rdx
+    0.00 :   ffffffff88e7d035:       mov    (%r15),%rax
+    0.00 :   ffffffff88e7d038:       shr    $0x33,%rdx
+    0.00 :   ffffffff88e7d03c:       shr    $0x33,%rax
+    0.00 :   ffffffff88e7d040:       cmp    %eax,%edx
+    0.00 :   ffffffff88e7d042:       jne    0xffffffff88e7d0e8
+    0.00 :   ffffffff88e7d048:       data16 data16 data16 xchg %ax,%ax
+    0.00 :   ffffffff88e7d04d:       lea    0x8(%r15),%rdi
+    0.00 :   ffffffff88e7d051:       mov    %r8,0x8(%rsp)
+    0.00 :   ffffffff88e7d056:       mov    %r9,(%rsp)
+    0.00 :   ffffffff88e7d05a:       callq  0xffffffff890904c0
+    0.00 :   ffffffff88e7d05f:       mov    (%rsp),%r9
+    0.00 :   ffffffff88e7d063:       mov    0x8(%rsp),%r8
+    0.00 :   ffffffff88e7d068:       test   %al,%al
+    0.00 :   ffffffff88e7d06a:       je     0xffffffff88e7d07b
+    0.00 :   ffffffff88e7d06c:       mov    0x8(%r15),%rdx
+    0.00 :   ffffffff88e7d070:       mov    0x10(%r15),%rax
+    0.00 :   ffffffff88e7d074:       mov    %rax,0x8(%rdx)
+    0.00 :   ffffffff88e7d078:       mov    %rdx,(%rax)
+    0.00 :   ffffffff88e7d07b:       movabs $0xdead000000000100,%rax
+    0.00 :   ffffffff88e7d085:       orl    $0x80,0x30(%r15)
+    0.00 :   ffffffff88e7d08d:       mov    %rax,0x8(%r15)
+    0.00 :   ffffffff88e7d091:       add    $0x22,%rax
+    0.00 :   ffffffff88e7d095:       mov    %rax,0x10(%r15)
+    0.00 :   ffffffff88e7d099:       mov    %ebp,%eax
+    0.00 :   ffffffff88e7d09b:       add    $0x1,%ebp
+    0.00 :   ffffffff88e7d09e:       lea    (%rax,%rax,4),%rdx
+    0.00 :   ffffffff88e7d0a2:       movq   $0x0,0x28(%r15)
+    0.00 :   ffffffff88e7d0aa:       lea    (%rax,%rdx,2),%rax
+    0.00 :   ffffffff88e7d0ae:       mov    %r12,%rdx
+    0.00 :   ffffffff88e7d0b1:       subq   $0x1,0x110(%r13,%rax,8)
+    0.00 :   ffffffff88e7d0ba:       and    %r9,%rdx
+    0.00 :   ffffffff88e7d0bd:       mov    %rdx,%rax
+    0.00 :   ffffffff88e7d0c0:       sub    %r12,%rax
+    0.00 :   ffffffff88e7d0c3:       mov    %rdx,%r12
+    0.00 :   ffffffff88e7d0c6:       shl    $0x6,%rax
+    0.00 :   ffffffff88e7d0ca:       add    %rax,%r14
+    0.00 :   ffffffff88e7d0cd:       cmp    %ebx,%ebp
+    0.00 :   ffffffff88e7d0cf:       jae    0xffffffff88e7cf92
+    0.00 :   ffffffff88e7d0d5:       mov    $0x1,%r15d
+    0.00 :   ffffffff88e7d0db:       mov    %ebp,%ecx
+    0.00 :   ffffffff88e7d0dd:       mov    %ebp,%r10d
+    0.00 :   ffffffff88e7d0e0:       shl    %cl,%r15d
+    0.00 :   ffffffff88e7d0e3:       jmpq   0xffffffff88e7cfba
+    0.00 :   ffffffff88e7d0e8:       mov    %ebp,%r15d
+    0.00 :   ffffffff88e7d0eb:       mov    %r9,%rbx
+    0.00 :   ffffffff88e7d0ee:       lea    (%r15,%r15,4),%rdx
+    0.00 :   ffffffff88e7d0f2:       mov    %r15,%rax
+    0.00 :   ffffffff88e7d0f5:       lea    (%r15,%rdx,2),%rdx
+    0.00 :   ffffffff88e7d0f9:       shl    $0x3,%rdx
+    0.00 :   ffffffff88e7d0fd:       andl   $0xffffff7f,0x30(%r14)
+    0.00 :   ffffffff88e7d105:       mov    %rax,0x28(%r14)
+    0.00 :   ffffffff88e7d109:       testb  $0x2,0x1c(%rsp)
+    0.00 :   ffffffff88e7d10e:       je     0xffffffff88e7d23a
+    0.00 :   ffffffff88e7d114:       movslq 0x18(%rsp),%rax
+    0.00 :   ffffffff88e7d119:       lea    0x8(%r14),%rcx
+    0.00 :   ffffffff88e7d11d:       mov    %rcx,%rdi
+    0.00 :   ffffffff88e7d120:       mov    %rcx,(%rsp)
+    0.00 :   ffffffff88e7d124:       shl    $0x4,%rax
+    0.00 :   ffffffff88e7d128:       mov    %rax,%rsi
+    0.00 :   ffffffff88e7d12b:       lea    0xc0(%rdx,%rax,1),%rbx
+    0.00 :   ffffffff88e7d133:       lea    (%r15,%r15,4),%rax
+    0.00 :   ffffffff88e7d137:       lea    (%r15,%rax,2),%rax
+    0.00 :   ffffffff88e7d13b:       add    %r13,%rbx
+    0.00 :   ffffffff88e7d13e:       lea    (%rsi,%rax,8),%r12
+    0.00 :   ffffffff88e7d142:       mov    %rbx,%rdx
+    0.00 :   ffffffff88e7d145:       add    %r13,%r12
+    0.00 :   ffffffff88e7d148:       mov    0xc8(%r12),%rsi
+    0.00 :   ffffffff88e7d150:       mov    %rsi,0x8(%rsp)
+    0.00 :   ffffffff88e7d155:       callq  0xffffffff89090470
+    0.00 :   ffffffff88e7d15a:       mov    (%rsp),%rcx
+    0.00 :   ffffffff88e7d15e:       mov    0x8(%rsp),%rsi
+    0.00 :   ffffffff88e7d163:       test   %al,%al
+    0.00 :   ffffffff88e7d165:       je     0xffffffff88e7d17a
+    0.00 :   ffffffff88e7d167:       mov    %rcx,0xc8(%r12)
+    0.00 :   ffffffff88e7d16f:       mov    %rbx,0x8(%r14)
+    0.00 :   ffffffff88e7d173:       mov    %rsi,0x10(%r14)
+    0.00 :   ffffffff88e7d177:       mov    %rcx,(%rsi)
+    0.00 :   ffffffff88e7d17a:       lea    (%r15,%r15,4),%rax
+    0.00 :   ffffffff88e7d17e:       lea    (%r15,%rax,2),%rax
+    0.00 :   ffffffff88e7d182:       addq   $0x1,0x110(%r13,%rax,8)
+    0.00 :   ffffffff88e7d18b:       testb  $0x1,0x1c(%rsp)
+    0.00 :   ffffffff88e7d190:       je     0xffffffff88e7d2e5
+    0.00 :   ffffffff88e7d196:       add    $0x20,%rsp
+    0.00 :   ffffffff88e7d19a:       pop    %rbx
+    0.00 :   ffffffff88e7d19b:       pop    %rbp
+    0.00 :   ffffffff88e7d19c:       pop    %r12
+    0.00 :   ffffffff88e7d19e:       pop    %r13
+    0.00 :   ffffffff88e7d1a0:       pop    %r14
+    0.00 :   ffffffff88e7d1a2:       pop    %r15
+    0.00 :   ffffffff88e7d1a4:       retq
+    0.00 :   ffffffff88e7d1a5:       int3
+    0.00 :   ffffffff88e7d1a6:       int3
+    0.00 :   ffffffff88e7d1a7:       int3
+    0.00 :   ffffffff88e7d1a8:       int3
+    0.00 :   ffffffff88e7d1a9:       mov    (%r15),%rax
+    0.00 :   ffffffff88e7d1ac:       test   $0x4,%al
+    0.00 :   ffffffff88e7d1ae:       je     0xffffffff88e7d04d
+    0.00 :   ffffffff88e7d1b4:       btrq   $0x2,(%r15)
+    0.00 :   ffffffff88e7d1b9:       jmpq   0xffffffff88e7d04d
+    0.00 :   ffffffff88e7d1be:       mov    %r12,%r9
+    0.00 :   ffffffff88e7d1c1:       mov    $0x7,%edx
+    0.00 :   ffffffff88e7d1c6:       mov    %r8,0x8(%rsp)
+    0.00 :   ffffffff88e7d1cb:       xor    $0x200,%r9
+    0.00 :   ffffffff88e7d1d2:       mov    %r10d,(%rsp)
+    0.00 :   ffffffff88e7d1d6:       mov    %r9,%rdi
+    0.00 :   ffffffff88e7d1d9:       mov    %r9,0x10(%rsp)
+    0.00 :   ffffffff88e7d1de:       sub    %r12,%rdi
+    0.00 :   ffffffff88e7d1e1:       shl    $0x6,%rdi
+    0.00 :   ffffffff88e7d1e5:       add    %r14,%rdi
+    0.00 :   ffffffff88e7d1e8:       mov    %rdi,%rsi
+    0.00 :   ffffffff88e7d1eb:       sub    0xef898e(%rip),%rsi        # 0xffffffff89d75b80
+    0.00 :   ffffffff88e7d1f2:       sar    $0x6,%rsi
+    0.00 :   ffffffff88e7d1f6:       callq  0xffffffff88e7ceb0
+    0.00 :   ffffffff88e7d1fb:       mov    0x18(%rsp),%ecx
+    0.00 :   ffffffff88e7d1ff:       mov    0x8(%rsp),%r8
+    0.00 :   ffffffff88e7d204:       mov    $0x9,%r10d
+    0.00 :   ffffffff88e7d20a:       cmp    %eax,%ecx
+    0.00 :   ffffffff88e7d20c:       je     0xffffffff88e7cfba
+    0.00 :   ffffffff88e7d212:       cmp    $0x4,%ecx
+    0.00 :   ffffffff88e7d215:       mov    0x10(%rsp),%r9
+    0.00 :   ffffffff88e7d21a:       je     0xffffffff88e7d225
+    0.00 :   ffffffff88e7d21c:       cmp    $0x4,%eax
+    0.00 :   ffffffff88e7d21f:       jne    0xffffffff88e7cfba
+    0.00 :   ffffffff88e7d225:       mov    %r9,%rbx
+    0.00 :   ffffffff88e7d228:       mov    $0x318,%edx
+    0.00 :   ffffffff88e7d22d:       mov    $0x9,%eax
+    0.00 :   ffffffff88e7d232:       mov    %ebp,%r15d
+    0.00 :   ffffffff88e7d235:       jmpq   0xffffffff88e7d0fd
+    0.00 :   ffffffff88e7d23a:       data16 data16 data16 xchg %ax,%ax
+    0.00 :   ffffffff88e7d23f:       cmp    $0x8,%ebp
+    0.00 :   ffffffff88e7d242:       ja     0xffffffff88e7d287
+    0.00 :   ffffffff88e7d244:       lea    0x1(%rbp),%ecx
+    0.00 :   ffffffff88e7d247:       mov    $0x1,%eax
+    0.00 :   ffffffff88e7d24c:       and    %r12,%rbx
+    0.00 :   ffffffff88e7d24f:       shl    %cl,%eax
+    0.00 :   ffffffff88e7d251:       mov    %rbx,%rsi
+    0.00 :   ffffffff88e7d254:       cltq
+    0.00 :   ffffffff88e7d256:       sub    %r12,%rsi
+    0.00 :   ffffffff88e7d259:       xor    %rbx,%rax
+    0.00 :   ffffffff88e7d25c:       shl    $0x6,%rsi
+    0.00 :   ffffffff88e7d260:       sub    %rbx,%rax
+    0.00 :   ffffffff88e7d263:       add    %r14,%rsi
+    0.00 :   ffffffff88e7d266:       shl    $0x6,%rax
+    0.00 :   ffffffff88e7d26a:       add    %rsi,%rax
+  100.00 :   ffffffff88e7d26d:       mov    0x30(%rax),%edi
+    0.00 :   ffffffff88e7d270:       and    $0xf0000080,%edi
+    0.00 :   ffffffff88e7d276:       cmp    $0xf0000000,%edi
+    0.00 :   ffffffff88e7d27c:       jne    0xffffffff88e7d287
+    0.00 :   ffffffff88e7d27e:       cmp    0x28(%rax),%ecx
+    0.00 :   ffffffff88e7d281:       je     0xffffffff88e7d355
+    0.00 :   ffffffff88e7d287:       movslq 0x18(%rsp),%rax
+    0.00 :   ffffffff88e7d28c:       lea    0x8(%r14),%r12
+    0.00 :   ffffffff88e7d290:       mov    %r12,%rdi
+    0.00 :   ffffffff88e7d293:       shl    $0x4,%rax
+    0.00 :   ffffffff88e7d297:       lea    0xc0(%rdx,%rax,1),%rbx
+    0.00 :   ffffffff88e7d29f:       mov    %rax,%rcx
+    0.00 :   ffffffff88e7d2a2:       lea    (%r15,%r15,4),%rax
+    0.00 :   ffffffff88e7d2a6:       lea    (%r15,%rax,2),%rax
+    0.00 :   ffffffff88e7d2aa:       add    %r13,%rbx
+    0.00 :   ffffffff88e7d2ad:       lea    (%rcx,%rax,8),%rax
+    0.00 :   ffffffff88e7d2b1:       mov    %rbx,%rsi
+    0.00 :   ffffffff88e7d2b4:       mov    0xc0(%r13,%rax,1),%rdx
+    0.00 :   ffffffff88e7d2bc:       mov    %rdx,(%rsp)
+    0.00 :   ffffffff88e7d2c0:       callq  0xffffffff89090470
+    0.00 :   ffffffff88e7d2c5:       test   %al,%al
+    0.00 :   ffffffff88e7d2c7:       je     0xffffffff88e7d17a
+    0.00 :   ffffffff88e7d2cd:       mov    (%rsp),%rdx
+    0.00 :   ffffffff88e7d2d1:       mov    %r12,0x8(%rdx)
+    0.00 :   ffffffff88e7d2d5:       mov    %rdx,0x8(%r14)
+    0.00 :   ffffffff88e7d2d9:       mov    %rbx,0x10(%r14)
+    0.00 :   ffffffff88e7d2dd:       mov    %r12,(%rbx)
+    0.00 :   ffffffff88e7d2e0:       jmpq   0xffffffff88e7d17a
+    0.00 :   ffffffff88e7d2e5:       data16 data16 data16 xchg %ax,%ax
+    0.00 :   ffffffff88e7d2ea:       jmpq   0xffffffff88e7d196
+    0.00 :   ffffffff88e7d2ef:       cmp    $0x9,%ebp
+    0.00 :   ffffffff88e7d2f2:       jle    0xffffffff88e7d23f
+    0.00 :   ffffffff88e7d2f8:       mov    %rdx,(%rsp)
+    0.00 :   ffffffff88e7d2fc:       callq  0xffffffff88e83520
+    0.00 :   ffffffff88e7d301:       mov    (%rsp),%rdx
+    0.00 :   ffffffff88e7d305:       test   %al,%al
+    0.00 :   ffffffff88e7d307:       jne    0xffffffff88e7d114
+    0.00 :   ffffffff88e7d30d:       jmpq   0xffffffff88e7d287
+    0.00 :   ffffffff88e7d312:       cmp    $0x8,%ebp
+    0.00 :   ffffffff88e7d315:       jbe    0xffffffff88e7d196
+    0.00 :   ffffffff88e7d31b:       add    $0x20,%rsp
+    0.00 :   ffffffff88e7d31f:       pop    %rbx
+    0.00 :   ffffffff88e7d320:       pop    %rbp
+    0.00 :   ffffffff88e7d321:       pop    %r12
+    0.00 :   ffffffff88e7d323:       pop    %r13
+    0.00 :   ffffffff88e7d325:       pop    %r14
+    0.00 :   ffffffff88e7d327:       pop    %r15
+    0.00 :   ffffffff88e7d329:       jmpq   0xffffffff88ed4d80
+    0.00 :   ffffffff88e7d32e:       testb  $0x20,0x26(%rax)
+    0.00 :   ffffffff88e7d332:       jne    0xffffffff88e7d34d
+    0.00 :   ffffffff88e7d334:       mov    0x8(%r15),%rax
+    0.00 :   ffffffff88e7d338:       test   %rax,%rax
+    0.00 :   ffffffff88e7d33b:       jne    0xffffffff88e7d34d
+    0.00 :   ffffffff88e7d33d:       mov    (%r15),%rdx
+    0.00 :   ffffffff88e7d340:       cmp    0x40(%rdx),%r13
+    0.00 :   ffffffff88e7d344:       cmovne %rax,%r15
+    0.00 :   ffffffff88e7d348:       jmpq   0xffffffff88e7cf5c
+    0.00 :   ffffffff88e7d34d:       xor    %r15d,%r15d
+    0.00 :   ffffffff88e7d350:       jmpq   0xffffffff88e7cf5c
+    0.00 :   ffffffff88e7d355:       mov    (%rsi),%rcx
+    0.00 :   ffffffff88e7d358:       mov    (%rax),%rax
+    0.00 :   ffffffff88e7d35b:       shr    $0x33,%rcx
+    0.00 :   ffffffff88e7d35f:       shr    $0x33,%rax
+    0.00 :   ffffffff88e7d363:       cmp    %eax,%ecx
+    0.00 :   ffffffff88e7d365:       jne    0xffffffff88e7d287
+    0.00 :   ffffffff88e7d36b:       jmpq   0xffffffff88e7d114
+ Percent |	Source code & Disassembly of kcore for mem_load_uops_misc_retired.llc_miss:pp (1 samples, percent: local period)
+--------------------------------------------------------------------------------------------------------------------------------
+         :
+         :
+         :
+         :                      Disassembly of section load0:
+         :
+         :                      ffffffff88cd1ae0 <load0>:
+    0.00 :   ffffffff88cd1ae0:       data16 data16 data16 xchg %ax,%ax
+    0.00 :   ffffffff88cd1ae5:       push   %r15
+    0.00 :   ffffffff88cd1ae7:       push   %r14
+    0.00 :   ffffffff88cd1ae9:       push   %r13
+    0.00 :   ffffffff88cd1aeb:       push   %r12
+    0.00 :   ffffffff88cd1aed:       push   %rbp
+    0.00 :   ffffffff88cd1aee:       lea    0x80(%rsi),%rbp
+    0.00 :   ffffffff88cd1af5:       push   %rbx
+    0.00 :   ffffffff88cd1af6:       sub    $0x10,%rsp
+    0.00 :   ffffffff88cd1afa:       mov    0x970(%rdi),%r12
+    0.00 :   ffffffff88cd1b01:       lea    0x80(%r12),%rbx
+    0.00 :   ffffffff88cd1b09:       cmp    %rbp,%rbx
+    0.00 :   ffffffff88cd1b0c:       je     0xffffffff88cd1c8e
+    0.00 :   ffffffff88cd1b12:       mov    %rdi,%r13
+    0.00 :   ffffffff88cd1b15:       data16 data16 data16 xchg %ax,%ax
+    0.00 :   ffffffff88cd1b1a:       mov    0x1d0(%r12),%rax
+    0.00 :   ffffffff88cd1b22:       mov    0x1587dd3(%rip),%r14d        # 0xffffffff8a2598fc
+    0.00 :   ffffffff88cd1b29:       mov    0x10(%rax),%r15d
+    0.00 :   ffffffff88cd1b2d:       data16 data16 data16 xchg %ax,%ax
+    0.00 :   ffffffff88cd1b32:       xor    %ecx,%ecx
+    0.00 :   ffffffff88cd1b34:       mov    (%r12),%rax
+    0.00 :   ffffffff88cd1b38:       test   $0x8,%al
+    0.00 :   ffffffff88cd1b3a:       jne    0xffffffff88cd1c8e
+  100.00 :   ffffffff88cd1b40:       cmpl   $0x5,0x364(%r12)
+    0.00 :   ffffffff88cd1b49:       mov    0x364(%rsi),%eax
+    0.00 :   ffffffff88cd1b4f:       je     0xffffffff88cd1cf7
+    0.00 :   ffffffff88cd1b55:       test   %eax,%eax
+    0.00 :   ffffffff88cd1b57:       jne    0xffffffff88cd1c8e
+    0.00 :   ffffffff88cd1b5d:       data16 data16 data16 xchg %ax,%ax
+    0.00 :   ffffffff88cd1b62:       mov    0x1c0(%r12),%eax
+    0.00 :   ffffffff88cd1b6a:       mov    0x1c0(%rsi),%edx
+    0.00 :   ffffffff88cd1b70:       cmp    %edx,%eax
+    0.00 :   ffffffff88cd1b72:       jle    0xffffffff88cd1b84
+    0.00 :   ffffffff88cd1b74:       sub    $0x1,%eax
+    0.00 :   ffffffff88cd1b77:       mov    0x148(%rbx),%rbx
+    0.00 :   ffffffff88cd1b7e:       cmp    %eax,%edx
+    0.00 :   ffffffff88cd1b80:       jne    0xffffffff88cd1b74
+    0.00 :   ffffffff88cd1b82:       mov    %edx,%eax
+    0.00 :   ffffffff88cd1b84:       cmp    %edx,%eax
+    0.00 :   ffffffff88cd1b86:       jge    0xffffffff88cd1bb4
+    0.00 :   ffffffff88cd1b88:       sub    $0x1,%edx
+    0.00 :   ffffffff88cd1b8b:       mov    0x148(%rbp),%rbp
+    0.00 :   ffffffff88cd1b92:       cmp    %edx,%eax
+    0.00 :   ffffffff88cd1b94:       jne    0xffffffff88cd1b88
+    0.00 :   ffffffff88cd1b96:       mov    0x150(%rbx),%rdi
+    0.00 :   ffffffff88cd1b9d:       cmp    %rdi,0x150(%rbp)
+    0.00 :   ffffffff88cd1ba4:       je     0xffffffff88cd1bc4
+    0.00 :   ffffffff88cd1ba6:       mov    0x148(%rbx),%rbx
+    0.00 :   ffffffff88cd1bad:       mov    0x148(%rbp),%rbp
+    0.00 :   ffffffff88cd1bb4:       mov    0x150(%rbx),%rdi
+    0.00 :   ffffffff88cd1bbb:       cmp    %rdi,0x150(%rbp)
+    0.00 :   ffffffff88cd1bc2:       jne    0xffffffff88cd1ba6
+    0.00 :   ffffffff88cd1bc4:       test   %rdi,%rdi
+    0.00 :   ffffffff88cd1bc7:       je     0xffffffff88cd1ba6
+    0.00 :   ffffffff88cd1bc9:       mov    %ecx,(%rsp)
+    0.00 :   ffffffff88cd1bcc:       callq  0xffffffff88cd1520
+    0.00 :   ffffffff88cd1bd1:       test   %rbp,%rbp
+    0.00 :   ffffffff88cd1bd4:       mov    (%rsp),%ecx
+    0.00 :   ffffffff88cd1bd7:       je     0xffffffff88cd1d0f
+    0.00 :   ffffffff88cd1bdd:       mov    0x50(%rbx),%r8
+    0.00 :   ffffffff88cd1be1:       sub    0x50(%rbp),%r8
+    0.00 :   ffffffff88cd1be5:       test   %r8,%r8
+    0.00 :   ffffffff88cd1be8:       jle    0xffffffff88cd1c8e
+    0.00 :   ffffffff88cd1bee:       cmpq   $0x100000,0x0(%rbp)
+    0.00 :   ffffffff88cd1bf6:       mov    0x1587cfc(%rip),%edi        # 0xffffffff8a2598f8
+    0.00 :   ffffffff88cd1bfc:       jne    0xffffffff88cd1d11
+    0.00 :   ffffffff88cd1c02:       cmp    %rdi,%r8
+    0.00 :   ffffffff88cd1c05:       jle    0xffffffff88cd1c8e
+    0.00 :   ffffffff88cd1c0b:       test   %ecx,%ecx
+    0.00 :   ffffffff88cd1c0d:       je     0xffffffff88cd1d02
+    0.00 :   ffffffff88cd1c13:       mov    %r13,%rdi
+    0.00 :   ffffffff88cd1c16:       callq  0xffffffff88cc5ab0
+    0.00 :   ffffffff88cd1c1b:       mov    0x38(%rbx),%edx
+    0.00 :   ffffffff88cd1c1e:       test   %edx,%edx
+    0.00 :   ffffffff88cd1c20:       je     0xffffffff88cd1c8e
+    0.00 :   ffffffff88cd1c22:       cmp    %r12,0x978(%r13)
+    0.00 :   ffffffff88cd1c29:       je     0xffffffff88cd1c8e
+    0.00 :   ffffffff88cd1c2b:       data16 data16 data16 xchg %ax,%ax
+    0.00 :   ffffffff88cd1c30:       cmp    %r14d,%r15d
+    0.00 :   ffffffff88cd1c33:       jb     0xffffffff88cd1c8e
+    0.00 :   ffffffff88cd1c35:       cmpq   $0x0,0x158(%rbx)
+    0.00 :   ffffffff88cd1c3d:       jne    0xffffffff88cd1c8e
+    0.00 :   ffffffff88cd1c3f:       mov    %rbx,%rdi
+    0.00 :   ffffffff88cd1c42:       callq  0xffffffff88ccd5e0
+    0.00 :   ffffffff88cd1c47:       cmpl   $0x5,0x364(%rax)
+    0.00 :   ffffffff88cd1c4e:       jne    0xffffffff88cd1c64
+    0.00 :   ffffffff88cd1c50:       jmp    0xffffffff88cd1c8e
+    0.00 :   ffffffff88cd1c52:       mov    0x150(%rbx),%rax
+    0.00 :   ffffffff88cd1c59:       mov    %rbx,0x50(%rax)
+    0.00 :   ffffffff88cd1c5d:       mov    0x148(%rbx),%rbx
+    0.00 :   ffffffff88cd1c64:       test   %rbx,%rbx
+    0.00 :   ffffffff88cd1c67:       je     0xffffffff88cd1c8e
+    0.00 :   ffffffff88cd1c69:       mov    0x38(%rbx),%eax
+    0.00 :   ffffffff88cd1c6c:       test   %eax,%eax
+    0.00 :   ffffffff88cd1c6e:       jne    0xffffffff88cd1c52
+    0.00 :   ffffffff88cd1c70:       cmpb   $0x0,0x176fea0(%rip)        # 0xffffffff8a441b17
+    0.00 :   ffffffff88cd1c77:       jne    0xffffffff88cd1c8e
+    0.00 :   ffffffff88cd1c79:       mov    $0xffffffff89cd4347,%rdi
+    0.00 :   ffffffff88cd1c80:       movb   $0x1,0x176fe90(%rip)        # 0xffffffff8a441b17
+    0.00 :   ffffffff88cd1c87:       callq  0xffffffff894ba68a
+    0.00 :   ffffffff88cd1c8c:       ud2
+    0.00 :   ffffffff88cd1c8e:       add    $0x10,%rsp
+    0.00 :   ffffffff88cd1c92:       pop    %rbx
+    0.00 :   ffffffff88cd1c93:       pop    %rbp
+    0.00 :   ffffffff88cd1c94:       pop    %r12
+    0.00 :   ffffffff88cd1c96:       pop    %r13
+    0.00 :   ffffffff88cd1c98:       pop    %r14
+    0.00 :   ffffffff88cd1c9a:       pop    %r15
+    0.00 :   ffffffff88cd1c9c:       retq
+    0.00 :   ffffffff88cd1c9d:       int3
+    0.00 :   ffffffff88cd1c9e:       int3
+    0.00 :   ffffffff88cd1c9f:       int3
+    0.00 :   ffffffff88cd1ca0:       int3
+    0.00 :   ffffffff88cd1ca1:       mov    0x1d0(%rsi),%rax
+    0.00 :   ffffffff88cd1ca8:       mov    0x184(%rax),%ecx
+    0.00 :   ffffffff88cd1cae:       test   %ecx,%ecx
+    0.00 :   ffffffff88cd1cb0:       je     0xffffffff88cd1b1a
+    0.00 :   ffffffff88cd1cb6:       add    $0x10,%rsp
+    0.00 :   ffffffff88cd1cba:       pop    %rbx
+    0.00 :   ffffffff88cd1cbb:       pop    %rbp
+    0.00 :   ffffffff88cd1cbc:       pop    %r12
+    0.00 :   ffffffff88cd1cbe:       pop    %r13
+    0.00 :   ffffffff88cd1cc0:       pop    %r14
+    0.00 :   ffffffff88cd1cc2:       pop    %r15
+    0.00 :   ffffffff88cd1cc4:       retq
+    0.00 :   ffffffff88cd1cc5:       int3
+    0.00 :   ffffffff88cd1cc6:       int3
+    0.00 :   ffffffff88cd1cc7:       int3
+    0.00 :   ffffffff88cd1cc8:       int3
+    0.00 :   ffffffff88cd1cc9:       xor    %ecx,%ecx
+    0.00 :   ffffffff88cd1ccb:       cmp    %r14d,%r15d
+    0.00 :   ffffffff88cd1cce:       jb     0xffffffff88cd1b34
+    0.00 :   ffffffff88cd1cd4:       and    $0x2,%edx
+    0.00 :   ffffffff88cd1cd7:       jne    0xffffffff88cd1b34
+    0.00 :   ffffffff88cd1cdd:       mov    %rbp,%rdi
+    0.00 :   ffffffff88cd1ce0:       mov    %rsi,(%rsp)
+    0.00 :   ffffffff88cd1ce4:       callq  0xffffffff88ccf250
+    0.00 :   ffffffff88cd1ce9:       mov    $0x1,%ecx
+    0.00 :   ffffffff88cd1cee:       mov    (%rsp),%rsi
+    0.00 :   ffffffff88cd1cf2:       jmpq   0xffffffff88cd1b34
+    0.00 :   ffffffff88cd1cf7:       cmp    $0x5,%eax
+    0.00 :   ffffffff88cd1cfa:       jne    0xffffffff88cd1c13
+    0.00 :   ffffffff88cd1d00:       jmp    0xffffffff88cd1c8e
+    0.00 :   ffffffff88cd1d02:       mov    %rbp,%rdi
+    0.00 :   ffffffff88cd1d05:       callq  0xffffffff88ccf250
+    0.00 :   ffffffff88cd1d0a:       jmpq   0xffffffff88cd1c13
+    0.00 :   ffffffff88cd1d0f:       ud2
+    0.00 :   ffffffff88cd1d11:       mov    %rbp,%rdx
+    0.00 :   ffffffff88cd1d14:       mov    $0x100000,%esi
+    0.00 :   ffffffff88cd1d19:       mov    %r8,0x8(%rsp)
+    0.00 :   ffffffff88cd1d1e:       mov    %ecx,(%rsp)
+    0.00 :   ffffffff88cd1d21:       callq  0xffffffff88ccd3a0
+    0.00 :   ffffffff88cd1d26:       mov    0x8(%rsp),%r8
+    0.00 :   ffffffff88cd1d2b:       mov    (%rsp),%ecx
+    0.00 :   ffffffff88cd1d2e:       mov    %rax,%rdi
+    0.00 :   ffffffff88cd1d31:       jmpq   0xffffffff88cd1c02
+ Percent |	Source code & Disassembly of kcore for mem_load_uops_misc_retired.llc_miss:pp (1 samples, percent: local period)
+--------------------------------------------------------------------------------------------------------------------------------
+         :
+         :
+         :
+         :                      Disassembly of section load0:
+         :
+         :                      ffffffff890fa9a0 <load0>:
+    0.00 :   ffffffff890fa9a0:       data16 xchg %ax,%ax
+    0.00 :   ffffffff890fa9a3:       cmp    $0x8,%edx
+    0.00 :   ffffffff890fa9a6:       jb     0xffffffff890fa9cf
+    0.00 :   ffffffff890fa9a8:       mov    %edi,%ecx
+    0.00 :   ffffffff890fa9aa:       and    $0x7,%ecx
+    0.00 :   ffffffff890fa9ad:       je     0xffffffff890fa9c4
+    0.00 :   ffffffff890fa9af:       sub    $0x8,%ecx
+    0.00 :   ffffffff890fa9b2:       neg    %ecx
+    0.00 :   ffffffff890fa9b4:       sub    %ecx,%edx
+    0.00 :   ffffffff890fa9b6:       mov    (%rsi),%al
+    0.00 :   ffffffff890fa9b8:       mov    %al,(%rdi)
+    0.00 :   ffffffff890fa9ba:       inc    %rsi
+    0.00 :   ffffffff890fa9bd:       inc    %rdi
+    0.00 :   ffffffff890fa9c0:       dec    %ecx
+    0.00 :   ffffffff890fa9c2:       jne    0xffffffff890fa9b6
+    0.00 :   ffffffff890fa9c4:       mov    %edx,%ecx
+    0.00 :   ffffffff890fa9c6:       shr    $0x3,%ecx
+    0.00 :   ffffffff890fa9c9:       and    $0x7,%edx
+  100.00 :   ffffffff890fa9cc:       rep movsq %ds:(%rsi),%es:(%rdi)
+    0.00 :   ffffffff890fa9cf:       mov    %edx,%ecx
+    0.00 :   ffffffff890fa9d1:       rep movsb %ds:(%rsi),%es:(%rdi)
+    0.00 :   ffffffff890fa9d3:       xor    %eax,%eax
+    0.00 :   ffffffff890fa9d5:       data16 xchg %ax,%ax
+    0.00 :   ffffffff890fa9d8:       retq
+    0.00 :   ffffffff890fa9d9:       int3
+    0.00 :   ffffffff890fa9da:       int3
+    0.00 :   ffffffff890fa9db:       int3
+    0.00 :   ffffffff890fa9dc:       int3
+ Percent |	Source code & Disassembly of kcore for mem_load_uops_misc_retired.llc_miss:pp (1 samples, percent: local period)
+--------------------------------------------------------------------------------------------------------------------------------
+         :
+         :
+         :
+         :                      Disassembly of section load0:
+         :
+         :                      ffffffff88cedb30 <load0>:
+    0.00 :   ffffffff88cedb30:       data16 data16 data16 xchg %ax,%ax
+    0.00 :   ffffffff88cedb35:       mov    %gs:0x7732ba24(%rip),%eax        # 0x19560
+  100.00 :   ffffffff88cedb3c:       mov    (%rdi),%rdx
+    0.00 :   ffffffff88cedb3f:       mov    %eax,%eax
+    0.00 :   ffffffff88cedb41:       bt     %rax,(%rdx)
+    0.00 :   ffffffff88cedb45:       setb   %al
+    0.00 :   ffffffff88cedb48:       jb     0xffffffff88cedb6d
+    0.00 :   ffffffff88cedb4a:       movzbl 0x200(%rdi),%eax
+    0.00 :   ffffffff88cedb51:       test   %al,%al
+    0.00 :   ffffffff88cedb53:       je     0xffffffff88cedb6d
+    0.00 :   ffffffff88cedb55:       mov    $0x20800,%rax
+    0.00 :   ffffffff88cedb5c:       add    %gs:0x7732ba04(%rip),%rax        # 0x19568
+    0.00 :   ffffffff88cedb64:       mov    (%rax),%rax
+    0.00 :   ffffffff88cedb67:       test   %rax,%rax
+    0.00 :   ffffffff88cedb6a:       setne  %al
+    0.00 :   ffffffff88cedb6d:       retq
+    0.00 :   ffffffff88cedb6e:       int3
+    0.00 :   ffffffff88cedb6f:       int3
+    0.00 :   ffffffff88cedb70:       int3
+    0.00 :   ffffffff88cedb71:       int3
+    0.00 :   ffffffff88cedb72:       int3
+    0.00 :   ffffffff88cedb73:       int3
+    0.00 :   ffffffff88cedb74:       int3
+    0.00 :   ffffffff88cedb75:       int3
+    0.00 :   ffffffff88cedb76:       int3
+    0.00 :   ffffffff88cedb77:       int3
+    0.00 :   ffffffff88cedb78:       int3
+    0.00 :   ffffffff88cedb79:       int3
+    0.00 :   ffffffff88cedb7a:       int3
+    0.00 :   ffffffff88cedb7b:       int3
+    0.00 :   ffffffff88cedb7c:       int3
+    0.00 :   ffffffff88cedb7d:       int3
+    0.00 :   ffffffff88cedb7e:       int3
+    0.00 :   ffffffff88cedb7f:       int3
+ Percent |	Source code & Disassembly of kcore for mem_load_uops_misc_retired.llc_miss:pp (1 samples, percent: local period)
+--------------------------------------------------------------------------------------------------------------------------------
+         :
+         :
+         :
+         :                      Disassembly of section load0:
+         :
+         :                      ffffffff896010a7 <load0>:
+  100.00 :   ffffffff896010a7:       iretq
+ Percent |	Source code & Disassembly of cc for mem_load_uops_misc_retired.llc_miss:pp (1 samples, percent: local period)
+-----------------------------------------------------------------------------------------------------------------------------
+         :
+         :
+         :
+         :          Disassembly of section .text:
+         :
+         :          0000000000003ff0 <Compress(CSRGraph<int, int, true> const&, pvector<int>&) [clone ._omp_fn.0]>:
+         :          Compress(CSRGraph<int, int, true> const&, pvector<int>&) [clone ._omp_fn.0]:
+         :          }
+         :
+         :
+         :          // Reduce depth of tree for each component to 1 by crawling up parents
+         :          void Compress(const Graph &g, pvector<NodeID>& comp) {
+         :          #pragma omp parallel for schedule(dynamic, 16384)
+    0.00 :   3ff0:   push   %r12
+    0.00 :   3ff2:   mov    $0x4000,%ecx
+    0.00 :   3ff7:   mov    $0x1,%edx
+    0.00 :   3ffc:   push   %rbp
+    0.00 :   3ffd:   push   %rbx
+    0.00 :   3ffe:   mov    %rdi,%rbx
+    0.00 :   4001:   sub    $0x10,%rsp
+         :          CSRGraph<int, int, true>::num_nodes() const:
+         :          bool directed() const {
+         :          return directed_;
+         :          }
+         :
+         :          int64_t num_nodes() const {
+         :          return num_nodes_;
+    0.00 :   4005:   mov    (%rdi),%rax
+    0.00 :   4008:   xor    %edi,%edi
+    0.00 :   400a:   lea    0x8(%rsp),%r12
+    0.00 :   400f:   mov    %rsp,%rbp
+    0.00 :   4012:   movslq 0x8(%rax),%rsi
+    0.00 :   4016:   mov    %r12,%r9
+    0.00 :   4019:   mov    %rbp,%r8
+    0.00 :   401c:   callq  3420 <GOMP_loop_nonmonotonic_dynamic_start@plt>
+    0.00 :   4021:   test   %al,%al
+    0.00 :   4023:   jne    4047 <Compress(CSRGraph<int, int, true> const&, pvector<int>&) [clone ._omp_fn.0]+0x57>
+    0.00 :   4025:   callq  3140 <GOMP_loop_end_nowait@plt>
+         :          Compress(CSRGraph<int, int, true> const&, pvector<int>&) [clone ._omp_fn.0]:
+    0.00 :   402a:   add    $0x10,%rsp
+    0.00 :   402e:   pop    %rbx
+    0.00 :   402f:   pop    %rbp
+    0.00 :   4030:   pop    %r12
+    0.00 :   4032:   retq
+    0.00 :   4033:   nopl   0x0(%rax,%rax,1)
+    0.00 :   4038:   mov    %r12,%rsi
+    0.00 :   403b:   mov    %rbp,%rdi
+    0.00 :   403e:   callq  32d0 <GOMP_loop_nonmonotonic_dynamic_next@plt>
+    0.00 :   4043:   test   %al,%al
+    0.00 :   4045:   je     4025 <Compress(CSRGraph<int, int, true> const&, pvector<int>&) [clone ._omp_fn.0]+0x35>
+         :          pvector<int>::operator[](unsigned long):
+         :          reserve(num_elements);
+         :          end_size_ = start_ + num_elements;
+         :          }
+         :
+         :          T_& operator[](size_t n) {
+         :          return start_[n];
+    0.00 :   4047:   mov    0x8(%rbx),%rdx
+    0.00 :   404b:   mov    (%rsp),%rax
+    0.00 :   404f:   mov    0x8(%rsp),%edi
+    0.00 :   4053:   mov    (%rdx),%rcx
+    0.00 :   4056:   mov    %eax,%esi
+         :          Compress(CSRGraph<int, int, true> const&, pvector<int>&) [clone ._omp_fn.0]:
+         :          for (NodeID n = 0; n < g.num_nodes(); n++) {
+         :          while (comp[n] != comp[comp[n]]) {
+    0.00 :   4058:   cltq
+    0.00 :   405a:   mov    (%rcx,%rax,4),%edx
+    0.00 :   405d:   nopl   (%rax)
+    0.00 :   4060:   movslq %edx,%rax
+  100.00 :   4063:   mov    (%rcx,%rax,4),%eax
+    0.00 :   4066:   cmp    %edx,%eax
+    0.00 :   4068:   je     407c <Compress(CSRGraph<int, int, true> const&, pvector<int>&) [clone ._omp_fn.0]+0x8c>
+    0.00 :   406a:   movslq %esi,%rdx
+         :          comp[n] = comp[comp[n]];
+    0.00 :   406d:   mov    %eax,(%rcx,%rdx,4)
+         :          while (comp[n] != comp[comp[n]]) {
+    0.00 :   4070:   mov    %eax,%edx
+    0.00 :   4072:   movslq %edx,%rax
+    0.00 :   4075:   mov    (%rcx,%rax,4),%eax
+    0.00 :   4078:   cmp    %edx,%eax
+    0.00 :   407a:   jne    406a <Compress(CSRGraph<int, int, true> const&, pvector<int>&) [clone ._omp_fn.0]+0x7a>
+    0.00 :   407c:   add    $0x1,%esi
+    0.00 :   407f:   cmp    %esi,%edi
+    0.00 :   4081:   jle    4038 <Compress(CSRGraph<int, int, true> const&, pvector<int>&) [clone ._omp_fn.0]+0x48>
+    0.00 :   4083:   movslq %esi,%rax
+    0.00 :   4086:   mov    (%rcx,%rax,4),%edx
+    0.00 :   4089:   jmp    4060 <Compress(CSRGraph<int, int, true> const&, pvector<int>&) [clone ._omp_fn.0]+0x70>
