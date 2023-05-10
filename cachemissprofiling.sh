@@ -98,11 +98,15 @@ if [[ $# == 3  ]]; then
 # 		       :          // Link at most one time if neighbor available at offset r
 #          :          Link(u, v, comp);
 #     0.00 :   4de3:   49 8b 54 24 08          mov    0x8(%r12),%rdx
-#    99.21 :   4de8:   8b 30                   mov    (%rax),%esi
-				#          // since rax was used to compute neighbour vertex' address,
-		#                  // it is not used again to store in esi
+#!    99.21 :   4de8:   8b 30                   mov    (%rax),%esi
+		
+				#          // since rax was used to compute neighbour v vertex' address,
+		#                  // it is not used again to store in esi, it is still in rax
 
+
+		
 #!     0.00 :   4dea:   44 89 ef                mov    %r13d,%edi
+		#  // 
 #     0.00 :   4ded:   e8 ee fe ff ff          callq  4ce0 <Link(int, int, pvector<int>&)>
 #          :          break;
 #     0.00 :   4df2:   41 83 c5 01             add    $0x1,%r13d
@@ -133,7 +137,7 @@ if [[ $# == 3  ]]; then
 #          :
 #          :          T_& operator[](size_t n) {
 #          :          return start_[n];
-#     0.00 :   4ce3:   48 8b 3a                mov    (%rdx),%rdi
+#!     0.00 :   4ce3:   48 8b 3a                mov    (%rdx),%rdi
 #          :          Link(int, int, pvector<int>&):
 #          :          NodeID p1 = comp[u];
 #          :          NodeID p2 = comp[v];
@@ -141,11 +145,11 @@ if [[ $# == 3  ]]; then
 #          :          void Link(NodeID u, NodeID v, pvector<NodeID>& comp) {
 #     0.00 :   4ce9:   49 89 d1                mov    %rdx,%r9
 #          :          NodeID p1 = comp[u];
-#     0.00 :   4cec:   42 8b 0c 87             mov    (%rdi,%r8,4),%ecx
+#!     0.00 :   4cec:   42 8b 0c 87             mov    (%rdi,%r8,4),%ecx
 #          :          NodeID p2 = comp[v];
-#    91.11 :   4cf0:   8b 04 b7                mov    (%rdi,%rsi,4),%eax
+#!    91.11 :   4cf0:   8b 04 b7                mov    (%rdi,%rsi,4),%eax
 #          :          while (p1 != p2) {
-#     0.00 :   4cf3:   39 c1                   cmp    %eax,%ecx
+#!     0.00 :   4cf3:   39 c1                   cmp    %eax,%ecx
 #     0.00 :   4cf5:   74 2b                   je     4d22 <Link(int, int, pvector<int>&)+0x42>
 #          :          NodeID high = p1 > p2 ? p1 : p2;
 #     0.00 :   4cf7:   39 c8                   cmp    %ecx,%eax
@@ -156,12 +160,12 @@ if [[ $# == 3  ]]; then
 #          :          NodeID p_high = comp[high];
 #     0.00 :   4d00:   4c 63 c6                movslq %esi,%r8
 #          :          NodeID low = p1 + (p2 - high);
-#     0.00 :   4d03:   8d 14 08                lea    (%rax,%rcx,1),%edx
+#!     0.00 :   4d03:   8d 14 08                lea    (%rax,%rcx,1),%edx
 #          :          pvector<int>::operator[](unsigned long):
 #     0.00 :   4d06:   4a 8d 0c 87             lea    (%rdi,%r8,4),%rcx
 #          :          Link(int, int, pvector<int>&):
 #          :          NodeID p_high = comp[high];
-#     8.89 :   4d0a:   48 63 01                movslq (%rcx),%rax
+#!     8.89 :   4d0a:   48 63 01                movslq (%rcx),%rax
 #          :          // Was already 'low' or succeeded in writing 'low'
 #          :          if ((p_high == low) ||
 
