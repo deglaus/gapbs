@@ -6,7 +6,10 @@ if [[ $# == 3  ]]; then
 	command=record
 	
 	if [[ $3 == l1 ]]; then
-		event=L1-dcache-load-misses	
+		event=L1-dcache-load-misses
+	elif [[ $1 == l1num ]]; then
+		event=L1-dcache-load-misses
+
 	elif [[ $3 == llc  ]]; then
 		event=mem_load_uops_misc_retired.llc_miss 
 		#event=mem_load_uops_misc_retired.llc_miss,offcore_response_all_reads.llc_miss.dram
@@ -99,6 +102,7 @@ if [[ $# == 3  ]]; then
 		
 				#          // since rax was used to compute neighbour v vertex' address,
 		#                  // it is not used again to store in esi, it is still in rax
+
 
 		
 #!     0.00 :   4dea:   44 89 ef                mov    %r13d,%edi
@@ -257,6 +261,14 @@ if [[ $# == 3  ]]; then
 		exit 1
 		
 
+	elif [[ $3 == l1num ]]; then
+		sudo perf stat -e $event -o $3$1$2.txt  ./$1 -f ./benchmark/$2graph.$extension -n $repeat
+		nums=`cat $3$1$2.txt | grep "L1-dcache-load-misses" | awk '{gsub(",", ""); print $1}'`
+
+		echo $nums >> $1$2_counting_$3.txt
+		echo $nums
+
+		exit 1
 	
 	else
 		
