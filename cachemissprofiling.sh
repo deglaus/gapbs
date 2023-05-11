@@ -7,8 +7,12 @@ if [[ $# == 3  ]]; then
 	
 	if [[ $3 == l1 ]]; then
 		event=L1-dcache-load-misses
-	elif [[ $1 == l1num ]]; then
+	elif [[ $3 == l1num ]]; then
 		event=L1-dcache-load-misses
+		
+	elif [[ $3 == stepcount ]]; then
+		event=L1-dcache-load-misses
+
 
 	elif [[ $3 == llc  ]]; then
 		event=mem_load_uops_misc_retired.llc_miss 
@@ -269,7 +273,35 @@ if [[ $# == 3  ]]; then
 		echo $nums
 
 		exit 1
-	
+	elif [[ $3 == stepcount ]]; then
+		./$1_counter -f ./benchmark/$2graph.$extension -n $repeat
+		BUfrontiers=`grep -oP 'BU: \K\d+' $1CountStep.txt`
+		BUnum=`grep -c 'BU:' bfsCountStep.txt`
+		
+		TDfrontiers=`grep -oP 'TD: \K\d+' $1CountStep.txt`
+		TDnum=`grep -c 'TD:' bfsCountStep.txt`
+		
+		echo "RUN START:" >> $1$2_stepcount.txt
+		echo "Number of times in Bottom-up:" >> $1$2_stepcount.txt
+		echo $BUnum >> $1$2_stepcount.txt
+		echo "Number of times in Top-down:" >> $1$2_stepcount.txt
+		echo $TDnum >> $1$2_stepcount.txt
+
+		echo "BU:" >> $1$2_stepcount.txt
+		echo $BUnum >> $1$2_stepcount.txt
+		echo "TD:" >> $1$2_stepcount.txt
+		echo $TDnum >> $1$2_stepcount.txt
+
+		echo "RUN END:" >> $1$2_stepcount.txt
+		
+		echo "BU count:"
+		echo $BUnum
+		echo "TD count:"
+		echo $TDnum
+
+		> $1CountStep.txt
+		
+		exit 1
 	else
 		
 		echo "Percentage of $3 misses..."

@@ -33,7 +33,10 @@ if [[ $# == 3  ]]; then
 				
 		exit 1
 			fi
-
+	if [[ $3 == l1num  ]]; then
+		cat $1$2_counting_$3.txt | awk '{ sum+=$1 }END { print sum/NR }'
+		exit 1
+	fi
 
 
 
