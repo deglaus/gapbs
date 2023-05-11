@@ -288,9 +288,9 @@ if [[ $# == 3  ]]; then
 		echo $TDnum >> $1$2_stepcount.txt
 
 		echo "BU:" >> $1$2_stepcount.txt
-		echo $BUnum >> $1$2_stepcount.txt
+		echo $BUfrontiers >> $1$2_stepcount.txt
 		echo "TD:" >> $1$2_stepcount.txt
-		echo $TDnum >> $1$2_stepcount.txt
+		echo $TDfrontiers >> $1$2_stepcount.txt
 
 		echo "RUN END:" >> $1$2_stepcount.txt
 		
