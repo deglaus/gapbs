@@ -1,7 +1,7 @@
 # See LICENSE.txt for license details.
 
 #CXX_FLAGS += -g -fno-omit-frame-pointer -std=c++11 -O3 -Wall
-CXX_FLAGS += -g3 -std=c++11 -O0 -Wall
+CXX_FLAGS += -g3 -std=c++11 -O2 -Wall
 PAR_FLAG = -fopenmp
 
 ifneq (,$(findstring icpc,$(CXX)))
@@ -17,7 +17,7 @@ ifneq ($(SERIAL), 1)
 	CXX_FLAGS += $(PAR_FLAG)
 endif
 
-KERNELS = bc bfs cc cc_sv pr pr_spmv sssp tc
+KERNELS = bc bfs cc cc_sv pr pr_spmv sssp tc bfs_counter
 SUITE = $(KERNELS) converter
 
 .PHONY: all
