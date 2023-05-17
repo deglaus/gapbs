@@ -15,7 +15,10 @@ if [[ $# == 3  ]]; then
 
 
 	elif [[ $3 == llc  ]]; then
+		event=mem_load_uops_misc_retired.llc_miss
+	elif [[ $3 == llcnum  ]]; then
 		event=mem_load_uops_misc_retired.llc_miss 
+
 		#event=mem_load_uops_misc_retired.llc_miss,offcore_response_all_reads.llc_miss.dram
 
 
@@ -183,6 +186,10 @@ if [[ $# == 3  ]]; then
 	elif [[ $3 == llc-count  ]]; then
 		#		event=offcore_response.all_reads.llc_miss.dram,mem_load_uops_misc_retired.llc_miss
 		event=mem_load_uops_retired.llc_hit:pp,mem_load_uops_misc_retired.llc_miss
+	elif [[ $3 == l1-count  ]]; then
+		#		event=offcore_response.all_reads.llc_miss.dram,mem_load_uops_misc_retired.llc_miss
+		event=L1-dcache-loads:pp,L1-dcache-load-misses
+
 	fi
 
 
@@ -263,18 +270,87 @@ if [[ $# == 3  ]]; then
 		echo "------------------------------------------------------------------" >> $1$2_count_$3.txt
 
 		exit 1
+
+		elif [[ $3 == l1-count ]]; then
+		echo "Counting l1 on $2 graph running $1..."
+		sudo perf record -g -e $event:pp --call-graph dwarf  ./$1 -f ./benchmark/$2graph.$extension -n $repeat
+		sudo perf script -F insn,event >> script$1$2_output.txt
+
+		if [[ $1 == pr ]]; then
+			insts=("f3 0f 58 04 96" "49 39 c3" "48 63 10")
+			
+		elif [[ $1 == bfs ]]; then
+			insts=("48 8b 04 f8" "48 63 30" "49 8b 34 f7")
+		elif [[ $1 == bc ]]; then
+			insts=("48 63 02" "49 8b 0a" "f3 0f 5a c9" "f3 41 0f 10 14 80" "f2 42 0f 10 04 09" "f2 0f 5e 04 c1" "f3 0f 58 d3" "f3 0f 5a d2" "f2 0f 59 c2" "f2 0f 58 c8" "f2 0f 5a c9")
+			
+		elif [[ $1 == cc ]]; then
+			insts=("49 8b 54 24 08" "8b 30" "44 89 ef" "e8 ee fe ff ff" "4c 63 c7" "48 8b 3a" "48 63 f6" "49 89 d1" "42 8b 0c 87" "8b 04 b7" "39 c1" "74 2b" "39 c8" "89 ce" "0f 4d f0" "29 f0" "4c 63 c6" "8d 14 08" "4a 8d 0c 87" "48 63 01" "39 c2")
+		fi
+		misses=0
+		accesses=0
+		for inst in "${insts[@]}"; do
+			echo $inst
+			echo "sudo perf script -F insn,event | awk '/mem_load_uops_retired.llc_hit/ && /$inst/ {count++} END {print count}'"
+			echo "done"
+			
+			accesses=`sudo perf script -F insn,event | grep 'L1-dcache-loads:pp:' | grep -c "$inst"`
+			
+			misses=`sudo perf script -F insn,event | grep 'L1-dcache-load-misses:pp:' | grep -c "$inst"`
+			
+			echo $misses
+			echo $accesses
+			
+			
+			if [[ $accesses == 0 ]]; then
+				rate=0
+			else
+				rate=$(echo "scale=3; $misses / $accesses" | bc)
+				echo "$1.cc - $inst - MISS-COUNT: $misses HIT-COUNT: $hits RATE: $rate" >> $1$2_count_$3.txt
+				echo "$1.cc - $inst - MISS-COUNT: $misses HIT-COUNT: $hits RATE: $rate"
+			fi
+			
+		done
+		echo "------------------------------------------------------------------" >> $1$2_count_$3.txt
+
+		exit 1
+
 		
 
 	elif [[ $3 == l1num ]]; then
-		sudo perf stat -e $event -o $3$1$2.txt  ./$1 -f ./benchmark/$2graph.$extension -n $repeat
+		sudo perf stat -e $event,instructions,cycles -o $3$1$2.txt  ./$1 -f ./benchmark/$2graph.$extension -n $repeat
 		nums=`cat $3$1$2.txt | grep "L1-dcache-load-misses" | awk '{gsub(",", ""); print $1}'`
 
 		echo $nums >> $1$2_counting_$3.txt
 		echo $nums
+		exit 1
+		
+	elif [[ $3 == llcnum ]]; then
+		sudo perf stat -e $event,instructions,cycles -o $3$1$2.txt  ./$1 -f ./benchmark/$2graph.$extension -n $repeat
+		nums=`cat $3$1$2.txt | grep "$event" | awk '{gsub(",", ""); print $1}'`
+
+		ins=`cat $3$1$2.txt | grep "instructions" | awk '{gsub(",", ""); print $1}'`
+		cycs=`cat $3$1$2.txt | grep "cycles" | awk '{gsub(",", ""); print $1}'`
+
+		ipc=$(echo "scale=10; $ins / $cycs" | bc)
+
+		kins=$(echo "scale=10; $ins / 1000" | bc)
+		mpki=$(echo "scale=10; $nums / $kins" | bc)
+		
+		echo $nums >> $1$2_counting_$3.txt
+		echo $nums
+
+		echo "ipc: $ipc" >> $1$2_ips_mpki_$3.txt
+		echo "mpki: $mpki" >> $1$2_ips_mpki_$3.txt
+
+		echo "ipc: $ipc"
+		echo "mpki: $mpki"
+		
+
 
 		exit 1
-	elif [[ $3 == stepcount ]]; then
-		./$1_counter -f ./benchmark/$2graph.$extension -n $repeat
+	elif [[ $3 == stepcounter ]]; then
+		./$1_counter -f ./benchmark/$2graph.$extension -n 1
 		BUfrontiers=`grep -oP 'BU: \K\d+' $1CountStep.txt`
 		BUnum=`grep -c 'BU:' bfsCountStep.txt`
 		
@@ -300,8 +376,20 @@ if [[ $# == 3  ]]; then
 		echo $TDnum
 
 		> $1CountStep.txt
+		echo "./$1 -f ./benchmark/$2graph.$extension -n $repeat"
 		
 		exit 1
+	elif [[ $3 == stepcount ]]; then
+		./$1_counter -f ./benchmark/$2graph.$extension -n 1
+		echo "RUN START:" >> $1$2_stepcount.txt
+		echo `cat $1CountStep.txt >> $1$2_stepcount.txt`
+		echo "RUN END:" >> $1$2_stepcount.txt
+		echo "done!"
+		cat $1CountStep.txt
+		> $1CountStep.txt
+
+		exit 1
+
 	else
 		
 		echo "Percentage of $3 misses..."

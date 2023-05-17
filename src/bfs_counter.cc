@@ -15,7 +15,7 @@
 #include "timer.h"
 #include <iostream>
 #include <fstream>
-
+#include <iomanip>
 
 /*
 GAP Benchmark Suite
@@ -53,22 +53,32 @@ int countBitmap(const Graph &g, Bitmap &front) {
 	return counter;
 }
 
-void writeStepToFile(std::string prefix, int value) {
+void writeStepToFile(std::string prefix, int value, int time) {
 	std::ofstream outputFile("bfsCountStep.txt", std::ios::app);
 	if (outputFile.is_open()) {
-		outputFile << prefix << value << "\n";
+		outputFile  << prefix << value << " time: " << time << "\n"; 
+}
+
+}
+
+
+void writeTimeToFile(std::string prefix, double value) {
+	std::ofstream outputFile("bfsCountStep.txt", std::ios::app);
+	if (outputFile.is_open()) {
+		outputFile << prefix << std::fixed << "seconds: "  << std::setprecision(8) << value << "\n";
 	}
 }
+
 
 using namespace std;
 
 int64_t BUStep(const Graph &g, pvector<NodeID> &parent, Bitmap &front,
-               Bitmap &next) {
+               Bitmap &next, int time) {
   int64_t awake_count = 0;
   next.reset();
   int frontier_size = countBitmap(g, front);
   std::string prefix = "BU: ";
-  writeStepToFile(prefix, frontier_size);
+  writeStepToFile(prefix, frontier_size, time);
   #pragma omp parallel for reduction(+ : awake_count) schedule(dynamic, 1024)
   for (NodeID u=0; u < g.num_nodes(); u++) {
     if (parent[u] < 0) {
@@ -87,10 +97,10 @@ int64_t BUStep(const Graph &g, pvector<NodeID> &parent, Bitmap &front,
 
 
 int64_t TDStep(const Graph &g, pvector<NodeID> &parent,
-               SlidingQueue<NodeID> &queue) {
+               SlidingQueue<NodeID> &queue, int time) {
   int64_t scout_count = 0;
-  std::string prefix = "BU: ";
-  writeStepToFile(prefix, static_cast<int>(queue.size()));
+  std::string prefix = "TD: ";
+  writeStepToFile(prefix, static_cast<int>(queue.size()), time);
 
   #pragma omp parallel
   {
@@ -148,7 +158,7 @@ pvector<NodeID> DOBFS(const Graph &g, NodeID source, int alpha = 15,
                       int beta = 18) {
   PrintStep("Source", static_cast<int64_t>(source));
   Timer t;
-  t.Start();
+  int timer = 0;
   pvector<NodeID> parent = InitParent(g);
   t.Stop();
   PrintStep("i", t.Seconds());
@@ -172,10 +182,12 @@ pvector<NodeID> DOBFS(const Graph &g, NodeID source, int alpha = 15,
       do {
         t.Start();
         old_awake_count = awake_count;
-        awake_count = BUStep(g, parent, front, curr);
+		timer++;
+        awake_count = BUStep(g, parent, front, curr, timer);
         front.swap(curr);
         t.Stop();
         PrintStep("bu", t.Seconds(), awake_count);
+		writeTimeToFile("bottomup: ", t.Seconds());
       } while ((awake_count >= old_awake_count) ||
                (awake_count > g.num_nodes() / beta));
       TIME_OP(t, BitmapToQueue(g, front, queue));
@@ -184,12 +196,15 @@ pvector<NodeID> DOBFS(const Graph &g, NodeID source, int alpha = 15,
     } else {
       t.Start();
       edges_to_check -= scout_count;
-      scout_count = TDStep(g, parent, queue);
+	  timer++;
+      scout_count = TDStep(g, parent, queue, timer);
       queue.slide_window();
       t.Stop();
+	  writeTimeToFile("topdown: ", t.Seconds());
       PrintStep("td", t.Seconds(), queue.size());
     }
   }
+
   #pragma omp parallel for
   for (NodeID n = 0; n < g.num_nodes(); n++)
     if (parent[n] < -1)
